@@ -280,16 +280,14 @@ const Countdown = (() => {
 
 /* ================================================================
    5. PARALLAX
-   Moves the hero background at a fraction of scroll speed,
-   creating depth. Also supports device tilt (gyroscope) on mobile.
 ================================================================ */
 const Parallax = (() => {
 
-  // How strongly to shift the background per pixel scrolled
-  const SCROLL_FACTOR = 0.35;
-
-  // How strongly to react to device tilt (gamma/beta)
+  // CHANGE THIS: Slow down the scroll speed so it doesn't run out of image
+  const SCROLL_FACTOR = 0.12; 
+  
   const TILT_FACTOR = 8;
+  // ... rest of the code
 
   let tiltSupported = false;
   let tiltX = 0, tiltY = 0;    // device orientation offsets
