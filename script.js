@@ -29,8 +29,6 @@ const DOM = {
   fabBar:        document.getElementById('fab-bar'),
   musicToggle:   document.getElementById('music-toggle'),
   audio:         document.getElementById('wedding-audio'),
-  
-  // FIX: Update these 4 IDs to match the HTML
   cdDays:        document.getElementById('count-days'),
   cdHours:       document.getElementById('count-hours'),
   cdMins:        document.getElementById('count-mins'),
