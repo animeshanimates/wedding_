@@ -1,0 +1,1218 @@
+/* ================================================================
+   WEDDING MICROSITE — style.css
+   Suryanshu & Aishwarya · Varanasi 2026
+   Aesthetic: Glassmorphism / Luxury Minimalism
+================================================================ */
+
+
+/* ----------------------------------------------------------------
+   1. CSS CUSTOM PROPERTIES (Design Tokens)
+---------------------------------------------------------------- */
+:root {
+  /* Brand Palette */
+  --c-burgundy:      #4A0404;     /* Primary — deep red-black */
+  --c-burgundy-mid:  #6B0A0A;     /* Hover states */
+  --c-rose-gold:     #B76E79;     /* Accent — warm rose */
+  --c-rose-light:    #D4939C;     /* Lighter rose */
+  --c-champagne:     #F7E7CE;     /* Background highlight */
+  --c-cream-deep:    #EED5B0;     /* Warm card backgrounds */
+  --c-ivory:         #FDF6EC;     /* Near-white text on dark */
+  --c-gold:          #C9974A;     /* Gold accent */
+  --c-gold-light:    #E8C87A;     /* Light gold shimmer */
+
+  /* Dark overlays */
+  --c-dark:          #0E0608;
+  --c-dark-glass:    rgba(14, 6, 8, 0.72);
+  --c-glass-card:    rgba(247, 231, 206, 0.07);
+  --c-glass-border:  rgba(183, 110, 121, 0.25);
+
+  /* Typography */
+  --font-display:    'Cinzel', Georgia, serif;
+  --font-body:       'Cormorant Garamond', Georgia, serif;
+  --font-ui:         'Montserrat', system-ui, sans-serif;
+
+  /* Fluid type scale using clamp() */
+  --fs-xs:    clamp(0.65rem, 1.5vw, 0.75rem);
+  --fs-sm:    clamp(0.75rem, 2vw,   0.875rem);
+  --fs-base:  clamp(0.9rem,  2.5vw, 1.05rem);
+  --fs-md:    clamp(1rem,    3vw,   1.25rem);
+  --fs-lg:    clamp(1.25rem, 4vw,   1.75rem);
+  --fs-xl:    clamp(1.5rem,  5vw,   2.5rem);
+  --fs-2xl:   clamp(2rem,    7vw,   4rem);
+  --fs-3xl:   clamp(2.75rem, 9vw,   6rem);
+  --fs-hero:  clamp(3rem,    12vw,  8.5rem);
+
+  /* Spacing */
+  --space-xs:   0.5rem;
+  --space-sm:   1rem;
+  --space-md:   2rem;
+  --space-lg:   4rem;
+  --space-xl:   7rem;
+  --space-2xl:  10rem;
+
+  /* Motion */
+  --ease-luxury: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-sharp:  cubic-bezier(0.86, 0, 0.07, 1);
+  --dur-fast:    200ms;
+  --dur-mid:     450ms;
+  --dur-slow:    800ms;
+  --dur-epic:    1200ms;
+
+  /* Layout */
+  --max-w:        1100px;
+  --fab-h:        80px;     /* Floating action bar height */
+  --radius-card:  16px;
+  --radius-pill:  100px;
+}
+
+
+/* ----------------------------------------------------------------
+   2. RESET & BASE
+---------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--c-dark);
+  color: var(--c-champagne);
+  overflow-x: hidden;
+  /* Subtle noise grain texture for depth */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Reserve space for fixed FAB so content isn't hidden beneath it */
+body.site-active {
+  padding-bottom: var(--fab-h);
+}
+
+img, svg { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+ul, ol { list-style: none; }
+
+
+/* ----------------------------------------------------------------
+   3. UTILITY CLASSES
+---------------------------------------------------------------- */
+
+/* Glassmorphism card foundation */
+.glass-card {
+  background:  var(--c-glass-card);
+  border:      1px solid var(--c-glass-border);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-radius: var(--radius-card);
+}
+
+/* Haptic-style button press feedback */
+.haptic-btn {
+  transition:
+    transform    var(--dur-fast) var(--ease-bounce),
+    box-shadow   var(--dur-fast) var(--ease-luxury),
+    opacity      var(--dur-fast) ease;
+}
+.haptic-btn:active {
+  transform: scale(0.94);
+  opacity: 0.85;
+}
+
+/* Scroll-reveal base state (JS adds .revealed class) */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity   var(--dur-slow) var(--ease-luxury),
+    transform var(--dur-slow) var(--ease-luxury);
+}
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delays for child scroll reveals */
+.scroll-reveal:nth-child(2) { transition-delay: 100ms; }
+.scroll-reveal:nth-child(3) { transition-delay: 200ms; }
+.scroll-reveal:nth-child(4) { transition-delay: 300ms; }
+
+/* Section layout container */
+.section-container {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+  padding-block:  var(--space-xl);
+}
+
+/* Shared section heading styles */
+.section-eyebrow {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color:  var(--c-rose-gold);
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size:   var(--fs-2xl);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: var(--c-champagne);
+  margin-bottom: var(--space-lg);
+  line-height: 1.1;
+}
+
+
+/* ----------------------------------------------------------------
+   4. LOADER / ENTRY SCREEN
+   Full-viewport gate the user must pass through.
+---------------------------------------------------------------- */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+
+  /* Rich layered background */
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(74, 4, 4, 0.7) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 30% 70%, rgba(183, 110, 121, 0.15) 0%, transparent 60%),
+    linear-gradient(160deg, #0E0608 0%, #1A050A 40%, #0D0407 100%);
+
+  padding-inline: var(--space-md);
+  text-align: center;
+
+  /* Entry animation — loader fades in */
+  animation: loaderFadeIn 1s var(--ease-luxury) forwards;
+}
+
+@keyframes loaderFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Loader exit — JS adds .loader-exit class */
+#loader.loader-exit {
+  animation: loaderExit var(--dur-epic) var(--ease-sharp) forwards;
+  pointer-events: none;
+}
+
+@keyframes loaderExit {
+  0%   { opacity: 1; transform: scale(1);    clip-path: inset(0 0 0 0); }
+  40%  { opacity: 1; transform: scale(1.04); clip-path: inset(0 0 0 0); }
+  100% { opacity: 0; transform: scale(1.1);  clip-path: inset(50% 0 50% 0); }
+}
+
+/* ── Ornament bars ── */
+.loader-ornament-top,
+.loader-ornament-bottom {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: min(420px, 80vw);
+  opacity: 0;
+  animation: ornFadeIn 1s 0.6s var(--ease-luxury) forwards;
+}
+.loader-ornament-bottom { animation-delay: 0.9s; }
+
+@keyframes ornFadeIn {
+  from { opacity: 0; transform: scaleX(0.6); }
+  to   { opacity: 1; transform: scaleX(1);   }
+}
+
+.orn-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-rose-gold), transparent);
+}
+.orn-diamond {
+  font-size: 0.5rem;
+  color: var(--c-rose-gold);
+  opacity: 0.8;
+}
+
+/* ── Floating decorative glyphs ── */
+.loader-petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.petal {
+  position: absolute;
+  color: var(--c-rose-gold);
+  opacity: 0;
+  font-size: 0.75rem;
+  animation: petalFloat 8s ease-in-out infinite;
+}
+.p1 { left: 10%; top: 20%; animation-delay: 0s;    animation-duration: 9s;  }
+.p2 { left: 80%; top: 15%; animation-delay: 1.5s;  animation-duration: 7s;  }
+.p3 { left: 60%; top: 70%; animation-delay: 3s;    animation-duration: 10s; }
+.p4 { left: 25%; top: 75%; animation-delay: 0.8s;  animation-duration: 8s;  }
+.p5 { left: 50%; top: 10%; animation-delay: 2.2s;  animation-duration: 11s; font-size: 1.25rem; color: var(--c-gold); }
+.p6 { left: 90%; top: 55%; animation-delay: 4s;    animation-duration: 6s;  }
+
+@keyframes petalFloat {
+  0%   { opacity: 0; transform: translateY(0)    rotate(0deg);   }
+  20%  { opacity: 0.4; }
+  80%  { opacity: 0.2; }
+  100% { opacity: 0; transform: translateY(-80px) rotate(180deg); }
+}
+
+/* ── Loader content block ── */
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  opacity: 0;
+  animation: contentRise 1s 0.3s var(--ease-luxury) forwards;
+}
+
+@keyframes contentRise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.loader-eyebrow {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--c-rose-gold);
+}
+
+.loader-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+  line-height: 1;
+}
+
+.loader-name-groom,
+.loader-name-bride {
+  font-family: var(--font-display);
+  font-size:   var(--fs-hero);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--c-champagne);
+  /* Gradient shimmer on names */
+  background: linear-gradient(135deg, var(--c-champagne) 0%, var(--c-gold-light) 50%, var(--c-champagne) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Animate the gradient sweep */
+  background-size: 200% auto;
+  animation: nameShimmer 4s linear infinite;
+}
+
+@keyframes nameShimmer {
+  from { background-position: 0% center; }
+  to   { background-position: 200% center; }
+}
+
+.loader-ampersand {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size:   clamp(1.5rem, 5vw, 3rem);
+  color: var(--c-rose-gold);
+  opacity: 0.9;
+  margin-block: 0.1em;
+}
+
+.loader-verse {
+  font-family: var(--font-body);
+  font-style:  italic;
+  font-size:   var(--fs-md);
+  color:       var(--c-champagne);
+  opacity:     0.75;
+  max-width:   380px;
+  line-height: 1.7;
+}
+.loader-verse em {
+  display: block;
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.15em;
+  color: var(--c-rose-gold);
+  margin-top: 0.5em;
+}
+
+.loader-date-hint {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  letter-spacing: 0.25em;
+  color: var(--c-champagne);
+  opacity: 0.45;
+}
+
+/* ── "Enter Our World" button ── */
+.btn-enter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: var(--space-sm);
+  padding: 1rem 2.5rem;
+  border: 1px solid var(--c-rose-gold);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-ui);
+  font-size:   var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-champagne);
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 52px; /* 48px+ touch target */
+  transition:
+    background var(--dur-mid) var(--ease-luxury),
+    border-color var(--dur-mid) var(--ease-luxury),
+    transform var(--dur-fast) var(--ease-bounce),
+    box-shadow var(--dur-mid) var(--ease-luxury);
+}
+.btn-enter:hover {
+  background: rgba(183, 110, 121, 0.15);
+  border-color: var(--c-gold-light);
+  box-shadow: 0 0 30px rgba(183, 110, 121, 0.3), 0 0 60px rgba(74, 4, 4, 0.4);
+  transform: translateY(-2px);
+}
+.btn-enter:active {
+  transform: scale(0.96) translateY(0);
+}
+
+/* Shimmer sweep across the button */
+.btn-enter-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+  background-size: 200% 100%;
+  animation: shimmerSweep 2.5s ease-in-out infinite;
+}
+@keyframes shimmerSweep {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 200% 0;  }
+}
+
+.btn-enter-text { position: relative; z-index: 1; }
+.btn-enter-icon {
+  position: relative;
+  z-index: 1;
+  transition: transform var(--dur-fast) var(--ease-bounce);
+}
+.btn-enter:hover .btn-enter-icon { transform: translateX(4px); }
+
+
+/* ----------------------------------------------------------------
+   5. HERO SECTION
+---------------------------------------------------------------- */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;      /* full viewport, safe-area aware */
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Parallax background layer */
+.hero-parallax-bg {
+  position: absolute;
+  inset: -15%;           /* extra size to allow parallax movement */
+  background-image: url('hero.jpg');
+  background-size: cover;
+  background-position: center top;
+  will-change: transform;  /* GPU compositing hint */
+  transition: transform 0.05s linear;
+}
+
+/* Multi-layer overlay for legibility */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    /* Bottom vignette — ensures text pops */
+    linear-gradient(to top,   rgba(14, 6, 8, 0.85) 0%,   rgba(14, 6, 8, 0.3) 40%,  transparent 70%),
+    /* Top vignette */
+    linear-gradient(to bottom, rgba(14, 6, 8, 0.5) 0%,  transparent 40%),
+    /* Color tint layer — wedding rose warmth */
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(74, 4, 4, 0.35) 0%, transparent 70%);
+}
+
+/* Hero text block */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-inline: var(--space-md);
+  max-width: 900px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--c-rose-gold);
+  margin-bottom: var(--space-sm);
+  opacity: 0;
+  animation: heroFadeUp 1s 0.2s var(--ease-luxury) forwards;
+}
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  opacity: 0;
+  animation: heroFadeUp 1.2s 0.5s var(--ease-luxury) forwards;
+}
+
+.hero-groom,
+.hero-bride {
+  font-family: var(--font-display);
+  font-size:   var(--fs-hero);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--c-champagne);
+  line-height: 0.95;
+  text-shadow:
+    0 2px  8px  rgba(0,0,0,0.6),
+    0 8px  32px rgba(74, 4, 4, 0.5);
+}
+
+.hero-amp {
+  font-family: var(--font-body);
+  font-size:   clamp(2rem, 6vw, 4rem);
+  color: var(--c-rose-gold);
+  line-height: 1.2;
+  display: block;
+  opacity: 0.9;
+}
+
+.hero-quote {
+  font-family: var(--font-body);
+  font-style:  italic;
+  font-size:   var(--fs-md);
+  color: var(--c-champagne);
+  opacity: 0.82;
+  margin-top: var(--space-md);
+  line-height: 1.8;
+  opacity: 0;
+  animation: heroFadeUp 1s 1s var(--ease-luxury) forwards;
+}
+.hero-quote em {
+  display: block;
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.2em;
+  color: var(--c-rose-gold);
+  margin-top: 0.4em;
+  opacity: 0.9;
+}
+
+/* Scroll cue indicator */
+.hero-scroll-cue {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: heroFadeIn 1s 1.8s var(--ease-luxury) forwards;
+}
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--c-rose-gold), transparent);
+  animation: scrollLinePulse 2s ease-in-out infinite;
+}
+@keyframes scrollLinePulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1);    }
+  50%       { opacity: 1;   transform: scaleY(1.15); }
+}
+.scroll-label {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  letter-spacing: 0.3em;
+  color: var(--c-rose-gold);
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
+/* Hero entrance animations */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 0.7; }
+}
+
+/* !! Override scroll-reveal opacity for hero-content since it has its own animation !! */
+#hero .scroll-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+
+/* ----------------------------------------------------------------
+   6. COUNTDOWN SECTION
+---------------------------------------------------------------- */
+#countdown {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(74, 4, 4, 0.25) 0%, transparent 70%),
+    linear-gradient(180deg, var(--c-dark) 0%, #120508 100%);
+  border-top:    1px solid rgba(183, 110, 121, 0.1);
+  border-bottom: 1px solid rgba(183, 110, 121, 0.1);
+}
+
+.countdown-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 3vw, 2rem);
+  flex-wrap: wrap;
+}
+
+.count-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: clamp(70px, 18vw, 120px);
+}
+
+.count-num {
+  font-family: var(--font-display);
+  font-size:   clamp(2.5rem, 10vw, 5.5rem);
+  font-weight: 600;
+  line-height: 1;
+  /* Gradient text */
+  background: linear-gradient(135deg, var(--c-champagne) 0%, var(--c-gold-light) 60%, var(--c-rose-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Flip animation on digit change */
+  transition: transform 0.3s var(--ease-bounce), opacity 0.3s ease;
+}
+
+.count-num.flip {
+  transform: rotateX(-90deg) scale(0.8);
+  opacity: 0;
+}
+
+.count-label {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-rose-gold);
+  opacity: 0.75;
+}
+
+.count-separator {
+  font-family: var(--font-display);
+  font-size:   clamp(2rem, 8vw, 4rem);
+  color: var(--c-rose-gold);
+  opacity: 0.5;
+  line-height: 1;
+  margin-bottom: 1.5rem; /* align with number */
+  align-self: flex-start;
+  margin-top: 0.25em;
+}
+
+.countdown-sub {
+  text-align: center;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size:  var(--fs-md);
+  color: var(--c-champagne);
+  opacity: 0.55;
+  margin-top: var(--space-md);
+}
+
+
+/* ----------------------------------------------------------------
+   7. EVENTS SECTION
+---------------------------------------------------------------- */
+#events {
+  background:
+    linear-gradient(160deg, #120508 0%, #0E0608 60%, #0D0508 100%);
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: var(--space-md);
+  max-width: var(--max-w);
+  margin-inline: auto;
+}
+
+/* ── Individual Event Card ── */
+.event-card {
+  position: relative;
+  padding: var(--space-md) clamp(1rem, 4vw, 2rem);
+  overflow: hidden;
+  transition: transform var(--dur-mid) var(--ease-luxury),
+              box-shadow var(--dur-mid) var(--ease-luxury);
+}
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(183, 110, 121, 0.35);
+}
+
+/* Left accent border stripe */
+.event-card-accent {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--c-rose-gold), var(--c-burgundy));
+  border-radius: 4px 0 0 4px;
+}
+.accent-gold {
+  background: linear-gradient(180deg, var(--c-gold-light), var(--c-gold));
+}
+
+/* Roman numeral badge */
+.event-badge {
+  font-family: var(--font-display);
+  font-size:   var(--fs-xs);
+  letter-spacing: 0.2em;
+  color: var(--c-dark);
+  background: var(--c-rose-gold);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--space-sm);
+  font-weight: 700;
+}
+.badge-gold {
+  background: var(--c-gold);
+}
+
+.event-type {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-rose-gold);
+  margin-bottom: 0.25rem;
+}
+
+.event-name {
+  font-family: var(--font-display);
+  font-size:   var(--fs-xl);
+  font-weight: 400;
+  color: var(--c-champagne);
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+}
+
+.event-detail-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(183, 110, 121, 0.12);
+}
+.event-detail-row:last-of-type {
+  border-bottom: none;
+  margin-bottom: var(--space-md);
+}
+
+.event-icon {
+  color: var(--c-rose-gold);
+  font-size: 0.7rem;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.event-detail-label {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-rose-gold);
+  opacity: 0.8;
+  margin-bottom: 0.3rem;
+}
+
+.event-detail-value {
+  font-family: var(--font-body);
+  font-size:   var(--fs-base);
+  color: var(--c-champagne);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.event-verse {
+  font-style: italic;
+  font-size:  var(--fs-sm);
+  opacity: 0.75;
+  line-height: 1.8;
+}
+.event-verse em {
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  color: var(--c-rose-gold);
+  opacity: 0.8;
+}
+
+/* Event directions button */
+.btn-event-map {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(183, 110, 121, 0.4);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-rose-gold);
+  transition:
+    background    var(--dur-mid) var(--ease-luxury),
+    border-color  var(--dur-mid) var(--ease-luxury),
+    color         var(--dur-mid) var(--ease-luxury);
+  min-height: 48px;
+}
+.btn-event-map:hover {
+  background: rgba(183, 110, 121, 0.15);
+  border-color: var(--c-rose-gold);
+  color: var(--c-champagne);
+}
+.btn-event-map-gold {
+  border-color: rgba(201, 151, 74, 0.4);
+  color: var(--c-gold);
+}
+.btn-event-map-gold:hover {
+  background: rgba(201, 151, 74, 0.12);
+  border-color: var(--c-gold);
+  color: var(--c-champagne);
+}
+
+
+/* ----------------------------------------------------------------
+   8. RSVP SECTION
+---------------------------------------------------------------- */
+#rsvp {
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 30%, rgba(74, 4, 4, 0.3) 0%, transparent 70%),
+    linear-gradient(180deg, #0E0608 0%, #120508 100%);
+  border-top: 1px solid rgba(183, 110, 121, 0.1);
+}
+
+.rsvp-inner {
+  text-align: center;
+}
+
+.rsvp-deco-top {
+  font-size: 0.5rem;
+  letter-spacing: 1rem;
+  color: var(--c-rose-gold);
+  opacity: 0.5;
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+.rsvp-body {
+  font-family: var(--font-body);
+  font-size:   var(--fs-lg);
+  line-height: 1.85;
+  color: var(--c-champagne);
+  opacity: 0.75;
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: var(--space-lg);
+}
+
+.rsvp-contact-card {
+  max-width: 400px;
+  margin-inline: auto;
+  padding: var(--space-md);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.rsvp-contact-label {
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-rose-gold);
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.rsvp-contact-name {
+  font-family: var(--font-display);
+  font-size:   var(--fs-xl);
+  font-weight: 400;
+  color: var(--c-champagne);
+  margin-bottom: 0.25rem;
+}
+
+.rsvp-contact-phone {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-md);
+  color: var(--c-gold);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-md);
+}
+
+.rsvp-btn-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-rsvp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border: 1px solid rgba(183, 110, 121, 0.4);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-rose-gold);
+  transition:
+    background var(--dur-mid) var(--ease-luxury),
+    border-color var(--dur-mid) var(--ease-luxury);
+  min-height: 48px;
+}
+.btn-rsvp:hover {
+  background: rgba(183, 110, 121, 0.15);
+  border-color: var(--c-rose-gold);
+}
+.btn-rsvp-wa {
+  background: rgba(37, 211, 102, 0.08);
+  border-color: rgba(37, 211, 102, 0.35);
+  color: #4FD47C;
+}
+.btn-rsvp-wa:hover {
+  background: rgba(37, 211, 102, 0.18);
+  border-color: rgba(37, 211, 102, 0.6);
+}
+
+.rsvp-btn-icon { font-size: 1rem; }
+
+/* Bottom ornament within RSVP */
+.rsvp-deco-bottom {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  max-width: 300px;
+  margin-inline: auto;
+  opacity: 0.5;
+}
+
+
+/* ----------------------------------------------------------------
+   9. FOOTER
+---------------------------------------------------------------- */
+#footer {
+  background: var(--c-dark);
+  border-top: 1px solid rgba(183, 110, 121, 0.1);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-names {
+  font-family: var(--font-display);
+  font-size:   var(--fs-xl);
+  color: var(--c-champagne);
+  opacity: 0.9;
+}
+.footer-date {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-rose-gold);
+  opacity: 0.7;
+}
+.footer-verse {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size:  var(--fs-sm);
+  color: var(--c-champagne);
+  opacity: 0.4;
+  max-width: 500px;
+}
+.footer-credit {
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  color: var(--c-rose-gold);
+  opacity: 0.3;
+  letter-spacing: 0.1em;
+}
+
+
+/* ----------------------------------------------------------------
+   10. FLOATING ACTION BAR — Sticky bottom nav
+---------------------------------------------------------------- */
+.fab-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: var(--fab-h);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-inline: var(--space-sm);
+
+  /* Frosted glass bottom bar */
+  background: rgba(14, 6, 8, 0.88);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border-top: 1px solid rgba(183, 110, 121, 0.2);
+
+  /* Slide up from bottom on entry */
+  transform: translateY(100%);
+  transition: transform var(--dur-slow) var(--ease-luxury);
+
+  /* iOS safe area padding */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.fab-bar.visible {
+  transform: translateY(0);
+}
+
+.fab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1.5rem;
+  min-width: 72px;
+  min-height: 52px;    /* 48px+ touch target */
+  border-radius: 12px;
+  color: var(--c-champagne);
+  opacity: 0.75;
+  transition:
+    opacity   var(--dur-fast) ease,
+    background var(--dur-fast) ease,
+    transform  var(--dur-fast) var(--ease-bounce);
+}
+.fab-btn:hover, .fab-btn:focus-visible {
+  opacity: 1;
+  background: rgba(183, 110, 121, 0.12);
+}
+.fab-btn:active { transform: scale(0.92); }
+
+.fab-icon {
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+}
+.fab-icon svg { width: 20px; height: 20px; }
+
+.fab-label {
+  font-family: var(--font-ui);
+  font-size:   0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Center "RSVP" button — visually highlighted */
+.fab-btn-center {
+  background: rgba(183, 110, 121, 0.18);
+  border: 1px solid rgba(183, 110, 121, 0.35);
+  opacity: 1;
+  color: var(--c-rose-light);
+}
+.fab-btn-center:hover {
+  background: rgba(183, 110, 121, 0.3);
+  border-color: var(--c-rose-gold);
+  color: var(--c-champagne);
+}
+
+
+/* ----------------------------------------------------------------
+   11. MUSIC TOGGLE — Floating pill, top-right corner
+---------------------------------------------------------------- */
+.music-toggle {
+  position: fixed;
+  top: clamp(1rem, 3vw, 1.5rem);
+  right: clamp(1rem, 3vw, 1.5rem);
+  z-index: 1001;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  min-height: 44px;
+  min-width: 44px;
+
+  background: rgba(14, 6, 8, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(183, 110, 121, 0.3);
+  border-radius: var(--radius-pill);
+
+  font-family: var(--font-ui);
+  font-size:   var(--fs-xs);
+  letter-spacing: 0.15em;
+  color: var(--c-rose-gold);
+  cursor: pointer;
+
+  /* Slide in from top-right */
+  opacity: 0;
+  transform: translateX(20px);
+  transition:
+    opacity    var(--dur-slow) var(--ease-luxury),
+    transform  var(--dur-slow) var(--ease-luxury),
+    background var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+.music-toggle.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.music-toggle:hover {
+  background: rgba(74, 4, 4, 0.6);
+  border-color: var(--c-rose-gold);
+}
+.music-toggle:active { transform: scale(0.92); }
+
+/* ── Equalizer bars (animated when playing) ── */
+.eq-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.eq-bar {
+  width: 2px;
+  background: var(--c-rose-gold);
+  border-radius: 1px;
+  transform-origin: bottom;
+  /* Paused by default; JS toggles .playing on the toggle button */
+}
+
+/* Animation only active when .playing is applied */
+.music-toggle.playing .eq-bar { animation: eqBounce 0.8s ease-in-out infinite alternate; }
+.music-toggle.playing .b1 { animation-delay: 0s;    height: 4px; }
+.music-toggle.playing .b2 { animation-delay: 0.15s; height: 8px; }
+.music-toggle.playing .b3 { animation-delay: 0.3s;  height: 6px; }
+.music-toggle.playing .b4 { animation-delay: 0.1s;  height: 10px; }
+
+@keyframes eqBounce {
+  from { transform: scaleY(0.3); }
+  to   { transform: scaleY(1);   }
+}
+
+/* Static state when paused */
+.music-toggle:not(.playing) .b1 { height: 4px;  opacity: 0.4; }
+.music-toggle:not(.playing) .b2 { height: 8px;  opacity: 0.4; }
+.music-toggle:not(.playing) .b3 { height: 6px;  opacity: 0.4; }
+.music-toggle:not(.playing) .b4 { height: 10px; opacity: 0.4; }
+
+.music-toggle-label {
+  font-size: 0.8rem;
+}
+
+
+/* ----------------------------------------------------------------
+   12. RESPONSIVE BREAKPOINTS
+---------------------------------------------------------------- */
+
+/* Small phones — tighten spacing */
+@media (max-width: 380px) {
+  .loader-name-groom,
+  .loader-name-bride {
+    letter-spacing: 0.02em;
+  }
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+  .count-separator { display: none; } /* hide colons on very small */
+}
+
+/* Tablets and up — side-by-side events */
+@media (min-width: 768px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop tweaks */
+@media (min-width: 1024px) {
+  .hero-title {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+  }
+  .hero-amp {
+    display: inline;
+    font-size: 4rem;
+  }
+  .loader-names {
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .loader-ampersand { font-size: 3rem; }
+}
+
+/* Reduced motion — respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:   0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:  0.01ms !important;
+  }
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
