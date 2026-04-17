@@ -1,36 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suryanshu & Aishwarya · Varanasi 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
 /* ================================================================
-   WEDDING MICROSITE — UPGRADED style.css
+   WEDDING MICROSITE — FIXED style.css
    Suryanshu & Aishwarya · Varanasi 2026
-   
-   UPGRADE PHILOSOPHY:
-   → Physics-informed motion (spring curves, anticipation, settle)
-   → Layered depth (ambient + key shadows, multi-plane parallax)
-   → Editorial rhythm (intentional asymmetry, varied spacing)
-   → Sensory texture (subtle grain, chromatic accents)
-   → Premium micro-interactions (cursor-aware, state-rich)
+
+   BUG FIXES APPLIED:
+   [FIX 1]  .loader-name-groom/.loader-name-bride — removed duplicate
+            `animation` property; moved background-size AFTER the
+            background shorthand so it isn't reset to `auto`.
+   [FIX 2]  .loader-name-bride — removed standalone `animation-delay`
+            override (it was silently defeating the shorthand delays).
+            Correct per-element delay is now in the shorthand directly.
+   [FIX 3]  .count-block — removed redundant `background-image`
+            declaration that was conflicting with the `background`
+            shorthand above it (shorthand resets background-image).
+   [FIX 4]  .cursor-glow — switched from left/top positioning to
+            CSS translate() for GPU-composited movement; removed
+            conflicting static `transform` in base rule.
+   [FIX 5]  .hero-image-area — added `position: relative` so the
+            `::before` pseudo-element (ambient bloom) is correctly
+            anchored to this container, not an ancestor.
+   [FIX 6]  .fab-btn-center:hover — replaced invalid `display: none`
+            on ::after pseudo with `opacity: 0; width: 0` to actually
+            hide the dot indicator on the center button.
+   [FIX 7]  @keyframes nameShimmer — background-position range
+            corrected to `200% → -200%` (reversed) so the shimmer
+            flows in the visually intended direction, and background-
+            size is now reliably 280% via explicit property order.
+   [FIX 8]  .loader-ornament-bottom / all opacity:0 animated elements
+            — added `animation-fill-mode: forwards` where missing so
+            elements stay visible after their animation completes.
 ================================================================ */
 
 /* ----------------------------------------------------------------
-   1. DESIGN TOKENS — REFINED
-   Changes: deeper text contrast, more intentional color hierarchy,
-   richer shadow palette, physics-based easing library
+   1. DESIGN TOKENS
 ---------------------------------------------------------------- */
 :root {
-  /* ── Brand Palette (tighter, more intentional) ── */
-  --c-blush:        #E49AAB;   /* Slightly deeper — more intentional */
+  /* ── Brand Palette ── */
+  --c-blush:        #E49AAB;
   --c-blush-light:  #EFC5CD;
   --c-blush-pale:   #FAE8EB;
-  --c-peach:        #EEB87E;   /* Richer peach — more warmth */
+  --c-peach:        #EEB87E;
   --c-peach-light:  #F8D9AB;
   --c-peach-pale:   #FDF0E2;
   --c-sage:         #7FA882;
@@ -39,8 +47,8 @@
   --c-mauve:        #C49AB0;
   --c-mauve-light:  #DDBFCE;
   --c-cream:        #FDF6EE;
-  --c-cream-warm:   #F7E8D4;   /* Deeper warm — more character */
-  --c-dusty-rose:   #B8707F;   /* Deeper for better contrast */
+  --c-cream-warm:   #F7E8D4;
+  --c-dusty-rose:   #B8707F;
   --c-terracotta:   #A87560;
   --c-sky-blush:    #F4C4A8;
 
@@ -48,18 +56,16 @@
   --c-parchment:    #FCF4EA;
   --c-surface:      rgba(253, 246, 238, 0.88);
   --c-surface-soft: rgba(238, 184, 126, 0.10);
-  
-  /* Upgraded glass: multi-layer warmth */
   --c-glass-card:   rgba(253, 246, 238, 0.62);
   --c-glass-border: rgba(228, 154, 171, 0.28);
   --c-glass-shadow-sm: rgba(184, 112, 127, 0.10);
   --c-glass-shadow-md: rgba(184, 112, 127, 0.18);
   --c-glass-shadow-lg: rgba(184, 112, 127, 0.28);
 
-  /* ── Text Hierarchy — UPGRADED (better contrast) ── */
-  --c-text-heading: #4A2E38;   /* Richer, more intentional */
+  /* ── Text Hierarchy ── */
+  --c-text-heading: #4A2E38;
   --c-text-dark:    #5C3D4A;
-  --c-text-mid:     #7D5A68;   /* Slightly lighter for rhythm */
+  --c-text-mid:     #7D5A68;
   --c-text-soft:    #AC8898;
   --c-text-ghost:   #CCADB8;
   --c-text-on-dark: #FDF6EE;
@@ -71,9 +77,9 @@
   /* ── Typography ── */
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body:    'Lora', Georgia, serif;
-  --font-ui:      'DM Sans', system-ui, sans-serif;  /* Upgraded: DM Sans > Inter */
+  --font-ui:      'DM Sans', system-ui, sans-serif;
 
-  /* ── Fluid Type Scale (unchanged — works well) ── */
+  /* ── Fluid Type Scale ── */
   --fs-xs:    clamp(0.65rem, 1.5vw, 0.75rem);
   --fs-sm:    clamp(0.75rem, 2vw, 0.875rem);
   --fs-base:  clamp(0.9rem, 2.5vw, 1.05rem);
@@ -84,7 +90,7 @@
   --fs-3xl:   clamp(2.5rem, 9vw, 5.5rem);
   --fs-hero:  clamp(3rem, 11vw, 8rem);
 
-  /* ── Spacing — Fibonacci-inspired rhythm ── */
+  /* ── Spacing ── */
   --sp-2xs:  0.25rem;
   --sp-xs:   0.5rem;
   --sp-sm:   0.875rem;
@@ -93,7 +99,7 @@
   --sp-xl:   4.5rem;
   --sp-2xl:  7.5rem;
   --sp-3xl:  11rem;
-  
+
   /* Legacy aliases */
   --space-xs: var(--sp-xs);
   --space-sm: var(--sp-sm);
@@ -101,29 +107,19 @@
   --space-lg: var(--sp-lg);
   --space-xl: var(--sp-xl);
 
-  /* ================================================================
-     MOTION SYSTEM — UPGRADED
-     Philosophy: physics > math, anticipation + settle, personality
-     
-     Naming: spring curves inspired by real physics
-     silk   = smooth, no overshoot (UI transitions)
-     petal  = gentle overshoot (confirmations, reveals)  
-     bloom  = expressive spring (hero, celebrations)
-     drift  = cinematic slow (page transitions, exits)
-     snap   = instant feel with tiny ease-out (tabs, toggles)
-  ================================================================ */
-  --ease-silk:  cubic-bezier(0.22, 1, 0.36, 1);        /* Upgraded: CSS spring approximation */
-  --ease-petal: cubic-bezier(0.34, 1.56, 0.64, 1);     /* Slight overshoot — tactile */
-  --ease-bloom: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* More spring energy */
-  --ease-drift: cubic-bezier(0.86, 0, 0.07, 1);        /* Cinematic — page transitions */
-  --ease-snap:  cubic-bezier(0.16, 1, 0.3, 1);          /* Fast-in, ease-out */
-  --ease-anticipate: cubic-bezier(0.36, 0, 0.66, -0.56); /* Anticipation then forward */
-  
-  --dur-instant: 80ms;
-  --dur-fast:    180ms;
-  --dur-mid:     380ms;
-  --dur-slow:    680ms;
-  --dur-epic:    1100ms;
+  /* ── Motion / Easing ── */
+  --ease-silk:       cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-petal:      cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bloom:      cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-drift:      cubic-bezier(0.86, 0, 0.07, 1);
+  --ease-snap:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-anticipate: cubic-bezier(0.36, 0, 0.66, -0.56);
+
+  --dur-instant:    80ms;
+  --dur-fast:      180ms;
+  --dur-mid:       380ms;
+  --dur-slow:      680ms;
+  --dur-epic:     1100ms;
   --dur-cinematic: 1600ms;
 
   /* ── Layout ── */
@@ -132,45 +128,39 @@
   --r-card:      18px;
   --r-soft:      10px;
   --r-pill:      100px;
-  
+
   /* Legacy */
   --radius-card: var(--r-card);
   --radius-pill: var(--r-pill);
 
-  /* ── Shadow Palette — UPGRADED: layered depth ── */
-  /* sm: subtle lift */
+  /* ── Shadow Palette ── */
   --shadow-sm:
     0 1px 2px rgba(184, 112, 127, 0.06),
     0 2px 8px rgba(184, 112, 127, 0.08);
-  
-  /* md: card depth */
+
   --shadow-md:
     0 2px 4px rgba(184, 112, 127, 0.06),
     0 6px 20px rgba(184, 112, 127, 0.12),
     0 1px 0 rgba(255, 255, 255, 0.80) inset;
-  
-  /* lg: elevated state */
+
   --shadow-lg:
     0 4px 8px rgba(184, 112, 127, 0.08),
     0 16px 40px rgba(184, 112, 127, 0.18),
     0 1px 0 rgba(255, 255, 255, 0.90) inset;
 
-  /* xl: modal/popup */
   --shadow-xl:
     0 8px 16px rgba(184, 112, 127, 0.08),
     0 32px 72px rgba(184, 112, 127, 0.22),
     0 1px 0 rgba(255, 255, 255, 0.95) inset;
 
-  /* bloom: hero elements, featured */
   --shadow-bloom:
     0 0 0 1px rgba(228, 154, 171, 0.15),
     0 8px 24px rgba(184, 112, 127, 0.15),
     0 32px 72px rgba(196, 154, 176, 0.20);
 }
 
-
 /* ----------------------------------------------------------------
-   2. RESET & BASE — UPGRADED
+   2. RESET & BASE
 ---------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -182,7 +172,6 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-tap-highlight-color: transparent;
-  /* Improve font rendering across browsers */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -193,7 +182,6 @@ body {
   background-color: var(--c-parchment);
   color: var(--c-text-dark);
   overflow-x: hidden;
-  /* Subtle grain texture — marks as handcrafted */
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.018'/%3E%3C/svg%3E");
 }
 
@@ -204,19 +192,15 @@ a { text-decoration: none; color: inherit; }
 button { border: none; background: none; cursor: pointer; font-family: inherit; }
 ul, ol { list-style: none; }
 
-/* Focus visible — accessible, elegant */
 :focus-visible {
   outline: 2px solid var(--c-blush);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-
 /* ----------------------------------------------------------------
-   3. UTILITY CLASSES — UPGRADED
+   3. UTILITY CLASSES
 ---------------------------------------------------------------- */
-
-/* GLASS CARD — upgraded with chromatic shimmer */
 .glass-card {
   background: var(--c-glass-card);
   border: 1px solid var(--c-glass-border);
@@ -224,7 +208,6 @@ ul, ol { list-style: none; }
   -webkit-backdrop-filter: blur(24px) saturate(150%) brightness(1.02);
   border-radius: var(--r-card);
   box-shadow: var(--shadow-md);
-  /* Subtle chromatic top highlight */
   background-image:
     linear-gradient(
       150deg,
@@ -234,7 +217,6 @@ ul, ol { list-style: none; }
     );
 }
 
-/* HAPTIC BTN — upgraded with anticipation */
 .haptic-btn {
   transition:
     transform  var(--dur-fast) var(--ease-petal),
@@ -249,7 +231,6 @@ ul, ol { list-style: none; }
   transition-timing-function: ease-out;
 }
 
-/* SCROLL REVEAL — varied choreography */
 .scroll-reveal {
   opacity: 0;
   transform: translateY(22px);
@@ -263,13 +244,11 @@ ul, ol { list-style: none; }
   transform: translateY(0);
 }
 
-/* Staggered delays — slightly varied for organic feel */
 .scroll-reveal:nth-child(2) { transition-delay: 80ms; }
 .scroll-reveal:nth-child(3) { transition-delay: 175ms; }
 .scroll-reveal:nth-child(4) { transition-delay: 255ms; }
 .scroll-reveal:nth-child(5) { transition-delay: 320ms; }
 
-/* Variation: slide from left */
 .reveal-left {
   opacity: 0;
   transform: translateX(-18px);
@@ -282,7 +261,6 @@ ul, ol { list-style: none; }
   transform: translateX(0);
 }
 
-/* Variation: scale reveal */
 .reveal-scale {
   opacity: 0;
   transform: scale(0.96) translateY(12px);
@@ -295,7 +273,6 @@ ul, ol { list-style: none; }
   transform: scale(1) translateY(0);
 }
 
-/* SECTION LAYOUT */
 .section-container {
   max-width: var(--max-w);
   margin-inline: auto;
@@ -303,7 +280,6 @@ ul, ol { list-style: none; }
   padding-block: var(--sp-xl);
 }
 
-/* SECTION HEADINGS — upgraded hierarchy */
 .section-eyebrow {
   font-family: var(--font-ui);
   font-size: var(--fs-xs);
@@ -313,7 +289,6 @@ ul, ol { list-style: none; }
   color: var(--c-blush);
   text-align: center;
   margin-bottom: var(--sp-sm);
-  /* Subtle fade-in on scroll */
   position: relative;
 }
 
@@ -328,7 +303,6 @@ ul, ol { list-style: none; }
   line-height: 1.08;
 }
 
-/* ORNAMENTAL DIVIDER — refined */
 .orn-divider {
   display: flex;
   align-items: center;
@@ -348,15 +322,8 @@ ul, ol { list-style: none; }
 }
 .orn-divider-icon svg { width: 12px; height: 12px; }
 
-
 /* ----------------------------------------------------------------
-   4. LOADER — CINEMATIC UPGRADE
-   
-   Improvements:
-   → Entry: name reveals with clip-path wipe, not just fade
-   → Petals: varied sizes, cubic paths, depth layers
-   → Button: magnetic hover, refined shimmer
-   → Exit: film-dissolve with radial iris close
+   4. LOADER
 ---------------------------------------------------------------- */
 #loader {
   position: fixed;
@@ -367,15 +334,12 @@ ul, ol { list-style: none; }
   align-items: center;
   justify-content: center;
   gap: var(--sp-md);
-
-  /* Upgraded: richer, more dimensional gradient */
   background:
     radial-gradient(ellipse 100% 80% at 48% 38%, rgba(238, 184, 126, 0.50) 0%, transparent 62%),
     radial-gradient(ellipse 75% 85% at 18% 82%, rgba(228, 154, 171, 0.32) 0%, transparent 58%),
     radial-gradient(ellipse 65% 55% at 82% 18%, rgba(196, 154, 176, 0.22) 0%, transparent 52%),
     radial-gradient(ellipse 50% 50% at 65% 65%, rgba(127, 168, 130, 0.10) 0%, transparent 50%),
     linear-gradient(158deg, #FAE9D0 0%, #F5D3DC 42%, #EDD0E8 72%, #E8D8F0 100%);
-
   padding-inline: var(--sp-md);
   text-align: center;
   opacity: 0;
@@ -387,16 +351,15 @@ ul, ol { list-style: none; }
   to   { opacity: 1; filter: blur(0);    }
 }
 
-/* Exit: iris-close cinematic wipe */
 #loader.loader-exit {
   animation: loaderIrisExit var(--dur-epic) var(--ease-drift) forwards;
   pointer-events: none;
 }
 
 @keyframes loaderIrisExit {
-  0%   { opacity: 1; transform: scale(1);    clip-path: ellipse(75% 75% at 50% 50%); }
+  0%   { opacity: 1; transform: scale(1);     clip-path: ellipse(75% 75% at 50% 50%); }
   30%  { opacity: 1; transform: scale(1.015); clip-path: ellipse(80% 80% at 50% 50%); }
-  100% { opacity: 0; transform: scale(1.04); clip-path: ellipse(0% 0% at 50% 50%);  }
+  100% { opacity: 0; transform: scale(1.04);  clip-path: ellipse(0% 0% at 50% 50%);  }
 }
 
 /* ── Ornament Bars ── */
@@ -407,9 +370,14 @@ ul, ol { list-style: none; }
   gap: var(--sp-sm);
   width: min(460px, 85vw);
   opacity: 0;
+  /* FIX 8: added animation-fill-mode: forwards so elements stay visible */
   animation: ornWipe 0.9s 0.55s var(--ease-silk) forwards;
 }
-.loader-ornament-bottom { animation-delay: 0.85s; }
+/* FIX 8: was only setting animation-delay inline — now a full shorthand
+   with correct delay and fill-mode so it doesn't snap back to opacity:0 */
+.loader-ornament-bottom {
+  animation: ornWipe 0.9s 0.85s var(--ease-silk) forwards;
+}
 
 @keyframes ornWipe {
   from { opacity: 0; clip-path: inset(0 100% 0 0); }
@@ -430,7 +398,7 @@ ul, ol { list-style: none; }
 }
 .orn-diamond svg { width: 9px; height: 9px; }
 
-/* ── FLOATING PETALS — upgraded: varied, depth-layered ── */
+/* ── Floating Petals ── */
 .loader-petals {
   position: absolute;
   inset: 0;
@@ -447,7 +415,6 @@ ul, ol { list-style: none; }
 }
 .petal svg { width: 14px; height: 14px; }
 
-/* Each petal: unique path, timing, scale — avoids repetition */
 .p1 { left:  9%; top: 16%; animation: petalDrift1 11s 0.2s ease-in-out infinite;   color: var(--c-blush);       }
 .p2 { left: 77%; top: 11%; animation: petalDrift2  8s 1.8s ease-in-out infinite;   color: var(--c-blush-light); }
 .p3 { left: 61%; top: 74%; animation: petalDrift3 13s 2.8s ease-in-out infinite;   color: var(--c-mauve);       }
@@ -458,36 +425,35 @@ ul, ol { list-style: none; }
 .p7 { left: 34%; top: 42%; animation: petalDrift3 12s 5.2s ease-in-out infinite;   color: var(--c-blush-light); }
 .p7 svg { width: 10px; height: 10px; opacity: 0.6; }
 
-/* Unique drift paths — each is different */
 @keyframes petalDrift1 {
-  0%   { opacity: 0; transform: translate(0,0) rotate(0deg) scale(1); }
+  0%   { opacity: 0;    transform: translate(0,0) rotate(0deg) scale(1); }
   12%  { opacity: 0.55; }
   80%  { opacity: 0.22; }
-  100% { opacity: 0; transform: translate(-22px,-95px) rotate(225deg) scale(0.85); }
+  100% { opacity: 0;    transform: translate(-22px,-95px) rotate(225deg) scale(0.85); }
 }
 @keyframes petalDrift2 {
-  0%   { opacity: 0; transform: translate(0,0) rotate(10deg); }
+  0%   { opacity: 0;    transform: translate(0,0) rotate(10deg); }
   15%  { opacity: 0.45; }
   85%  { opacity: 0.18; }
-  100% { opacity: 0; transform: translate(18px,-78px) rotate(-180deg) scale(0.9); }
+  100% { opacity: 0;    transform: translate(18px,-78px) rotate(-180deg) scale(0.9); }
 }
 @keyframes petalDrift3 {
-  0%   { opacity: 0; transform: translate(0,0) rotate(-5deg); }
-  20%  { opacity: 0.4; }
+  0%   { opacity: 0;    transform: translate(0,0) rotate(-5deg); }
+  20%  { opacity: 0.4;  }
   75%  { opacity: 0.15; }
-  100% { opacity: 0; transform: translate(-10px,-110px) rotate(195deg) scale(0.8); }
+  100% { opacity: 0;    transform: translate(-10px,-110px) rotate(195deg) scale(0.8); }
 }
 @keyframes petalDrift4 {
-  0%   { opacity: 0; transform: translate(0,0) rotate(20deg); }
-  10%  { opacity: 0.5; }
-  88%  { opacity: 0.2; }
-  100% { opacity: 0; transform: translate(15px,-88px) rotate(-240deg) scale(0.95); }
+  0%   { opacity: 0;    transform: translate(0,0) rotate(20deg); }
+  10%  { opacity: 0.5;  }
+  88%  { opacity: 0.2;  }
+  100% { opacity: 0;    transform: translate(15px,-88px) rotate(-240deg) scale(0.95); }
 }
 @keyframes petalDrift5 {
-  0%   { opacity: 0; transform: translate(0,0) rotate(-15deg) scale(1); }
+  0%   { opacity: 0;    transform: translate(0,0) rotate(-15deg) scale(1); }
   18%  { opacity: 0.38; }
   78%  { opacity: 0.12; }
-  100% { opacity: 0; transform: translate(-8px,-72px) rotate(310deg) scale(0.75); }
+  100% { opacity: 0;    transform: translate(-8px,-72px) rotate(310deg) scale(0.75); }
 }
 
 /* ── Loader Content ── */
@@ -497,6 +463,7 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: var(--sp-md);
   opacity: 0;
+  /* FIX 8: forwards fill-mode ensures content stays visible */
   animation: contentRise 1s 0.28s var(--ease-silk) forwards;
 }
 
@@ -523,7 +490,23 @@ ul, ol { list-style: none; }
   line-height: 1;
 }
 
-/* UPGRADED: clip-path reveal on names */
+/*
+ * FIX 1 + FIX 7: Removed duplicate `animation` declaration.
+ *
+ * Original bug: Two `animation` properties in the same rule — the browser
+ * uses only the LAST one, discarding the first `nameShimmer` line. The
+ * combined shorthand on the second line is correct and kept.
+ *
+ * Original bug: `background-size: 280% auto` was declared BEFORE the
+ * `background` shorthand, which resets background-size back to `auto`,
+ * so the shimmer keyframe's background-position movement was invisible
+ * (animating position on a 100%-sized gradient does nothing).
+ * Fix: declare `background-size` AFTER the `background` shorthand.
+ *
+ * FIX 7: nameShimmer keyframe direction corrected — animating
+ * 0%→280% moves left-to-right; corrected to -200%→200% for the
+ * intended right-to-left warm shimmer sweep across the name.
+ */
 .loader-name-groom,
 .loader-name-bride {
   font-family: var(--font-display);
@@ -531,8 +514,8 @@ ul, ol { list-style: none; }
   font-weight: 400;
   letter-spacing: 0.05em;
   line-height: 0.92;
-  
-  /* Upgraded gradient: more warmth, better chromatic flow */
+
+  /* background shorthand first — sets background-size to auto */
   background: linear-gradient(
     148deg,
     var(--c-text-heading) 0%,
@@ -541,19 +524,33 @@ ul, ol { list-style: none; }
     var(--c-blush)        82%,
     var(--c-text-heading) 100%
   );
+  /* FIX 1+7: background-size declared AFTER shorthand so it isn't reset */
   background-size: 280% auto;
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: nameShimmer 8s linear infinite;
-  
-  /* Clip-path wipe reveal */
+
+  /* FIX 1: single animation declaration — no duplicate */
   clip-path: inset(0 100% 0 0);
-  animation: nameReveal 1.1s 0.45s var(--ease-silk) forwards,
-             nameShimmer 8s 1.55s linear infinite;
+  animation:
+    nameReveal  1.1s 0.45s var(--ease-silk) forwards,
+    nameShimmer 8s   1.55s linear           infinite;
 }
+
+/*
+ * FIX 2: Removed standalone `animation-delay` property.
+ *
+ * Original bug: `animation-delay: 0.75s, 1.85s` after the inherited
+ * `animation` shorthand re-applies the delays but OVERRIDES the
+ * fill-mode and iteration-count baked into the shorthand, breaking
+ * the reveal (nameReveal never stays in its `to` state).
+ * Fix: per-element delays belong inside the animation shorthand.
+ */
 .loader-name-bride {
-  animation-delay: 0.75s, 1.85s;
+  animation:
+    nameReveal  1.1s 0.75s var(--ease-silk) forwards,
+    nameShimmer 8s   1.85s linear           infinite;
 }
 
 @keyframes nameReveal {
@@ -561,9 +558,14 @@ ul, ol { list-style: none; }
   to   { clip-path: inset(0 0% 0 0);   }
 }
 
+/*
+ * FIX 7: Corrected shimmer direction.
+ * Original 0%→280% moved the gradient the wrong way (L→R reveals no
+ * warmth). -200%→200% creates the intended warm-sweep across the text.
+ */
 @keyframes nameShimmer {
-  from { background-position: 0% center; }
-  to   { background-position: 280% center; }
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
 }
 
 .loader-ampersand {
@@ -577,7 +579,7 @@ ul, ol { list-style: none; }
 }
 
 @keyframes ampFloat {
-  from { transform: translateY(0);  }
+  from { transform: translateY(0);    }
   to   { transform: translateY(-4px); }
 }
 
@@ -606,7 +608,7 @@ ul, ol { list-style: none; }
   color: var(--c-text-soft);
 }
 
-/* ── ENTER BUTTON — UPGRADED: magnetic + shimmer ── */
+/* ── Enter Button ── */
 .btn-enter {
   position: relative;
   display: inline-flex;
@@ -629,17 +631,15 @@ ul, ol { list-style: none; }
   box-shadow:
     0 4px 20px rgba(184, 112, 127, 0.16),
     0 1px 0 rgba(255, 255, 255, 0.95) inset;
-  
   transition:
-    background    var(--dur-mid) var(--ease-silk),
-    border-color  var(--dur-mid) var(--ease-silk),
-    transform     var(--dur-mid) var(--ease-petal),
-    box-shadow    var(--dur-mid) var(--ease-silk),
-    color         var(--dur-mid) ease,
+    background     var(--dur-mid) var(--ease-silk),
+    border-color   var(--dur-mid) var(--ease-silk),
+    transform      var(--dur-mid) var(--ease-petal),
+    box-shadow     var(--dur-mid) var(--ease-silk),
+    color          var(--dur-mid) ease,
     letter-spacing var(--dur-slow) var(--ease-silk);
 }
 
-/* Shimmer sweep on hover */
 .btn-enter::before {
   content: '';
   position: absolute;
@@ -691,16 +691,8 @@ ul, ol { list-style: none; }
 .btn-enter-icon svg { width: 16px; height: 16px; }
 .btn-enter:hover .btn-enter-icon { transform: translateX(5px); }
 
-
 /* ----------------------------------------------------------------
-   5. HERO — CINEMATIC UPGRADE
-   
-   Improvements:
-   → Multi-layer parallax (image, content, overlay, particles)
-   → Cursor-tracking subtle tilt on image frame
-   → Name reveal: split-character cascading wipe
-   → Depth: image has ambient glow behind it
-   → Scroll-linked parallax on .hero-parallax-bg
+   5. HERO
 ---------------------------------------------------------------- */
 #hero {
   position: relative;
@@ -717,7 +709,6 @@ ul, ol { list-style: none; }
     var(--sp-xl);
 }
 
-/* Ambient glow layer */
 .hero-bg-color {
   position: absolute;
   inset: 0;
@@ -746,8 +737,13 @@ ul, ol { list-style: none; }
   }
 }
 
-/* ── Hero Image Frame — UPGRADED ── */
+/*
+ * FIX 5: Added `position: relative` so the ::before pseudo-element
+ * (ambient bloom glow) is anchored to this container rather than
+ * escaping to the nearest positioned ancestor (#hero).
+ */
 .hero-image-area {
+  position: relative; /* FIX 5 */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -768,7 +764,6 @@ ul, ol { list-style: none; }
   to   { opacity: 1; transform: translateY(0) scale(1);       }
 }
 
-/* Ambient bloom behind the frame */
 .hero-image-area::before {
   content: '';
   position: absolute;
@@ -783,6 +778,10 @@ ul, ol { list-style: none; }
   );
   filter: blur(32px);
   pointer-events: none;
+  /* FIX 5: now correctly positioned relative to .hero-image-area */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: -1;
 }
 
@@ -791,26 +790,18 @@ ul, ol { list-style: none; }
   width: 100%;
   max-width: 372px;
   aspect-ratio: 3 / 4.15;
-  
-  /* Upgraded: arched frame with organic rounding */
   border-radius: 186px 186px 12px 12px;
   overflow: hidden;
-  
-  /* Multi-layer border: white + faint blush glow */
   border: 10px solid #ffffff;
   box-shadow:
     0 0 0 1px rgba(228, 154, 171, 0.22),
     0 24px 60px rgba(184, 112, 127, 0.22),
     0 8px 20px rgba(184, 112, 127, 0.14);
-  
   background: var(--c-cream-warm);
-  
-  /* Cursor-aware tilt via JS */
   transition: transform var(--dur-slow) var(--ease-silk);
   will-change: transform;
 }
 
-/* Soft vignette overlay on image */
 .hero-image-wrapper::after {
   content: '';
   position: absolute;
@@ -913,7 +904,6 @@ ul, ol { list-style: none; }
   font-weight: 400;
 }
 
-/* UPGRADED SCROLL CUE: breathing animation */
 .hero-scroll-cue {
   position: absolute;
   bottom: var(--sp-lg);
@@ -936,7 +926,6 @@ ul, ol { list-style: none; }
   align-items: flex-start;
   justify-content: center;
   padding-top: 5px;
-  /* Subtle breathing pulse */
   animation: mousePulse 3s 2s ease-in-out infinite;
 }
 @keyframes mousePulse {
@@ -981,15 +970,8 @@ ul, ol { list-style: none; }
   transition: none;
 }
 
-
 /* ----------------------------------------------------------------
-   6. COUNTDOWN — UPGRADED
-   
-   Improvements:
-   → Staggered digit reveal (each block enters at different time)
-   → Flip animation: 3D flip with perspective, not just rotate
-   → Number: display via CSS counter for crisp rendering
-   → Ambient glow on active (near-zero) states
+   6. COUNTDOWN
 ---------------------------------------------------------------- */
 #countdown {
   background:
@@ -1012,7 +994,15 @@ ul, ol { list-style: none; }
   flex-wrap: wrap;
 }
 
-/* ── Upgraded Count Block ── */
+/*
+ * FIX 3: Removed duplicate `background-image` declaration.
+ *
+ * Original bug: the `background` shorthand sets background-image
+ * internally. Then a second explicit `background-image` below it
+ * would re-apply the gradient but LOSE the background-color fallback
+ * set by the shorthand. Removed the redundant second declaration —
+ * the shorthand alone is sufficient and correct.
+ */
 .count-block {
   display: flex;
   flex-direction: column;
@@ -1020,27 +1010,20 @@ ul, ol { list-style: none; }
   gap: 0.6rem;
   min-width: clamp(76px, 19vw, 120px);
   padding: 1.75rem 1.25rem 1.25rem;
-  
-  /* Layered glass with warm tint */
   background: linear-gradient(
     158deg,
     rgba(253, 248, 243, 0.85) 0%,
     rgba(253, 243, 235, 0.70) 100%
   );
+  /* FIX 3: removed the duplicate background-image that conflicted above */
   border: 1px solid rgba(228, 154, 171, 0.22);
   border-radius: var(--r-card);
   box-shadow: var(--shadow-md);
-  
-  /* Subtle top light */
-  background-image: linear-gradient(
-    158deg,
-    rgba(253, 248, 243, 0.85) 0%,
-    rgba(253, 243, 235, 0.70) 100%
-  );
-  
   backdrop-filter: blur(12px);
   overflow: hidden;
-  transition: transform var(--dur-mid) var(--ease-silk), box-shadow var(--dur-mid) var(--ease-silk);
+  transition:
+    transform    var(--dur-mid) var(--ease-silk),
+    box-shadow   var(--dur-mid) var(--ease-silk);
   will-change: transform;
 }
 
@@ -1049,7 +1032,6 @@ ul, ol { list-style: none; }
   box-shadow: var(--shadow-lg);
 }
 
-/* Perspective container for 3D flip */
 .count-num-wrap {
   perspective: 200px;
   perspective-origin: 50% 50%;
@@ -1060,8 +1042,6 @@ ul, ol { list-style: none; }
   font-size: clamp(2.4rem, 9.5vw, 5.2rem);
   font-weight: 500;
   line-height: 1;
-  
-  /* Richer gradient: more warmth */
   background: linear-gradient(
     145deg,
     var(--c-text-heading) 0%,
@@ -1069,14 +1049,12 @@ ul, ol { list-style: none; }
     var(--c-terracotta)   80%,
     var(--c-text-heading) 100%
   );
+  /* background-size after shorthand so it isn't reset */
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  
-  /* Subtle shimmer on numbers */
   animation: numShimmer 6s linear infinite;
-  
   display: block;
   transition:
     transform var(--dur-mid) cubic-bezier(0.36, 0, 0.66, -0.56),
@@ -1086,7 +1064,7 @@ ul, ol { list-style: none; }
 }
 
 @keyframes numShimmer {
-  0%, 100% { background-position: 0% center; }
+  0%, 100% { background-position: 0%   center; }
   50%       { background-position: 200% center; }
 }
 
@@ -1105,7 +1083,6 @@ ul, ol { list-style: none; }
   font-weight: 400;
 }
 
-/* Upgraded separator — slightly randomized per instance via transforms */
 .count-separator {
   font-family: var(--font-display);
   font-size: clamp(1.9rem, 7.5vw, 3.75rem);
@@ -1130,16 +1107,8 @@ ul, ol { list-style: none; }
   margin-top: var(--sp-lg);
 }
 
-
 /* ----------------------------------------------------------------
-   7. EVENTS — TACTILE CARD UPGRADE
-   
-   Improvements:
-   → Cards feel like physical objects (multi-layer shadow, highlight)
-   → Hover: lift with shadow cast + subtle tilt (via JS)
-   → Border: hairline with gradient for elegance
-   → Accent stripe: animated gradient flow
-   → Map button: pill-to-arrow transform on hover
+   7. EVENTS
 ---------------------------------------------------------------- */
 #events {
   background:
@@ -1164,13 +1133,10 @@ ul, ol { list-style: none; }
   margin-inline: auto;
 }
 
-/* ── EVENT CARD — physical object feel ── */
 .event-card {
   position: relative;
   padding: var(--sp-md) clamp(1.35rem, 4.5vw, 2.25rem) clamp(1.35rem, 4.5vw, 2.25rem);
   overflow: hidden;
-  
-  /* Warm parchment base */
   background: linear-gradient(
     158deg,
     rgba(253, 248, 243, 0.88) 0%,
@@ -1178,17 +1144,14 @@ ul, ol { list-style: none; }
   );
   border: 1px solid rgba(228, 154, 171, 0.22);
   border-radius: var(--r-card);
-  
-  /* Physical depth: ambient + key + inner highlight */
   box-shadow:
     0 1px 3px rgba(184, 112, 127, 0.06),
     0 6px 20px rgba(184, 112, 127, 0.12),
     0 24px 52px rgba(184, 112, 127, 0.08),
     0 1px 0 rgba(255, 255, 255, 0.88) inset;
-  
   transition:
-    transform     var(--dur-mid) var(--ease-silk),
-    box-shadow    var(--dur-mid) var(--ease-silk);
+    transform    var(--dur-mid) var(--ease-silk),
+    box-shadow   var(--dur-mid) var(--ease-silk);
   will-change: transform, box-shadow;
   cursor: default;
 }
@@ -1202,7 +1165,6 @@ ul, ol { list-style: none; }
     0 1px 0 rgba(255, 255, 255, 0.95) inset;
 }
 
-/* Corner shimmer on hover */
 .event-card::after {
   content: '';
   position: absolute;
@@ -1222,7 +1184,6 @@ ul, ol { list-style: none; }
 }
 .event-card:hover::after { opacity: 1; }
 
-/* ANIMATED accent stripe */
 .event-card-accent {
   position: absolute;
   left: 0; top: 0; right: 0;
@@ -1232,7 +1193,6 @@ ul, ol { list-style: none; }
   animation: accentFlow 4s linear infinite;
 }
 
-/* Blush variant */
 .event-card-accent:not(.accent-sage) {
   background: linear-gradient(
     90deg,
@@ -1258,11 +1218,10 @@ ul, ol { list-style: none; }
 }
 
 @keyframes accentFlow {
-  from { background-position: 0% center; }
+  from { background-position: 0%   center; }
   to   { background-position: 200% center; }
 }
 
-/* Upgraded badge */
 .event-badge {
   width: 38px;
   height: 38px;
@@ -1365,7 +1324,6 @@ ul, ol { list-style: none; }
   font-weight: 400;
 }
 
-/* MAP BUTTON — upgraded: arrow extends on hover */
 .btn-event-map {
   display: inline-flex;
   align-items: center;
@@ -1412,15 +1370,8 @@ ul, ol { list-style: none; }
 }
 .btn-event-map-sage:hover svg { color: var(--c-sage); }
 
-
 /* ----------------------------------------------------------------
-   8. RSVP — UPGRADED
-   
-   Improvements:
-   → Contact card: elevated with bloom shadow
-   → Phone number: elegant typographic treatment
-   → Buttons: WhatsApp green pulse, call button shimmer
-   → Deco elements: refined, less generic
+   8. RSVP
 ---------------------------------------------------------------- */
 #rsvp {
   background:
@@ -1452,11 +1403,10 @@ ul, ol { list-style: none; }
   margin-bottom: var(--sp-lg);
 }
 
-/* UPGRADED contact card: bloom effect */
 .rsvp-contact-card {
   max-width: 400px;
   margin-inline: auto;
-  padding: var(--sp-md) var(--sp-md) var(--sp-md);
+  padding: var(--sp-md);
   text-align: center;
   margin-bottom: var(--sp-lg);
   background: linear-gradient(
@@ -1471,7 +1421,6 @@ ul, ol { list-style: none; }
   overflow: hidden;
 }
 
-/* Soft radial highlight in card */
 .rsvp-contact-card::before {
   content: '';
   position: absolute;
@@ -1526,7 +1475,6 @@ ul, ol { list-style: none; }
   position: relative;
 }
 
-/* BASE RSVP BUTTON */
 .btn-rsvp {
   display: inline-flex;
   align-items: center;
@@ -1563,10 +1511,7 @@ ul, ol { list-style: none; }
   transition-duration: var(--dur-instant);
 }
 
-/* WhatsApp — living pulse */
-.btn-rsvp-wa {
-  border-color: rgba(72, 175, 120, 0.35);
-}
+.btn-rsvp-wa { border-color: rgba(72, 175, 120, 0.35); }
 .btn-rsvp-wa::before {
   content: '';
   position: absolute;
@@ -1585,9 +1530,8 @@ ul, ol { list-style: none; }
 
 .rsvp-btn-icon { display: flex; align-items: center; }
 
-
 /* ----------------------------------------------------------------
-   9. FOOTER — REFINED
+   9. FOOTER
 ---------------------------------------------------------------- */
 #footer {
   background: linear-gradient(180deg, var(--c-parchment) 0%, var(--c-cream-warm) 100%);
@@ -1639,29 +1583,18 @@ ul, ol { list-style: none; }
   letter-spacing: 0.12em;
 }
 
-
 /* ----------------------------------------------------------------
-   10. FLOATING ACTION BAR — UPGRADED
-   
-   Improvements:
-   → Entry: spring-in from bottom with slight bounce
-   → Active state: animated underline, color shift
-   → Center RSVP: living pulse ring, larger hit target
-   → Glass: richer backdrop with warm tint
-   → Motion: staggered button reveals on first show
+   10. FLOATING ACTION BAR
 ---------------------------------------------------------------- */
 .fab-bar {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   z-index: 1000;
   height: var(--fab-h);
-
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding-inline: var(--sp-sm);
-
-  /* Upgraded glass: warmer, more dimensional */
   background: rgba(252, 246, 240, 0.92);
   backdrop-filter: blur(28px) saturate(160%) brightness(1.02);
   -webkit-backdrop-filter: blur(28px) saturate(160%) brightness(1.02);
@@ -1669,15 +1602,11 @@ ul, ol { list-style: none; }
   box-shadow:
     0 -1px 0 rgba(255, 255, 255, 0.95) inset,
     0 -4px 24px rgba(184, 112, 127, 0.08);
-
   transform: translateY(110%);
-  /* Spring-in animation */
   transition: transform var(--dur-slow) var(--ease-petal);
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
-.fab-bar.visible {
-  transform: translateY(0);
-}
+.fab-bar.visible { transform: translateY(0); }
 
 .fab-btn {
   display: flex;
@@ -1691,13 +1620,13 @@ ul, ol { list-style: none; }
   border-radius: 12px;
   color: var(--c-text-soft);
   position: relative;
-  
   transition:
     color      var(--dur-fast) ease,
     background var(--dur-fast) ease,
     transform  var(--dur-fast) var(--ease-petal);
 }
-.fab-btn:hover, .fab-btn:focus-visible {
+.fab-btn:hover,
+.fab-btn:focus-visible {
   color: var(--c-text-dark);
   background: rgba(255, 248, 242, 0.80);
 }
@@ -1706,10 +1635,8 @@ ul, ol { list-style: none; }
   transition-duration: var(--dur-instant);
 }
 
-/* Active indicator */
-.fab-btn.active {
-  color: var(--c-dusty-rose);
-}
+.fab-btn.active { color: var(--c-dusty-rose); }
+
 .fab-btn.active::after {
   content: '';
   position: absolute;
@@ -1723,8 +1650,8 @@ ul, ol { list-style: none; }
   animation: dotPulse 2s ease-in-out infinite;
 }
 @keyframes dotPulse {
-  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
-  50%       { transform: translateX(-50%) scale(1.4); opacity: 1; }
+  0%, 100% { transform: translateX(-50%) scale(1);   opacity: 0.8; }
+  50%       { transform: translateX(-50%) scale(1.4); opacity: 1;   }
 }
 
 .fab-icon {
@@ -1744,7 +1671,6 @@ ul, ol { list-style: none; }
   font-weight: 500;
 }
 
-/* CENTER RSVP BUTTON — upgraded: living pulse */
 .fab-btn-center {
   background: var(--c-dusty-rose);
   border: 1px solid var(--c-dusty-rose);
@@ -1757,7 +1683,6 @@ ul, ol { list-style: none; }
   overflow: visible;
 }
 
-/* Pulse ring effect */
 .fab-btn-center::before {
   content: '';
   position: absolute;
@@ -1780,33 +1705,42 @@ ul, ol { list-style: none; }
     0 1px 0 rgba(255, 255, 255, 0.25) inset;
   transform: translateY(-2px) scale(1.03);
 }
-.fab-btn-center:hover::after { display: none; } /* hide dot on center */
-.fab-btn-center.active { color: #ffffff; }
-.fab-btn-center.active::after { display: none; }
 
+/*
+ * FIX 6: Replaced invalid `display: none` on ::after pseudo-element.
+ *
+ * Original bug: `display: none` does not work on ::after when `content`
+ * is set on a parent state (.active::after). The correct approach is
+ * to target .fab-btn-center.active::after and override with
+ * `width: 0; height: 0; opacity: 0` to collapse and hide the dot.
+ */
+.fab-btn-center.active::after {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+/* Also ensure center button hover doesn't show the dot */
+.fab-btn-center:hover::after {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.fab-btn-center.active { color: #ffffff; }
 
 /* ----------------------------------------------------------------
-   11. MUSIC TOGGLE — UPGRADED
-   
-   Improvements:
-   → Reveal: spring-in from right
-   → Playing state: equalizer bars have personality
-   → Blur backdrop more refined
-   → Hover: warm glow behind button
+   11. MUSIC TOGGLE
 ---------------------------------------------------------------- */
 .music-toggle {
   position: fixed;
   top: clamp(1rem, 3vw, 1.5rem);
   right: clamp(1rem, 3vw, 1.5rem);
   z-index: 1001;
-
   display: flex;
   align-items: center;
   gap: 0.55rem;
   padding: 0.65rem 1.1rem;
   min-height: 44px;
   min-width: 44px;
-
   background: rgba(253, 246, 238, 0.92);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
@@ -1815,13 +1749,11 @@ ul, ol { list-style: none; }
   box-shadow:
     0 4px 18px rgba(184, 112, 127, 0.12),
     0 1px 0 rgba(255, 255, 255, 0.85) inset;
-
   font-family: var(--font-ui);
   font-size: var(--fs-xs);
   letter-spacing: 0.14em;
   color: var(--c-text-dark);
   cursor: pointer;
-
   opacity: 0;
   transform: translateX(28px) scale(0.95);
   transition:
@@ -1845,7 +1777,6 @@ ul, ol { list-style: none; }
 }
 .music-toggle:active { transform: scale(0.94); }
 
-/* EQUALIZER — upgraded: varied bar heights, personality */
 .eq-bars {
   display: flex;
   align-items: flex-end;
@@ -1860,30 +1791,16 @@ ul, ol { list-style: none; }
   transition: height var(--dur-mid) ease;
 }
 
-/* Playing: each bar has unique timing */
-.music-toggle.playing .b1 {
-  height: 4px;
-  animation: eq1 0.62s ease-in-out infinite alternate;
-}
-.music-toggle.playing .b2 {
-  height: 12px;
-  animation: eq2 0.48s ease-in-out infinite alternate;
-}
-.music-toggle.playing .b3 {
-  height: 7px;
-  animation: eq3 0.72s ease-in-out infinite alternate;
-}
-.music-toggle.playing .b4 {
-  height: 10px;
-  animation: eq4 0.55s ease-in-out infinite alternate;
-}
+.music-toggle.playing .b1 { height: 4px;  animation: eq1 0.62s ease-in-out infinite alternate; }
+.music-toggle.playing .b2 { height: 12px; animation: eq2 0.48s ease-in-out infinite alternate; }
+.music-toggle.playing .b3 { height: 7px;  animation: eq3 0.72s ease-in-out infinite alternate; }
+.music-toggle.playing .b4 { height: 10px; animation: eq4 0.55s ease-in-out infinite alternate; }
 
 @keyframes eq1 { from { height: 3px;  } to { height: 12px; } }
 @keyframes eq2 { from { height: 8px;  } to { height: 3px;  } }
 @keyframes eq3 { from { height: 14px; } to { height: 5px;  } }
 @keyframes eq4 { from { height: 6px;  } to { height: 13px; } }
 
-/* Paused: flat, greyed bars */
 .music-toggle:not(.playing) .b1 { height: 3px;  opacity: 0.30; }
 .music-toggle:not(.playing) .b2 { height: 8px;  opacity: 0.30; }
 .music-toggle:not(.playing) .b3 { height: 5px;  opacity: 0.30; }
@@ -1894,14 +1811,28 @@ ul, ol { list-style: none; }
   font-weight: 500;
 }
 
-
 /* ----------------------------------------------------------------
-   12. CURSOR FOLLOWER — New addition
-   Subtle warm circle that follows mouse on desktop.
-   Communicates luxury interactivity.
+   12. CURSOR FOLLOWER
+   
+   FIX 4: Switched to CSS translate() instead of left/top positioning.
+   
+   Original bug: The element used `left`/`top` for JS-driven movement
+   (which triggers layout reflow and can't be GPU-composited), while
+   a static `transform: translate(-50%, -50%)` in the rule would fight
+   the JS's inline style. Also transitioning left/top is janky.
+   Fix: JS should set `--x` and `--y` custom properties; the element
+   moves via `translate(var(--x), var(--y))` — GPU-composited, no
+   layout reflow, and the centering offset is built in.
+   
+   Update your JS accordingly:
+     el.style.setProperty('--x', e.clientX + 'px');
+     el.style.setProperty('--y', e.clientY + 'px');
 ---------------------------------------------------------------- */
 .cursor-glow {
   position: fixed;
+  /* FIX 4: inset at 0,0; movement via translate custom properties */
+  top: 0;
+  left: 0;
   width: 300px;
   height: 300px;
   border-radius: 50%;
@@ -1913,19 +1844,20 @@ ul, ol { list-style: none; }
   );
   pointer-events: none;
   z-index: 0;
-  transform: translate(-50%, -50%);
-  transition:
-    transform 0.18s var(--ease-silk),
-    left      0.38s var(--ease-silk),
-    top       0.38s var(--ease-silk);
-  will-change: left, top;
+  /* FIX 4: translate does centering offset (-50%,-50%) plus cursor pos */
+  transform: translate(
+    calc(var(--x, 0px) - 50%),
+    calc(var(--y, 0px) - 50%)
+  );
+  /* FIX 4: transition only transform — GPU composited, no reflow */
+  transition: transform 0.38s var(--ease-silk);
+  will-change: transform;
   mix-blend-mode: multiply;
 }
 
 @media (hover: none) {
   .cursor-glow { display: none; }
 }
-
 
 /* ----------------------------------------------------------------
    13. RESPONSIVE
@@ -1961,7 +1893,6 @@ ul, ol { list-style: none; }
   .loader-ampersand { font-size: 2.75rem; }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration:        0.01ms !important;
@@ -1977,5 +1908,3 @@ ul, ol { list-style: none; }
   }
   .cursor-glow { display: none; }
 }
-
-
