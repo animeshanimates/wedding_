@@ -477,12 +477,66 @@ ul, ol { list-style: none; }
 #hero {
   position: relative;
   width: 100%;
-  height: 100svh;
-  min-height: 600px;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: var(--c-parchment);
+  padding: calc(var(--space-xl) + 2rem) var(--space-md) var(--space-xl);
+}
+
+.hero-bg-color {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 50% 30%, rgba(242, 196, 144, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  max-width: 1100px;
+  width: 100%;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .hero-layout {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+  }
+}
+
+.hero-image-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  animation: heroFadeUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+  transform: translateY(40px);
+}
+@media (min-width: 1024px) {
+  .hero-image-area {
+    flex: 1;
+    justify-content: flex-end;
+  }
+}
+
+.hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 3 / 4.2;
+  border-radius: 200px 200px 10px 10px;
+  overflow: hidden;
+  border: 10px solid #ffffff;
+  box-shadow: 0 24px 64px rgba(196, 154, 176, 0.25);
+  background: var(--c-cream-warm);
 }
 
 .hero-parallax-bg {
@@ -490,37 +544,22 @@ ul, ol { list-style: none; }
   inset: -15%;
   background-image: url('hero.jpg');
   background-size: cover;
-  background-position: center top;
+  background-position: center 20%;
   will-change: transform;
-  transition: transform 0.05s linear;
-}
-
-/* Soft warm overlays — not harsh, dreamy */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to top,
-      rgba(42, 21, 32, 0.78) 0%,
-      rgba(42, 21, 32, 0.35) 35%,
-      transparent 65%
-    ),
-    linear-gradient(to bottom,
-      rgba(42, 21, 32, 0.4) 0%,
-      transparent 38%
-    ),
-    radial-gradient(ellipse 75% 55% at 50% 45%,
-      rgba(196, 154, 176, 0.2) 0%,
-      transparent 70%
-    );
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding-inline: var(--space-md);
-  max-width: 900px;
+  flex: 1;
+  max-width: 500px;
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    text-align: left;
+  }
 }
 
 .hero-eyebrow {
@@ -528,7 +567,7 @@ ul, ol { list-style: none; }
   font-size:   var(--fs-xs);
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: var(--c-blush-light);
+  color: var(--c-dusty-rose);
   margin-bottom: var(--space-sm);
   opacity: 0;
   animation: heroFadeUp 1s 0.2s var(--ease-silk) forwards;
@@ -543,23 +582,26 @@ ul, ol { list-style: none; }
   animation: heroFadeUp 1.2s 0.5s var(--ease-silk) forwards;
 }
 
+@media (min-width: 1024px) {
+  .hero-title {
+    align-items: flex-start;
+  }
+}
+
 .hero-groom,
 .hero-bride {
   font-family: var(--font-display);
   font-size:   var(--fs-hero);
   font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--c-cream);
+  letter-spacing: 0.02em;
+  color: var(--c-text-dark);
   line-height: 0.95;
-  text-shadow:
-    0 2px 10px rgba(42, 21, 32, 0.5),
-    0 8px 36px rgba(42, 21, 32, 0.4);
 }
 
 .hero-amp {
   font-family: var(--font-body);
   font-size:   clamp(2rem, 6vw, 4rem);
-  color: var(--c-blush-light);
+  color: var(--c-blush);
   line-height: 1.2;
   display: block;
   opacity: 0.9;
@@ -569,7 +611,7 @@ ul, ol { list-style: none; }
   font-family: var(--font-body);
   font-style:  italic;
   font-size:   var(--fs-md);
-  color: var(--c-peach-light);
+  color: var(--c-text-mid);
   margin-top: var(--space-md);
   line-height: 1.85;
   opacity: 0;
@@ -581,7 +623,7 @@ ul, ol { list-style: none; }
   font-style: normal;
   font-size: var(--fs-xs);
   letter-spacing: 0.22em;
-  color: var(--c-blush-light);
+  color: var(--c-blush);
   margin-top: 0.5em;
   opacity: 0.8;
 }
@@ -625,8 +667,8 @@ ul, ol { list-style: none; }
   font-family: var(--font-ui);
   font-size:   var(--fs-xs);
   letter-spacing: 0.3em;
-  color: var(--c-blush-light);
-  opacity: 0.55;
+  color: var(--c-blush);
+  opacity: 0.7;
   text-transform: uppercase;
 }
 
@@ -636,7 +678,7 @@ ul, ol { list-style: none; }
 }
 @keyframes heroFadeIn {
   from { opacity: 0; }
-  to   { opacity: 0.75; }
+  to   { opacity: 0.85; }
 }
 
 #hero .scroll-reveal {
