@@ -785,10 +785,12 @@ ul, ol { list-style: none; }
 
 .hero-parallax-bg {
   position: absolute;
-  top: -15%;
-  left: -15%;
-  width: 130%;
-  height: 130%;
+  /* Shift the starting position so more image hides at the bottom */
+  top: -5%;       
+  left: -10%;
+  width: 120%;
+  /* Increase the height to give it a massive bottom buffer */
+  height: 135%;   
   background-image: url('hero.jpeg');
   background-size: cover;
   background-position: center 20%;
