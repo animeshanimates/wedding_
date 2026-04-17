@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:," />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -110,9 +111,8 @@
   </div>
   <span class="music-toggle-label">Music</span>
 </button>
-<audio id="bg-music" loop preload="none">
-  <!-- Replace src with your audio file path -->
-  <!-- <source src="music.mp3" type="audio/mpeg" /> -->
+<audio id="wedding-audio" loop preload="none">
+  <source src="wedding_music.mp3" type="audio/mpeg" />
 </audio>
 
 
@@ -652,121 +652,7 @@
 <!-- ============================================================
      JAVASCRIPT
 ============================================================ -->
-<script>
-(function() {
-  'use strict';
-
-  /* ── DOM refs ── */
-  const loader     = document.getElementById('loader');
-  const btnEnter   = document.getElementById('btn-enter');
-  const fabBar     = document.getElementById('fab-bar');
-  const musicBtn   = document.getElementById('music-toggle');
-  const audio      = document.getElementById('bg-music');
-  const heroBg     = document.getElementById('hero-bg');
-
-  /* ── Enter: dismiss loader ── */
-  function enterSite() {
-    loader.classList.add('loader-exit');
-    setTimeout(() => {
-      loader.style.display = 'none';
-      document.body.classList.add('site-active');
-      fabBar.classList.add('visible');
-      musicBtn.classList.add('visible');
-      initScrollReveal();
-      initParallax();
-      initCountdown();
-    }, 1200);
-  }
-
-  btnEnter.addEventListener('click', enterSite);
-  btnEnter.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') enterSite(); });
-
-  /* ── Scroll reveal ── */
-  function initScrollReveal() {
-    const els = document.querySelectorAll('.scroll-reveal');
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(el => el.classList.add('revealed'));
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('revealed');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    els.forEach(el => io.observe(el));
-  }
-
-  /* ── Parallax on hero ── */
-  function initParallax() {
-    if (!heroBg) return;
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const y = window.scrollY;
-          heroBg.style.transform = `translateY(${y * 0.38}px)`;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
-  /* ── Countdown timer ── */
-  function initCountdown() {
-    const target = new Date('2026-11-14T12:30:00+05:30').getTime();
-    const numEls = {
-      days:  document.getElementById('count-days'),
-      hours: document.getElementById('count-hours'),
-      mins:  document.getElementById('count-mins'),
-      secs:  document.getElementById('count-secs'),
-    };
-
-    function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
-
-    function updateFlip(el, newVal) {
-      if (el.textContent === newVal) return;
-      el.classList.add('flip');
-      setTimeout(() => {
-        el.textContent = newVal;
-        el.classList.remove('flip');
-      }, 300);
-    }
-
-    function tick() {
-      const now  = Date.now();
-      const diff = Math.max(0, target - now);
-      const d    = Math.floor(diff / 86400000);
-      const h    = Math.floor((diff % 86400000) / 3600000);
-      const m    = Math.floor((diff % 3600000)  / 60000);
-      const s    = Math.floor((diff % 60000)    / 1000);
-      updateFlip(numEls.days,  pad(d));
-      updateFlip(numEls.hours, pad(h));
-      updateFlip(numEls.mins,  pad(m));
-      updateFlip(numEls.secs,  pad(s));
-    }
-    tick();
-    setInterval(tick, 1000);
-  }
-
-  /* ── Music toggle ── */
-  musicBtn.addEventListener('click', () => {
-    const playing = musicBtn.classList.toggle('playing');
-    musicBtn.setAttribute('aria-pressed', playing);
-    if (playing) {
-      audio.play().catch(() => {
-        /* autoplay blocked — silently stay toggled */
-      });
-    } else {
-      audio.pause();
-    }
-  });
-
-})();
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

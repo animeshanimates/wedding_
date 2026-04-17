@@ -198,8 +198,8 @@ const Audio = (() => {
 
 /* ================================================================
    4. COUNTDOWN TIMER
-   Counts down to the Holy Matrimony: March 2, 2026, 7:00 PM IST
-   IST = UTC+5:30, so target in UTC is 13:30
+   Counts down to the Holy Matrimony: November 14, 2026, 12:30 PM IST
+   IST = UTC+5:30, so target in UTC is 07:00
 
    - Updates every second via setInterval
    - Applies a brief "flip" animation when the digit changes
@@ -207,8 +207,8 @@ const Audio = (() => {
 ================================================================ */
 const Countdown = (() => {
 
-  // TARGET: March 2, 2026 7:00 PM IST (UTC+5:30 = 13:30 UTC)
-  const TARGET = new Date('2026-03-02T13:30:00Z').getTime();
+  // TARGET: November 14, 2026 12:30 PM IST (UTC+5:30 = 07:00 UTC)
+  const TARGET = new Date('2026-11-14T07:00:00Z').getTime();
 
   // Store previous displayed values to detect changes
   const prev = { days: -1, hours: -1, mins: -1, secs: -1 };
@@ -512,9 +512,9 @@ document.addEventListener('DOMContentLoaded', () => {
   SmoothScroll.init();
 
   // -- Performance: preload hero image --
-  // Ensures hero.jpg is ready when the loader exits
+  // Ensures hero.jpeg is ready when the loader exits
   const img = new Image();
-  img.src = 'hero.jpg';
+  img.src = 'hero.jpeg';
 
   // Log init complete (useful for Vibe Coding / debugging)
   console.log(
