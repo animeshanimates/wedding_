@@ -8,7 +8,7 @@
  *    2. Loader / Entry     — cinematic gate + autoplay bypass
  *    3. Audio Engine       — custom HTML5 player + toggle UI
  *    4. Countdown Timer    — live digits to March 2, 2026
- *    5. Parallax           — hero background parallax on scroll/gyro
+ *    5. Parallax           — hero background parallax o¯n scroll/gyro
  *    6. Scroll Reveal      — IntersectionObserver fade-up/blur-in
  *    7. FAB Bar            — show floating action bar after entry
  *    8. Haptic Feedback    — scale(0.95) press effect
@@ -20,21 +20,19 @@
 
 /* ================================================================
    1. DOM CACHE
-   Grab every element we'll need. Avoids repeated querySelector
-   calls throughout the code.
 ================================================================ */
 const DOM = {
-  loader:       document.getElementById('loader'),
-  enterBtn:     document.getElementById('enter-btn'),
-  mainSite:     document.getElementById('main-site'),
-  heroBg:       document.getElementById('hero-bg'),
-  fabBar:       document.getElementById('fab-bar'),
-  musicToggle:  document.getElementById('music-toggle'),
-  audio:        document.getElementById('wedding-audio'),
-  cdDays:       document.getElementById('cd-days'),
-  cdHours:      document.getElementById('cd-hours'),
-  cdMins:       document.getElementById('cd-mins'),
-  cdSecs:       document.getElementById('cd-secs'),
+  loader:        document.getElementById('loader'),
+  enterBtn:      document.getElementById('btn-enter'), // Changed to btn-enter
+  mainSite:      document.getElementById('main-site'),
+  heroBg:        document.getElementById('hero-bg'),
+  fabBar:        document.getElementById('fab-bar'),
+  musicToggle:   document.getElementById('music-toggle'),
+  audio:         document.getElementById('wedding-audio'),
+  cdDays:        document.getElementById('cd-days'),
+  cdHours:       document.getElementById('cd-hours'),
+  cdMins:        document.getElementById('cd-mins'),
+  cdSecs:        document.getElementById('cd-secs'),
 };
 
 /* ================================================================
