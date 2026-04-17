@@ -48,9 +48,9 @@
   --c-dusk-mid:      #3D2030;   /* Mid dusk */
 
   /* ── Typography ── */
-  --font-display:    'Cinzel', Georgia, serif;
-  --font-body:       'Cormorant Garamond', Georgia, serif;
-  --font-ui:         'Jost', 'Montserrat', system-ui, sans-serif;
+  --font-display:    'Playfair Display', Georgia, serif;
+  --font-body:       'Lora', Georgia, serif;
+  --font-ui:         'Inter', system-ui, sans-serif;
 
   /* ── Fluid type scale ── */
   --fs-xs:    clamp(0.65rem, 1.5vw, 0.75rem);
@@ -423,54 +423,41 @@ ul, ol { list-style: none; }
   gap: 0.75rem;
   margin-top: var(--space-sm);
   padding: 1rem 2.5rem;
-  border: 1.5px solid rgba(232, 164, 176, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: var(--radius-pill);
   font-family: var(--font-ui);
   font-size:   var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--c-dusty-rose);
-  background: rgba(253, 246, 238, 0.55);
+  color: var(--c-text-dark);
+  background: var(--c-cream);
   overflow: hidden;
   cursor: pointer;
   min-height: 52px;
-  backdrop-filter: blur(8px);
   box-shadow:
-    0 2px 16px rgba(232, 164, 176, 0.25),
-    0 1px 0 rgba(255,255,255,0.8) inset;
+    0 4px 20px rgba(196, 154, 176, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   transition:
-    background   var(--dur-mid) var(--ease-silk),
-    border-color var(--dur-mid) var(--ease-silk),
+    background   var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
     transform    var(--dur-fast) var(--ease-petal),
-    box-shadow   var(--dur-mid) var(--ease-silk);
+    box-shadow   var(--dur-fast) ease,
+    color        var(--dur-fast) ease;
 }
 .btn-enter:hover {
-  background: rgba(232, 164, 176, 0.2);
-  border-color: var(--c-blush);
+  background: #ffffff;
+  border-color: rgba(255, 255, 255, 0.8);
   box-shadow:
-    0 6px 32px rgba(232, 164, 176, 0.4),
-    0 1px 0 rgba(255,255,255,0.9) inset;
+    0 8px 30px rgba(196, 154, 176, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
   transform: translateY(-2px);
-  color: var(--c-text-dark);
+  color: var(--c-dusty-rose);
 }
 .btn-enter:active {
   transform: scale(0.96) translateY(0);
 }
 
-/* Button shimmer */
-.btn-enter-shimmer {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.45) 50%, transparent 65%);
-  background-size: 200% 100%;
-  animation: shimmerSweep 3s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes shimmerSweep {
-  0%   { background-position: -100% 0; }
-  100% { background-position: 200% 0;  }
-}
 
 .btn-enter-text { position: relative; z-index: 1; }
 .btn-enter-icon {
@@ -895,43 +882,43 @@ ul, ol { list-style: none; }
   opacity: 0.85;
 }
 
-/* Soft map button */
 .btn-event-map {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.7rem 1.4rem;
-  border: 1.5px solid rgba(232, 164, 176, 0.45);
+  border: 1px solid rgba(196, 154, 176, 0.4);
   border-radius: var(--radius-pill);
   font-family: var(--font-ui);
   font-size:   var(--fs-xs);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--c-dusty-rose);
-  background: rgba(250, 232, 235, 0.5);
+  color: var(--c-text-dark);
+  background: var(--c-cream);
   min-height: 44px;
-  transition:
-    background   var(--dur-mid) var(--ease-silk),
-    border-color var(--dur-mid) var(--ease-silk),
-    box-shadow   var(--dur-mid) var(--ease-silk);
+  box-shadow: 0 4px 12px rgba(196, 154, 176, 0.08);
+  transition: all var(--dur-fast) ease;
 }
 .btn-event-map svg { width: 14px; height: 14px; }
 .btn-event-map:hover {
-  background: rgba(232, 164, 176, 0.2);
-  border-color: var(--c-blush);
-  box-shadow: 0 2px 12px rgba(232, 164, 176, 0.3);
+  background: #ffffff;
+  border-color: var(--c-dusty-rose);
+  color: var(--c-dusty-rose);
+  box-shadow: 0 6px 16px rgba(196, 154, 176, 0.15);
+  transform: translateY(-1px);
 }
 
 .btn-event-map-sage {
-  border-color: rgba(127, 168, 130, 0.45);
-  color: var(--c-sage);
-  background: rgba(228, 238, 230, 0.5);
+  border-color: rgba(127, 168, 130, 0.4);
+  color: var(--c-text-dark);
+  background: var(--c-cream);
 }
 .btn-event-map-sage:hover {
-  background: rgba(127, 168, 130, 0.18);
+  background: #ffffff;
   border-color: var(--c-sage);
-  box-shadow: 0 2px 12px rgba(127, 168, 130, 0.25);
+  color: var(--c-sage);
+  box-shadow: 0 6px 16px rgba(127, 168, 130, 0.15);
 }
 
 
@@ -1027,39 +1014,38 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: 0.5rem;
   padding: 0.85rem 1.6rem;
-  border: 1.5px solid rgba(232, 164, 176, 0.45);
+  border: 1px solid rgba(196, 154, 176, 0.4);
   border-radius: var(--radius-pill);
   font-family: var(--font-ui);
   font-size:   var(--fs-xs);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--c-dusty-rose);
-  background: rgba(250, 232, 235, 0.55);
+  color: var(--c-text-dark);
+  background: var(--c-cream);
   min-height: 48px;
-  transition:
-    background   var(--dur-mid) var(--ease-silk),
-    border-color var(--dur-mid) var(--ease-silk),
-    box-shadow   var(--dur-mid) var(--ease-silk);
+  box-shadow: 0 4px 16px rgba(196, 154, 176, 0.1);
+  transition: all var(--dur-fast) ease;
 }
 .btn-rsvp svg { width: 16px; height: 16px; }
 .btn-rsvp:hover {
-  background: rgba(232, 164, 176, 0.22);
-  border-color: var(--c-blush);
-  box-shadow: 0 3px 16px rgba(232, 164, 176, 0.3);
+  background: #ffffff;
+  border-color: var(--c-dusty-rose);
+  color: var(--c-dusty-rose);
+  box-shadow: 0 8px 24px rgba(196, 154, 176, 0.18);
+  transform: translateY(-1px);
 }
 
-/* WhatsApp button — soft green */
+/* WhatsApp button */
 .btn-rsvp-wa {
-  background: rgba(200, 240, 215, 0.45);
-  border-color: rgba(100, 190, 140, 0.45);
-  color: #4A9E70;
+  border-color: rgba(100, 190, 140, 0.4);
+  color: var(--c-text-dark);
 }
 .btn-rsvp-wa:hover {
-  background: rgba(100, 190, 140, 0.2);
-  border-color: rgba(100, 190, 140, 0.7);
-  box-shadow: 0 3px 16px rgba(100, 190, 140, 0.25);
-  color: #3A7D58;
+  background: #ffffff;
+  border-color: #4A9E70;
+  color: #4A9E70;
+  box-shadow: 0 8px 24px rgba(100, 190, 140, 0.18);
 }
 
 .rsvp-btn-icon {
@@ -1171,15 +1157,15 @@ ul, ol { list-style: none; }
   min-width: 68px;
   min-height: 52px;
   border-radius: 12px;
-  color: var(--c-text-soft);
+  color: var(--c-text-mid);
   transition:
     color      var(--dur-fast) ease,
     background var(--dur-fast) ease,
     transform  var(--dur-fast) var(--ease-petal);
 }
 .fab-btn:hover, .fab-btn:focus-visible {
-  color: var(--c-dusty-rose);
-  background: rgba(232, 164, 176, 0.12);
+  color: var(--c-text-dark);
+  background: rgba(253, 246, 238, 0.9);
 }
 .fab-btn:active { transform: scale(0.91); }
 
@@ -1202,16 +1188,18 @@ ul, ol { list-style: none; }
 
 /* Center RSVP button */
 .fab-btn-center {
-  background: rgba(232, 164, 176, 0.18);
-  border: 1.5px solid rgba(232, 164, 176, 0.4);
-  color: var(--c-dusty-rose);
+  background: var(--c-dusty-rose);
+  border: 1px solid var(--c-dusty-rose);
+  color: #ffffff;
   border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(232, 164, 176, 0.2);
+  box-shadow: 0 4px 12px rgba(196, 154, 176, 0.4);
 }
 .fab-btn-center:hover {
-  background: rgba(232, 164, 176, 0.3);
-  border-color: var(--c-blush);
-  color: var(--c-text-dark);
+  background: #ba7587;
+  border-color: #ba7587;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(196, 154, 176, 0.6);
+  transform: translateY(-1px);
 }
 
 
@@ -1231,36 +1219,33 @@ ul, ol { list-style: none; }
   min-height: 44px;
   min-width: 44px;
 
-  background: rgba(253, 246, 238, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1.5px solid rgba(232, 164, 176, 0.35);
+  background: var(--c-cream);
+  border: 1px solid rgba(196, 154, 176, 0.4);
   border-radius: var(--radius-pill);
-  box-shadow:
-    0 2px 14px rgba(196, 154, 176, 0.15),
-    0 1px 0 rgba(255,255,255,0.9) inset;
+  box-shadow: 0 4px 16px rgba(196, 154, 176, 0.15);
 
   font-family: var(--font-ui);
   font-size:   var(--fs-xs);
   letter-spacing: 0.14em;
-  color: var(--c-dusty-rose);
+  color: var(--c-text-dark);
   cursor: pointer;
 
   opacity: 0;
   transform: translateX(20px);
   transition:
+    all var(--dur-fast) ease,
     opacity      var(--dur-slow) var(--ease-silk),
-    transform    var(--dur-slow) var(--ease-silk),
-    background   var(--dur-fast) ease,
-    border-color var(--dur-fast) ease;
+    transform    var(--dur-slow) var(--ease-silk);
 }
 .music-toggle.visible {
   opacity: 1;
   transform: translateX(0);
 }
 .music-toggle:hover {
-  background: rgba(232, 164, 176, 0.22);
-  border-color: var(--c-blush);
+  background: #ffffff;
+  border-color: var(--c-dusty-rose);
+  color: var(--c-dusty-rose);
+  box-shadow: 0 6px 20px rgba(196, 154, 176, 0.25);
 }
 .music-toggle:active { transform: scale(0.92); }
 
