@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================================
+    META & SEO — OpenGraph enabled for rich WhatsApp/social previews
+  ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4A0404" />
+  <title>Suryanshu & Aishwarya — Together Forever</title>
+
+  <!-- OpenGraph: WhatsApp / Facebook rich preview -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="You're Invited — Suryanshu & Aishwarya" />
+  <meta property="og:description" content="Join us as we celebrate our union. February 13 & March 2, 2026 · Varanasi" />
+  <meta property="og:image"       content="hero.jpg" />
+  <meta property="og:url"         content="https://yourusername.github.io/wedding/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="You're Invited — Suryanshu & Aishwarya" />
+  <meta name="twitter:description" content="Join us as we celebrate our union. Varanasi, 2026." />
+  <meta name="twitter:image"       content="hero.jpg" />
+
+  <!-- ============================================================
+    FONTS — Cinzel (divine display), Cormorant Garamond (body elegance),
+            Montserrat (clean detail labels)
+  ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+    LOADER SCREEN — Cinematic entry gate. User MUST interact to
+    bypass browser autoplay restrictions. Music fires on click.
+  ============================================================ -->
+  <div id="loader" role="dialog" aria-modal="true" aria-label="Wedding invitation entry screen">
+
+    <!-- Decorative animated petals in the loader -->
+    <div class="loader-petals" aria-hidden="true">
+      <span class="petal p1">✦</span>
+      <span class="petal p2">✦</span>
+      <span class="petal p3">✦</span>
+      <span class="petal p4">✦</span>
+      <span class="petal p5">❦</span>
+      <span class="petal p6">✦</span>
+    </div>
+
+    <!-- Top ornament line -->
+    <div class="loader-ornament-top" aria-hidden="true">
+      <span class="orn-line"></span>
+      <span class="orn-diamond">◆</span>
+      <span class="orn-line"></span>
+    </div>
+
+    <!-- Loader content -->
+    <div class="loader-content">
+      <p class="loader-eyebrow">~ A Sacred Union ~</p>
+      <h1 class="loader-names">
+        <span class="loader-name-groom reveal-char">Suryanshu</span>
+        <span class="loader-ampersand" aria-hidden="true">&amp;</span>
+        <span class="loader-name-bride reveal-char">Aishwarya</span>
+      </h1>
+      <p class="loader-verse">
+        "So they are no longer two,<br />but one flesh."
+        <em>— Matthew 19:6</em>
+      </p>
+      <p class="loader-date-hint">13 Feb · 02 Mar · 2026 · Varanasi</p>
+
+      <!-- THE GATE: clicking this dismisses loader & starts music -->
+      <button id="enter-btn" class="btn-enter" aria-label="Enter the wedding experience">
+        <span class="btn-enter-text">Enter Our World</span>
+        <span class="btn-enter-icon" aria-hidden="true">→</span>
+        <span class="btn-enter-shimmer" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- Bottom ornament -->
+    <div class="loader-ornament-bottom" aria-hidden="true">
+      <span class="orn-line"></span>
+      <span class="orn-diamond">◆</span>
+      <span class="orn-line"></span>
+    </div>
+
+  </div><!-- /#loader -->
+
+
+  <!-- ============================================================
+    MAIN SITE — Hidden until loader is dismissed
+  ============================================================ -->
+  <main id="main-site" aria-hidden="true">
+
+    <!-- --------------------------------------------------------
+      HERO SECTION — Full-viewport parallax backdrop
+    -------------------------------------------------------- -->
+    <section id="hero" aria-label="Hero — Suryanshu and Aishwarya">
+
+      <!-- Parallax image layer (manipulated via JS) -->
+      <div class="hero-parallax-bg" id="hero-bg" aria-hidden="true"></div>
+
+      <!-- Soft vignette overlay for legibility -->
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <!-- Hero text content -->
+      <div class="hero-content scroll-reveal">
+        <p class="hero-eyebrow">~ Together Forever ~</p>
+
+        <h1 class="hero-title">
+          <span class="hero-groom">Suryanshu</span>
+          <span class="hero-amp" aria-hidden="true">❧</span>
+          <span class="hero-bride">Aishwarya</span>
+        </h1>
+
+        <p class="hero-quote">
+          "So they are no longer two, but one flesh."
+          <br /><em>— Matthew 19:6</em>
+        </p>
+
+        <!-- Scroll cue -->
+        <div class="hero-scroll-cue" aria-hidden="true">
+          <span class="scroll-line"></span>
+          <span class="scroll-label">Scroll</span>
+        </div>
+      </div>
+
+    </section><!-- /#hero -->
+
+
+    <!-- --------------------------------------------------------
+      COUNTDOWN SECTION — Live timer to March 2, 2026
+    -------------------------------------------------------- -->
+    <section id="countdown" aria-label="Countdown to the wedding">
+      <div class="section-container">
+
+        <p class="section-eyebrow scroll-reveal">~ The Big Day Approaches ~</p>
+        <h2 class="section-title scroll-reveal">Counting Every Moment</h2>
+
+        <div class="countdown-grid scroll-reveal" role="timer" aria-live="polite" aria-label="Countdown timer">
+          <!-- JS populates these values -->
+          <div class="count-block">
+            <span class="count-num" id="cd-days">--</span>
+            <span class="count-label">Days</span>
+          </div>
+          <div class="count-separator" aria-hidden="true">:</div>
+          <div class="count-block">
+            <span class="count-num" id="cd-hours">--</span>
+            <span class="count-label">Hours</span>
+          </div>
+          <div class="count-separator" aria-hidden="true">:</div>
+          <div class="count-block">
+            <span class="count-num" id="cd-mins">--</span>
+            <span class="count-label">Minutes</span>
+          </div>
+          <div class="count-separator" aria-hidden="true">:</div>
+          <div class="count-block">
+            <span class="count-num" id="cd-secs">--</span>
+            <span class="count-label">Seconds</span>
+          </div>
+        </div>
+
+        <p class="countdown-sub scroll-reveal">Until we say "I Do" — March 2, 2026</p>
+      </div>
+    </section><!-- /#countdown -->
+
+
+    <!-- --------------------------------------------------------
+      EVENTS SECTION — Two ceremony cards
+    -------------------------------------------------------- -->
+    <section id="events" aria-label="Wedding events">
+      <div class="section-container">
+
+        <p class="section-eyebrow scroll-reveal">~ Mark Your Calendar ~</p>
+        <h2 class="section-title scroll-reveal">Our Sacred Celebrations</h2>
+
+        <div class="events-grid">
+
+          <!-- EVENT 1: Reception -->
+          <article class="event-card glass-card scroll-reveal" aria-label="Reception event">
+            <div class="event-card-accent" aria-hidden="true"></div>
+
+            <div class="event-badge">I</div>
+            <p class="event-type">Reception</p>
+            <h3 class="event-name">An Evening of Joy</h3>
+
+            <div class="event-detail-row">
+              <span class="event-icon" aria-hidden="true">◈</span>
+              <div>
+                <p class="event-detail-label">Date &amp; Time</p>
+                <p class="event-detail-value">February 13, 2026 · 6:30 PM</p>
+              </div>
+            </div>
+
+            <div class="event-detail-row">
+              <span class="event-icon" aria-hidden="true">◉</span>
+              <div>
+                <p class="event-detail-label">Venue</p>
+                <p class="event-detail-value">Wesley Technical Compound<br />51 Cantt, Varanasi</p>
+              </div>
+            </div>
+
+            <div class="event-detail-row">
+              <span class="event-icon" aria-hidden="true">✦</span>
+              <div>
+                <p class="event-detail-label">A Word of Blessing</p>
+                <p class="event-detail-value event-verse">"Houses and wealth are inherited from parents, but a prudent wife is from the Lord."<br /><em>— Proverbs 19:14</em></p>
+              </div>
+            </div>
+
+            <!-- Directions CTA for Event 1 -->
+            <a href="https://www.google.com/maps/search/Wesley+Technical+Compound+51+Cantt+Varanasi"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn-event-map haptic-btn"
+               aria-label="Get directions to Wesley Technical Compound">
+              Get Directions ↗
+            </a>
+          </article>
+
+
+          <!-- EVENT 2: Holy Matrimony -->
+          <article class="event-card glass-card scroll-reveal" aria-label="Holy matrimony event">
+            <div class="event-card-accent accent-gold" aria-hidden="true"></div>
+
+            <div class="event-badge badge-gold">II</div>
+            <p class="event-type">Holy Matrimony</p>
+            <h3 class="event-name">The Sacred Union</h3>
+
+            <div class="event-detail-row">
+              <span class="event-icon" aria-hidden="true">◈</span>
+              <div>
+                <p class="event-detail-label">Date &amp; Time</p>
+                <p class="event-detail-value">March 2, 2026 · 7:00 PM</p>
+              </div>
+            </div>
+
+            <div class="event-detail-row">
+              <span class="event-icon" aria-hidden="true">◉</span>
+              <div>
+                <p class="event-detail-label">Venue</p>
+                <p class="event-detail-value">Hotel Ideal Tower<br />Cantt, Varanasi</p>
+              </div>
+            </div>
+
+            <div class="event-detail-row">
+              <span class="event-icon" aria-hidden="true">✦</span>
+              <div>
+                <p class="event-detail-label">Hosted By</p>
+                <p class="event-detail-value">Mrs. Parveen &amp; Anurit Eusebius</p>
+              </div>
+            </div>
+
+            <a href="https://www.google.com/maps/search/Hotel+Ideal+Tower+Cantt+Varanasi"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn-event-map btn-event-map-gold haptic-btn"
+               aria-label="Get directions to Hotel Ideal Tower">
+              Get Directions ↗
+            </a>
+          </article>
+
+        </div><!-- /.events-grid -->
+      </div>
+    </section><!-- /#events -->
+
+
+    <!-- --------------------------------------------------------
+      RSVP SECTION — Warm invitation & contact block
+    -------------------------------------------------------- -->
+    <section id="rsvp" aria-label="RSVP and contact">
+      <div class="section-container rsvp-inner">
+
+        <div class="rsvp-deco-top" aria-hidden="true">✦ ✦ ✦</div>
+
+        <p class="section-eyebrow scroll-reveal">~ Your Presence is Our Present ~</p>
+        <h2 class="section-title scroll-reveal">Will You Join Us?</h2>
+
+        <p class="rsvp-body scroll-reveal">
+          We joyfully invite you to share in the celebration of love and
+          commitment as Suryanshu and Aishwarya begin their journey together.
+          Please let us know you're coming — your presence means everything.
+        </p>
+
+        <!-- RSVP contact card -->
+        <div class="rsvp-contact-card glass-card scroll-reveal" role="region" aria-label="RSVP contact">
+          <p class="rsvp-contact-label">Kindly RSVP to</p>
+          <p class="rsvp-contact-name">Ms. Aarzoo S. Eusebius</p>
+          <p class="rsvp-contact-phone">+91 94156 95512</p>
+
+          <div class="rsvp-btn-row">
+            <!-- Call button -->
+            <a href="tel:+919415695512"
+               class="btn-rsvp haptic-btn"
+               aria-label="Call Aarzoo to RSVP">
+              <span class="rsvp-btn-icon">📞</span> Call
+            </a>
+
+            <!-- WhatsApp button -->
+            <a href="https://wa.me/919415695512?text=Hey%20Aarzoo!%20RSVPing%20for%20Suryanshu%20%26%20Aishwarya's%20wedding.%20Count%20me%20in!"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn-rsvp btn-rsvp-wa haptic-btn"
+               aria-label="WhatsApp Aarzoo to RSVP">
+              <span class="rsvp-btn-icon">💬</span> WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="rsvp-deco-bottom" aria-hidden="true">
+          <span class="orn-line"></span>
+          <span class="orn-diamond">◆</span>
+          <span class="orn-line"></span>
+        </div>
+
+      </div>
+    </section><!-- /#rsvp -->
+
+
+    <!-- --------------------------------------------------------
+      FOOTER
+    -------------------------------------------------------- -->
+    <footer id="footer" role="contentinfo">
+      <p class="footer-names">Suryanshu &amp; Aishwarya</p>
+      <p class="footer-date">February 13 &amp; March 2, 2026 · Varanasi</p>
+      <p class="footer-verse">"What God has joined together, let no one separate." — Matthew 19:6</p>
+      <p class="footer-credit">Made with ♥ for the most beautiful day</p>
+    </footer>
+
+
+  </main><!-- /#main-site -->
+
+
+  <!-- ============================================================
+    FLOATING ACTION BAR — Sticky bottom, always accessible
+  ============================================================ -->
+  <nav id="fab-bar" class="fab-bar" aria-label="Quick actions" hidden>
+    <!-- Call -->
+    <a href="tel:+919415695512"
+       class="fab-btn haptic-btn"
+       aria-label="Call Aarzoo Eusebius">
+      <span class="fab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.21 2 2 0 012 .04h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+      </span>
+      <span class="fab-label">Call</span>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/919415695512?text=Hey%20Aarzoo!%20RSVPing%20for%20Suryanshu%20%26%20Aishwarya's%20wedding.%20Count%20me%20in!"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="fab-btn fab-btn-center haptic-btn"
+       aria-label="WhatsApp RSVP for Suryanshu and Aishwarya's wedding">
+      <span class="fab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </span>
+      <span class="fab-label">RSVP</span>
+    </a>
+
+    <!-- Directions (defaults to Holy Matrimony venue) -->
+    <a href="https://www.google.com/maps/search/Hotel+Ideal+Tower+Cantt+Varanasi"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="fab-btn haptic-btn"
+       aria-label="Get directions to Hotel Ideal Tower Varanasi">
+      <span class="fab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+        </svg>
+      </span>
+      <span class="fab-label">Directions</span>
+    </a>
+  </nav><!-- /#fab-bar -->
+
+
+  <!-- ============================================================
+    MUSIC TOGGLE — Floating pill, appears after entry
+  ============================================================ -->
+  <button id="music-toggle"
+          class="music-toggle"
+          aria-label="Toggle wedding music"
+          aria-pressed="false"
+          hidden>
+    <!-- Animated equalizer bars (visible when playing) -->
+    <span class="eq-bars" aria-hidden="true">
+      <span class="eq-bar b1"></span>
+      <span class="eq-bar b2"></span>
+      <span class="eq-bar b3"></span>
+      <span class="eq-bar b4"></span>
+    </span>
+    <span class="music-toggle-label">♪</span>
+
+    <!-- Hidden HTML5 audio element — no controls, JS-driven -->
+    <audio id="wedding-audio" loop preload="none">
+      <source src="wedding_music.mp3" type="audio/mpeg" />
+    </audio>
+  </button><!-- /#music-toggle -->
+
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+</body>
+</html>
