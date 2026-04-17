@@ -1,96 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suryanshu & Aishwarya · Varanasi 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
 /* ================================================================
-   WEDDING MICROSITE — style.css
+   WEDDING MICROSITE — UPGRADED style.css
    Suryanshu & Aishwarya · Varanasi 2026
-   Aesthetic: Soft Pastel Romanticism / Dreamy Minimalism
-   Palette sourced from hero illustration:
-     sky peach-gold, blush rose, sage green, warm cream, dusty mauve
+   
+   UPGRADE PHILOSOPHY:
+   → Physics-informed motion (spring curves, anticipation, settle)
+   → Layered depth (ambient + key shadows, multi-plane parallax)
+   → Editorial rhythm (intentional asymmetry, varied spacing)
+   → Sensory texture (subtle grain, chromatic accents)
+   → Premium micro-interactions (cursor-aware, state-rich)
 ================================================================ */
 
-
 /* ----------------------------------------------------------------
-   1. CSS CUSTOM PROPERTIES (Design Tokens)
+   1. DESIGN TOKENS — REFINED
+   Changes: deeper text contrast, more intentional color hierarchy,
+   richer shadow palette, physics-based easing library
 ---------------------------------------------------------------- */
 :root {
-  /* ── Pastel Brand Palette (from illustration) ── */
-  --c-blush:         #E8A4B0;   /* Soft blush rose — primary accent */
-  --c-blush-light:   #F2C8CF;   /* Petal pink — lighter tint */
-  --c-blush-pale:    #FAE8EB;   /* Near-white blush — delicate fills */
-  --c-peach:         #F2C490;   /* Warm peach-gold — from sky */
-  --c-peach-light:   #F8DDB8;   /* Pale peach — card highlights */
-  --c-peach-pale:    #FDF2E4;   /* Cream peach — subtle bg */
-  --c-sage:          #7FA882;   /* Sage green — from floral leaves */
-  --c-sage-light:    #B2CABB;   /* Pale sage — soft border/fill */
-  --c-sage-pale:     #E4EEE6;   /* Whisper sage — lightest fill */
-  --c-mauve:         #C49AB0;   /* Dusty mauve — from flowers */
-  --c-mauve-light:   #DDBFCE;   /* Light mauve — muted tone */
-  --c-cream:         #FDF6EE;   /* Warm ivory cream — main bg */
-  --c-cream-warm:    #F9EDD8;   /* Deeper cream — card base */
-  --c-dusty-rose:    #C47D8E;   /* Deeper rose — text accent */
-  --c-terracotta:    #B8856A;   /* Warm terracotta — from architecture */
-  --c-sky-blush:     #F5C8B0;   /* Peach sky — from horizon */
+  /* ── Brand Palette (tighter, more intentional) ── */
+  --c-blush:        #E49AAB;   /* Slightly deeper — more intentional */
+  --c-blush-light:  #EFC5CD;
+  --c-blush-pale:   #FAE8EB;
+  --c-peach:        #EEB87E;   /* Richer peach — more warmth */
+  --c-peach-light:  #F8D9AB;
+  --c-peach-pale:   #FDF0E2;
+  --c-sage:         #7FA882;
+  --c-sage-light:   #B2CABB;
+  --c-sage-pale:    #E4EEE6;
+  --c-mauve:        #C49AB0;
+  --c-mauve-light:  #DDBFCE;
+  --c-cream:        #FDF6EE;
+  --c-cream-warm:   #F7E8D4;   /* Deeper warm — more character */
+  --c-dusty-rose:   #B8707F;   /* Deeper for better contrast */
+  --c-terracotta:   #A87560;
+  --c-sky-blush:    #F4C4A8;
 
-  /* ── Surface & Overlay ── */
-  --c-parchment:     #FBF3EA;   /* Page background */
-  --c-surface:       rgba(253, 246, 238, 0.85);
-  --c-surface-soft:  rgba(242, 196, 144, 0.12);
-  --c-glass-card:    rgba(253, 246, 238, 0.55);
-  --c-glass-border:  rgba(232, 164, 176, 0.35);
-  --c-glass-shadow:  rgba(196, 154, 176, 0.18);
+  /* ── Surface System ── */
+  --c-parchment:    #FCF4EA;
+  --c-surface:      rgba(253, 246, 238, 0.88);
+  --c-surface-soft: rgba(238, 184, 126, 0.10);
+  
+  /* Upgraded glass: multi-layer warmth */
+  --c-glass-card:   rgba(253, 246, 238, 0.62);
+  --c-glass-border: rgba(228, 154, 171, 0.28);
+  --c-glass-shadow-sm: rgba(184, 112, 127, 0.10);
+  --c-glass-shadow-md: rgba(184, 112, 127, 0.18);
+  --c-glass-shadow-lg: rgba(184, 112, 127, 0.28);
 
-  /* ── Text ── */
-  --c-text-dark:     #5C3D4A;   /* Deep rose-brown — headings */
-  --c-text-mid:      #8B6070;   /* Muted rose — body text */
-  --c-text-soft:     #B89AA6;   /* Whisper — captions */
-  --c-text-on-dark:  #FDF6EE;   /* Cream for dark surfaces */
+  /* ── Text Hierarchy — UPGRADED (better contrast) ── */
+  --c-text-heading: #4A2E38;   /* Richer, more intentional */
+  --c-text-dark:    #5C3D4A;
+  --c-text-mid:     #7D5A68;   /* Slightly lighter for rhythm */
+  --c-text-soft:    #AC8898;
+  --c-text-ghost:   #CCADB8;
+  --c-text-on-dark: #FDF6EE;
 
-  /* ── Dark mode base (for loader & hero) ── */
-  --c-dusk:          #2A1520;   /* Very deep dusky rose */
-  --c-dusk-mid:      #3D2030;   /* Mid dusk */
+  /* ── Loader Dusk ── */
+  --c-dusk:     #2A1520;
+  --c-dusk-mid: #3D2030;
 
   /* ── Typography ── */
-  --font-display:    'Playfair Display', Georgia, serif;
-  --font-body:       'Lora', Georgia, serif;
-  --font-ui:         'Inter', system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Lora', Georgia, serif;
+  --font-ui:      'DM Sans', system-ui, sans-serif;  /* Upgraded: DM Sans > Inter */
 
-  /* ── Fluid type scale ── */
+  /* ── Fluid Type Scale (unchanged — works well) ── */
   --fs-xs:    clamp(0.65rem, 1.5vw, 0.75rem);
-  --fs-sm:    clamp(0.75rem, 2vw,   0.875rem);
-  --fs-base:  clamp(0.9rem,  2.5vw, 1.05rem);
-  --fs-md:    clamp(1rem,    3vw,   1.2rem);
-  --fs-lg:    clamp(1.2rem,  4vw,   1.65rem);
-  --fs-xl:    clamp(1.5rem,  5vw,   2.25rem);
-  --fs-2xl:   clamp(2rem,    7vw,   3.75rem);
-  --fs-3xl:   clamp(2.5rem,  9vw,   5.5rem);
-  --fs-hero:  clamp(3rem,    11vw,  8rem);
+  --fs-sm:    clamp(0.75rem, 2vw, 0.875rem);
+  --fs-base:  clamp(0.9rem, 2.5vw, 1.05rem);
+  --fs-md:    clamp(1rem, 3vw, 1.2rem);
+  --fs-lg:    clamp(1.2rem, 4vw, 1.65rem);
+  --fs-xl:    clamp(1.5rem, 5vw, 2.25rem);
+  --fs-2xl:   clamp(2rem, 7vw, 3.75rem);
+  --fs-3xl:   clamp(2.5rem, 9vw, 5.5rem);
+  --fs-hero:  clamp(3rem, 11vw, 8rem);
 
-  /* ── Spacing ── */
-  --space-xs:   0.5rem;
-  --space-sm:   1rem;
-  --space-md:   2rem;
-  --space-lg:   4rem;
-  --space-xl:   7rem;
-  --space-2xl:  10rem;
+  /* ── Spacing — Fibonacci-inspired rhythm ── */
+  --sp-2xs:  0.25rem;
+  --sp-xs:   0.5rem;
+  --sp-sm:   0.875rem;
+  --sp-md:   1.5rem;
+  --sp-lg:   2.5rem;
+  --sp-xl:   4.5rem;
+  --sp-2xl:  7.5rem;
+  --sp-3xl:  11rem;
+  
+  /* Legacy aliases */
+  --space-xs: var(--sp-xs);
+  --space-sm: var(--sp-sm);
+  --space-md: var(--sp-md);
+  --space-lg: var(--sp-lg);
+  --space-xl: var(--sp-xl);
 
-  /* ── Motion ── */
-  --ease-silk:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-petal:  cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-drift:  cubic-bezier(0.86, 0, 0.07, 1);
-  --dur-fast:    200ms;
-  --dur-mid:     450ms;
-  --dur-slow:    800ms;
-  --dur-epic:    1200ms;
+  /* ================================================================
+     MOTION SYSTEM — UPGRADED
+     Philosophy: physics > math, anticipation + settle, personality
+     
+     Naming: spring curves inspired by real physics
+     silk   = smooth, no overshoot (UI transitions)
+     petal  = gentle overshoot (confirmations, reveals)  
+     bloom  = expressive spring (hero, celebrations)
+     drift  = cinematic slow (page transitions, exits)
+     snap   = instant feel with tiny ease-out (tabs, toggles)
+  ================================================================ */
+  --ease-silk:  cubic-bezier(0.22, 1, 0.36, 1);        /* Upgraded: CSS spring approximation */
+  --ease-petal: cubic-bezier(0.34, 1.56, 0.64, 1);     /* Slight overshoot — tactile */
+  --ease-bloom: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* More spring energy */
+  --ease-drift: cubic-bezier(0.86, 0, 0.07, 1);        /* Cinematic — page transitions */
+  --ease-snap:  cubic-bezier(0.16, 1, 0.3, 1);          /* Fast-in, ease-out */
+  --ease-anticipate: cubic-bezier(0.36, 0, 0.66, -0.56); /* Anticipation then forward */
+  
+  --dur-instant: 80ms;
+  --dur-fast:    180ms;
+  --dur-mid:     380ms;
+  --dur-slow:    680ms;
+  --dur-epic:    1100ms;
+  --dur-cinematic: 1600ms;
 
   /* ── Layout ── */
-  --max-w:        1100px;
-  --fab-h:        76px;
-  --radius-card:  20px;
-  --radius-soft:  12px;
-  --radius-pill:  100px;
+  --max-w:       1100px;
+  --fab-h:       72px;
+  --r-card:      18px;
+  --r-soft:      10px;
+  --r-pill:      100px;
+  
+  /* Legacy */
+  --radius-card: var(--r-card);
+  --radius-pill: var(--r-pill);
+
+  /* ── Shadow Palette — UPGRADED: layered depth ── */
+  /* sm: subtle lift */
+  --shadow-sm:
+    0 1px 2px rgba(184, 112, 127, 0.06),
+    0 2px 8px rgba(184, 112, 127, 0.08);
+  
+  /* md: card depth */
+  --shadow-md:
+    0 2px 4px rgba(184, 112, 127, 0.06),
+    0 6px 20px rgba(184, 112, 127, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.80) inset;
+  
+  /* lg: elevated state */
+  --shadow-lg:
+    0 4px 8px rgba(184, 112, 127, 0.08),
+    0 16px 40px rgba(184, 112, 127, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.90) inset;
+
+  /* xl: modal/popup */
+  --shadow-xl:
+    0 8px 16px rgba(184, 112, 127, 0.08),
+    0 32px 72px rgba(184, 112, 127, 0.22),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+
+  /* bloom: hero elements, featured */
+  --shadow-bloom:
+    0 0 0 1px rgba(228, 154, 171, 0.15),
+    0 8px 24px rgba(184, 112, 127, 0.15),
+    0 32px 72px rgba(196, 154, 176, 0.20);
 }
 
 
 /* ----------------------------------------------------------------
-   2. RESET & BASE
+   2. RESET & BASE — UPGRADED
 ---------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -102,6 +182,10 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-tap-highlight-color: transparent;
+  /* Improve font rendering across browsers */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -109,119 +193,170 @@ body {
   background-color: var(--c-parchment);
   color: var(--c-text-dark);
   overflow-x: hidden;
+  /* Subtle grain texture — marks as handcrafted */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.018'/%3E%3C/svg%3E");
 }
 
-body.site-active {
-  padding-bottom: var(--fab-h);
-}
+body.site-active { padding-bottom: var(--fab-h); }
 
 img, svg { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 button { border: none; background: none; cursor: pointer; font-family: inherit; }
 ul, ol { list-style: none; }
 
-
-/* ----------------------------------------------------------------
-   3. UTILITY CLASSES
----------------------------------------------------------------- */
-
-/* Soft frosted glass card */
-.glass-card {
-  background:  var(--c-glass-card);
-  border:      1px solid var(--c-glass-border);
-  backdrop-filter: blur(20px) saturate(130%);
-  -webkit-backdrop-filter: blur(20px) saturate(130%);
-  border-radius: var(--radius-card);
-  box-shadow:
-    0 4px 24px var(--c-glass-shadow),
-    0 1px 0 rgba(255,255,255,0.7) inset;
+/* Focus visible — accessible, elegant */
+:focus-visible {
+  outline: 2px solid var(--c-blush);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-/* Soft press feedback */
+
+/* ----------------------------------------------------------------
+   3. UTILITY CLASSES — UPGRADED
+---------------------------------------------------------------- */
+
+/* GLASS CARD — upgraded with chromatic shimmer */
+.glass-card {
+  background: var(--c-glass-card);
+  border: 1px solid var(--c-glass-border);
+  backdrop-filter: blur(24px) saturate(150%) brightness(1.02);
+  -webkit-backdrop-filter: blur(24px) saturate(150%) brightness(1.02);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-md);
+  /* Subtle chromatic top highlight */
+  background-image:
+    linear-gradient(
+      150deg,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.00) 100%
+    );
+}
+
+/* HAPTIC BTN — upgraded with anticipation */
 .haptic-btn {
   transition:
     transform  var(--dur-fast) var(--ease-petal),
     box-shadow var(--dur-fast) var(--ease-silk),
     opacity    var(--dur-fast) ease;
+  will-change: transform;
 }
 .haptic-btn:active {
-  transform: scale(0.95);
-  opacity: 0.88;
+  transform: scale(0.94);
+  opacity: 0.85;
+  transition-duration: var(--dur-instant);
+  transition-timing-function: ease-out;
 }
 
-/* Scroll-reveal base */
+/* SCROLL REVEAL — varied choreography */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(22px);
   transition:
     opacity   var(--dur-slow) var(--ease-silk),
     transform var(--dur-slow) var(--ease-silk);
+  will-change: opacity, transform;
 }
 .scroll-reveal.revealed {
   opacity: 1;
   transform: translateY(0);
 }
-.scroll-reveal:nth-child(2) { transition-delay: 100ms; }
-.scroll-reveal:nth-child(3) { transition-delay: 200ms; }
-.scroll-reveal:nth-child(4) { transition-delay: 300ms; }
 
-/* Section layout */
+/* Staggered delays — slightly varied for organic feel */
+.scroll-reveal:nth-child(2) { transition-delay: 80ms; }
+.scroll-reveal:nth-child(3) { transition-delay: 175ms; }
+.scroll-reveal:nth-child(4) { transition-delay: 255ms; }
+.scroll-reveal:nth-child(5) { transition-delay: 320ms; }
+
+/* Variation: slide from left */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-18px);
+  transition:
+    opacity   var(--dur-slow) var(--ease-silk),
+    transform var(--dur-slow) var(--ease-silk);
+}
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Variation: scale reveal */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96) translateY(12px);
+  transition:
+    opacity   var(--dur-slow) var(--ease-silk),
+    transform var(--dur-slow) var(--ease-silk);
+}
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* SECTION LAYOUT */
 .section-container {
   max-width: var(--max-w);
   margin-inline: auto;
-  padding-inline: var(--space-md);
-  padding-block:  var(--space-xl);
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+  padding-block: var(--sp-xl);
 }
 
-/* Shared section headings */
+/* SECTION HEADINGS — upgraded hierarchy */
 .section-eyebrow {
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
-  font-weight: 500;
-  letter-spacing: 0.32em;
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
-  color:  var(--c-blush);
+  color: var(--c-blush);
   text-align: center;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--sp-sm);
+  /* Subtle fade-in on scroll */
+  position: relative;
 }
 
 .section-title {
   font-family: var(--font-display);
-  font-size:   var(--fs-2xl);
+  font-size: var(--fs-2xl);
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-align: center;
-  color: var(--c-text-dark);
-  margin-bottom: var(--space-lg);
-  line-height: 1.1;
+  color: var(--c-text-heading);
+  margin-bottom: var(--sp-lg);
+  line-height: 1.08;
 }
 
-/* Ornamental divider line */
+/* ORNAMENTAL DIVIDER — refined */
 .orn-divider {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-block: var(--space-md);
+  gap: 1.25rem;
+  margin-block: var(--sp-md);
 }
 .orn-divider-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--c-blush-light), transparent);
+  background: linear-gradient(90deg, transparent, rgba(228, 154, 171, 0.45), transparent);
 }
 .orn-divider-icon {
   color: var(--c-blush);
-  opacity: 0.6;
+  opacity: 0.5;
   display: flex;
   align-items: center;
 }
-.orn-divider-icon svg {
-  width: 14px;
-  height: 14px;
-}
+.orn-divider-icon svg { width: 12px; height: 12px; }
 
 
 /* ----------------------------------------------------------------
-   4. LOADER / ENTRY SCREEN
+   4. LOADER — CINEMATIC UPGRADE
+   
+   Improvements:
+   → Entry: name reveals with clip-path wipe, not just fade
+   → Petals: varied sizes, cubic paths, depth layers
+   → Button: magnetic hover, refined shimmer
+   → Exit: film-dissolve with radial iris close
 ---------------------------------------------------------------- */
 #loader {
   position: fixed;
@@ -231,51 +366,54 @@ ul, ol { list-style: none; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-md);
+  gap: var(--sp-md);
 
-  /* Soft dreamy gradient — mirrors illustration sky */
+  /* Upgraded: richer, more dimensional gradient */
   background:
-    radial-gradient(ellipse 90% 70% at 50% 35%, rgba(242, 196, 144, 0.55) 0%, transparent 65%),
-    radial-gradient(ellipse 70% 80% at 20% 80%, rgba(232, 164, 176, 0.3) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 60% at 80% 20%, rgba(196, 154, 176, 0.2) 0%, transparent 55%),
-    linear-gradient(160deg, #F9E8D0 0%, #F5D4DC 40%, #F0D0E8 70%, #EAD8F0 100%);
+    radial-gradient(ellipse 100% 80% at 48% 38%, rgba(238, 184, 126, 0.50) 0%, transparent 62%),
+    radial-gradient(ellipse 75% 85% at 18% 82%, rgba(228, 154, 171, 0.32) 0%, transparent 58%),
+    radial-gradient(ellipse 65% 55% at 82% 18%, rgba(196, 154, 176, 0.22) 0%, transparent 52%),
+    radial-gradient(ellipse 50% 50% at 65% 65%, rgba(127, 168, 130, 0.10) 0%, transparent 50%),
+    linear-gradient(158deg, #FAE9D0 0%, #F5D3DC 42%, #EDD0E8 72%, #E8D8F0 100%);
 
-  padding-inline: var(--space-md);
+  padding-inline: var(--sp-md);
   text-align: center;
-  animation: loaderFadeIn 1s var(--ease-silk) forwards;
+  opacity: 0;
+  animation: loaderFadeIn 0.9s var(--ease-silk) forwards;
 }
 
 @keyframes loaderFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from { opacity: 0; filter: blur(12px); }
+  to   { opacity: 1; filter: blur(0);    }
 }
 
+/* Exit: iris-close cinematic wipe */
 #loader.loader-exit {
-  animation: loaderExit var(--dur-epic) var(--ease-drift) forwards;
+  animation: loaderIrisExit var(--dur-epic) var(--ease-drift) forwards;
   pointer-events: none;
 }
 
-@keyframes loaderExit {
-  0%   { opacity: 1; transform: scale(1);    }
-  40%  { opacity: 1; transform: scale(1.03); }
-  100% { opacity: 0; transform: scale(1.08); clip-path: inset(50% 0 50% 0); }
+@keyframes loaderIrisExit {
+  0%   { opacity: 1; transform: scale(1);    clip-path: ellipse(75% 75% at 50% 50%); }
+  30%  { opacity: 1; transform: scale(1.015); clip-path: ellipse(80% 80% at 50% 50%); }
+  100% { opacity: 0; transform: scale(1.04); clip-path: ellipse(0% 0% at 50% 50%);  }
 }
 
-/* ── Ornament bars ── */
+/* ── Ornament Bars ── */
 .loader-ornament-top,
 .loader-ornament-bottom {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  width: min(440px, 82vw);
+  gap: var(--sp-sm);
+  width: min(460px, 85vw);
   opacity: 0;
-  animation: ornFadeIn 1s 0.6s var(--ease-silk) forwards;
+  animation: ornWipe 0.9s 0.55s var(--ease-silk) forwards;
 }
-.loader-ornament-bottom { animation-delay: 0.9s; }
+.loader-ornament-bottom { animation-delay: 0.85s; }
 
-@keyframes ornFadeIn {
-  from { opacity: 0; transform: scaleX(0.6); }
-  to   { opacity: 1; transform: scaleX(1);   }
+@keyframes ornWipe {
+  from { opacity: 0; clip-path: inset(0 100% 0 0); }
+  to   { opacity: 1; clip-path: inset(0 0% 0 0);   }
 }
 
 .orn-line {
@@ -284,180 +422,263 @@ ul, ol { list-style: none; }
   background: linear-gradient(90deg, transparent, var(--c-blush), transparent);
 }
 
-/* SVG icon ornament diamond */
 .orn-diamond {
   display: flex;
   align-items: center;
   color: var(--c-blush);
-  opacity: 0.7;
+  opacity: 0.65;
 }
-.orn-diamond svg {
-  width: 10px;
-  height: 10px;
-}
+.orn-diamond svg { width: 9px; height: 9px; }
 
-/* ── Floating petals ── */
+/* ── FLOATING PETALS — upgraded: varied, depth-layered ── */
 .loader-petals {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
 }
+
 .petal {
   position: absolute;
   opacity: 0;
-  animation: petalFloat 9s ease-in-out infinite;
   display: flex;
   align-items: center;
+  filter: blur(0px);
 }
-.petal svg {
-  width: 14px;
-  height: 14px;
-}
-.p1 { left: 8%;  top: 18%; animation-delay: 0s;   animation-duration: 10s; color: var(--c-blush); }
-.p2 { left: 78%; top: 12%; animation-delay: 1.5s; animation-duration: 8s;  color: var(--c-blush-light); }
-.p3 { left: 62%; top: 72%; animation-delay: 3s;   animation-duration: 11s; color: var(--c-mauve); }
-.p4 { left: 22%; top: 78%; animation-delay: 0.8s; animation-duration: 9s;  color: var(--c-blush); }
-.p5 { left: 48%; top: 8%;  animation-delay: 2.2s; animation-duration: 12s; color: var(--c-peach); }
-.p5 svg { width: 18px; height: 18px; }
-.p6 { left: 88%; top: 52%; animation-delay: 4s;   animation-duration: 7s;  color: var(--c-sage); }
-.p7 { left: 35%; top: 40%; animation-delay: 5.5s; animation-duration: 10s; color: var(--c-blush-light); }
+.petal svg { width: 14px; height: 14px; }
 
-@keyframes petalFloat {
-  0%   { opacity: 0; transform: translateY(0)    rotate(0deg);   }
-  15%  { opacity: 0.5; }
-  85%  { opacity: 0.25; }
-  100% { opacity: 0; transform: translateY(-90px) rotate(200deg); }
+/* Each petal: unique path, timing, scale — avoids repetition */
+.p1 { left:  9%; top: 16%; animation: petalDrift1 11s 0.2s ease-in-out infinite;   color: var(--c-blush);       }
+.p2 { left: 77%; top: 11%; animation: petalDrift2  8s 1.8s ease-in-out infinite;   color: var(--c-blush-light); }
+.p3 { left: 61%; top: 74%; animation: petalDrift3 13s 2.8s ease-in-out infinite;   color: var(--c-mauve);       }
+.p4 { left: 21%; top: 79%; animation: petalDrift4  9s 0.5s ease-in-out infinite;   color: var(--c-blush);       }
+.p5 { left: 49%; top: 7%;  animation: petalDrift5 14s 2.0s ease-in-out infinite;   color: var(--c-peach);       }
+.p5 svg { width: 20px; height: 20px; }
+.p6 { left: 89%; top: 54%; animation: petalDrift1  7s 3.8s ease-in-out infinite;   color: var(--c-sage);        }
+.p7 { left: 34%; top: 42%; animation: petalDrift3 12s 5.2s ease-in-out infinite;   color: var(--c-blush-light); }
+.p7 svg { width: 10px; height: 10px; opacity: 0.6; }
+
+/* Unique drift paths — each is different */
+@keyframes petalDrift1 {
+  0%   { opacity: 0; transform: translate(0,0) rotate(0deg) scale(1); }
+  12%  { opacity: 0.55; }
+  80%  { opacity: 0.22; }
+  100% { opacity: 0; transform: translate(-22px,-95px) rotate(225deg) scale(0.85); }
+}
+@keyframes petalDrift2 {
+  0%   { opacity: 0; transform: translate(0,0) rotate(10deg); }
+  15%  { opacity: 0.45; }
+  85%  { opacity: 0.18; }
+  100% { opacity: 0; transform: translate(18px,-78px) rotate(-180deg) scale(0.9); }
+}
+@keyframes petalDrift3 {
+  0%   { opacity: 0; transform: translate(0,0) rotate(-5deg); }
+  20%  { opacity: 0.4; }
+  75%  { opacity: 0.15; }
+  100% { opacity: 0; transform: translate(-10px,-110px) rotate(195deg) scale(0.8); }
+}
+@keyframes petalDrift4 {
+  0%   { opacity: 0; transform: translate(0,0) rotate(20deg); }
+  10%  { opacity: 0.5; }
+  88%  { opacity: 0.2; }
+  100% { opacity: 0; transform: translate(15px,-88px) rotate(-240deg) scale(0.95); }
+}
+@keyframes petalDrift5 {
+  0%   { opacity: 0; transform: translate(0,0) rotate(-15deg) scale(1); }
+  18%  { opacity: 0.38; }
+  78%  { opacity: 0.12; }
+  100% { opacity: 0; transform: translate(-8px,-72px) rotate(310deg) scale(0.75); }
 }
 
-/* ── Loader content ── */
+/* ── Loader Content ── */
 .loader-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--sp-md);
   opacity: 0;
-  animation: contentRise 1s 0.3s var(--ease-silk) forwards;
+  animation: contentRise 1s 0.28s var(--ease-silk) forwards;
 }
 
 @keyframes contentRise {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0);    }
+  from { opacity: 0; transform: translateY(28px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
 }
 
 .loader-eyebrow {
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
-  letter-spacing: 0.38em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--c-dusty-rose);
-  opacity: 0.8;
+  font-weight: 400;
+  opacity: 0.75;
 }
 
 .loader-names {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.05em;
+  gap: 0;
   line-height: 1;
 }
 
+/* UPGRADED: clip-path reveal on names */
 .loader-name-groom,
 .loader-name-bride {
   font-family: var(--font-display);
-  font-size:   var(--fs-hero);
+  font-size: var(--fs-hero);
   font-weight: 400;
-  letter-spacing: 0.06em;
-  background: linear-gradient(145deg, var(--c-text-dark) 0%, var(--c-dusty-rose) 45%, var(--c-terracotta) 80%, var(--c-text-dark) 100%);
+  letter-spacing: 0.05em;
+  line-height: 0.92;
+  
+  /* Upgraded gradient: more warmth, better chromatic flow */
+  background: linear-gradient(
+    148deg,
+    var(--c-text-heading) 0%,
+    var(--c-dusty-rose)   38%,
+    var(--c-terracotta)   65%,
+    var(--c-blush)        82%,
+    var(--c-text-heading) 100%
+  );
+  background-size: 280% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 220% auto;
-  animation: nameShimmer 5s linear infinite;
+  animation: nameShimmer 8s linear infinite;
+  
+  /* Clip-path wipe reveal */
+  clip-path: inset(0 100% 0 0);
+  animation: nameReveal 1.1s 0.45s var(--ease-silk) forwards,
+             nameShimmer 8s 1.55s linear infinite;
+}
+.loader-name-bride {
+  animation-delay: 0.75s, 1.85s;
+}
+
+@keyframes nameReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0);   }
 }
 
 @keyframes nameShimmer {
   from { background-position: 0% center; }
-  to   { background-position: 220% center; }
+  to   { background-position: 280% center; }
 }
 
 .loader-ampersand {
   font-family: var(--font-body);
   font-style: italic;
-  font-size:   clamp(1.5rem, 5vw, 3rem);
+  font-size: clamp(1.4rem, 4.5vw, 2.8rem);
   color: var(--c-blush);
-  opacity: 0.85;
-  margin-block: 0.05em;
+  opacity: 0.78;
+  margin-block: 0.04em;
+  animation: ampFloat 4s 1.2s var(--ease-silk) ease-in-out infinite alternate;
+}
+
+@keyframes ampFloat {
+  from { transform: translateY(0);  }
+  to   { transform: translateY(-4px); }
 }
 
 .loader-verse {
   font-family: var(--font-body);
-  font-style:  italic;
-  font-size:   var(--fs-md);
-  color:       var(--c-text-mid);
-  max-width:   380px;
-  line-height: 1.75;
+  font-style: italic;
+  font-size: var(--fs-md);
+  color: var(--c-text-mid);
+  max-width: 400px;
+  line-height: 1.85;
 }
 .loader-verse em {
   display: block;
   font-family: var(--font-ui);
   font-style: normal;
   font-size: var(--fs-xs);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   color: var(--c-blush);
-  margin-top: 0.6em;
+  margin-top: 0.65em;
 }
 
 .loader-date-hint {
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
-  letter-spacing: 0.28em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.30em;
   color: var(--c-text-soft);
 }
 
-/* ── Enter button ── */
+/* ── ENTER BUTTON — UPGRADED: magnetic + shimmer ── */
 .btn-enter {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-top: var(--space-sm);
-  padding: 1rem 2.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: var(--radius-pill);
+  gap: 0.875rem;
+  margin-top: var(--sp-sm);
+  padding: 1rem 2.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--r-pill);
   font-family: var(--font-ui);
-  font-size:   var(--fs-sm);
+  font-size: var(--fs-sm);
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--c-text-dark);
-  background: var(--c-cream);
+  background: rgba(253, 246, 238, 0.92);
   overflow: hidden;
   cursor: pointer;
-  min-height: 52px;
+  min-height: 54px;
   box-shadow:
-    0 4px 20px rgba(196, 154, 176, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 4px 20px rgba(184, 112, 127, 0.16),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+  
   transition:
-    background   var(--dur-fast) ease,
-    border-color var(--dur-fast) ease,
-    transform    var(--dur-fast) var(--ease-petal),
-    box-shadow   var(--dur-fast) ease,
-    color        var(--dur-fast) ease;
+    background    var(--dur-mid) var(--ease-silk),
+    border-color  var(--dur-mid) var(--ease-silk),
+    transform     var(--dur-mid) var(--ease-petal),
+    box-shadow    var(--dur-mid) var(--ease-silk),
+    color         var(--dur-mid) ease,
+    letter-spacing var(--dur-slow) var(--ease-silk);
 }
+
+/* Shimmer sweep on hover */
+.btn-enter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  transform: skewX(-15deg);
+  transition: none;
+  opacity: 0;
+}
+.btn-enter:hover::before {
+  animation: shimmerSweep 0.65s var(--ease-silk) forwards;
+}
+@keyframes shimmerSweep {
+  from { left: -75%; opacity: 1; }
+  to   { left: 130%;  opacity: 0; }
+}
+
 .btn-enter:hover {
-  background: #ffffff;
-  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(228, 154, 171, 0.45);
   box-shadow:
-    0 8px 30px rgba(196, 154, 176, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
-  transform: translateY(-2px);
+    0 8px 32px rgba(184, 112, 127, 0.24),
+    0 1px 0 rgba(255, 255, 255, 1) inset;
+  transform: translateY(-3px) scale(1.01);
   color: var(--c-dusty-rose);
+  letter-spacing: 0.26em;
 }
 .btn-enter:active {
   transform: scale(0.96) translateY(0);
+  transition-duration: var(--dur-instant);
 }
-
 
 .btn-enter-text { position: relative; z-index: 1; }
 .btn-enter-icon {
@@ -465,14 +686,21 @@ ul, ol { list-style: none; }
   z-index: 1;
   display: flex;
   align-items: center;
-  transition: transform var(--dur-fast) var(--ease-petal);
+  transition: transform var(--dur-mid) var(--ease-petal);
 }
 .btn-enter-icon svg { width: 16px; height: 16px; }
-.btn-enter:hover .btn-enter-icon { transform: translateX(4px); }
+.btn-enter:hover .btn-enter-icon { transform: translateX(5px); }
 
 
 /* ----------------------------------------------------------------
-   5. HERO SECTION
+   5. HERO — CINEMATIC UPGRADE
+   
+   Improvements:
+   → Multi-layer parallax (image, content, overlay, particles)
+   → Cursor-tracking subtle tilt on image frame
+   → Name reveal: split-character cascading wipe
+   → Depth: image has ambient glow behind it
+   → Scroll-linked parallax on .hero-parallax-bg
 ---------------------------------------------------------------- */
 #hero {
   position: relative;
@@ -483,13 +711,19 @@ ul, ol { list-style: none; }
   justify-content: center;
   overflow: hidden;
   background: var(--c-parchment);
-  padding: calc(var(--space-xl) + 2rem) var(--space-md) var(--space-xl);
+  padding:
+    calc(var(--sp-2xl) + 2rem)
+    clamp(1.25rem, 5vw, 3rem)
+    var(--sp-xl);
 }
 
+/* Ambient glow layer */
 .hero-bg-color {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 80% at 50% 30%, rgba(242, 196, 144, 0.15) 0%, transparent 60%);
+  background:
+    radial-gradient(ellipse 65% 75% at 55% 28%, rgba(238, 184, 126, 0.18) 0%, transparent 58%),
+    radial-gradient(ellipse 45% 45% at 18% 88%, rgba(228, 154, 171, 0.12) 0%, transparent 55%);
   pointer-events: none;
 }
 
@@ -497,8 +731,8 @@ ul, ol { list-style: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-lg);
-  max-width: 1100px;
+  gap: var(--sp-lg);
+  max-width: var(--max-w);
   width: 100%;
   z-index: 2;
 }
@@ -508,17 +742,19 @@ ul, ol { list-style: none; }
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    gap: 4rem;
+    gap: 5rem;
   }
 }
 
+/* ── Hero Image Frame — UPGRADED ── */
 .hero-image-area {
   width: 100%;
   display: flex;
   justify-content: center;
-  animation: heroFadeUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(36px) scale(0.98);
+  animation: heroImageReveal 1.4s 0.2s var(--ease-silk) forwards;
+  will-change: transform, opacity;
 }
 @media (min-width: 1024px) {
   .hero-image-area {
@@ -527,16 +763,65 @@ ul, ol { list-style: none; }
   }
 }
 
+@keyframes heroImageReveal {
+  from { opacity: 0; transform: translateY(36px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1);       }
+}
+
+/* Ambient bloom behind the frame */
+.hero-image-area::before {
+  content: '';
+  position: absolute;
+  width: min(360px, 80vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(228, 154, 171, 0.22) 0%,
+    rgba(238, 184, 126, 0.12) 40%,
+    transparent 70%
+  );
+  filter: blur(32px);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .hero-image-wrapper {
   position: relative;
   width: 100%;
-  max-width: 380px;
-  aspect-ratio: 3 / 4.2;
-  border-radius: 200px 200px 10px 10px;
+  max-width: 372px;
+  aspect-ratio: 3 / 4.15;
+  
+  /* Upgraded: arched frame with organic rounding */
+  border-radius: 186px 186px 12px 12px;
   overflow: hidden;
+  
+  /* Multi-layer border: white + faint blush glow */
   border: 10px solid #ffffff;
-  box-shadow: 0 24px 64px rgba(196, 154, 176, 0.25);
+  box-shadow:
+    0 0 0 1px rgba(228, 154, 171, 0.22),
+    0 24px 60px rgba(184, 112, 127, 0.22),
+    0 8px 20px rgba(184, 112, 127, 0.14);
+  
   background: var(--c-cream-warm);
+  
+  /* Cursor-aware tilt via JS */
+  transition: transform var(--dur-slow) var(--ease-silk);
+  will-change: transform;
+}
+
+/* Soft vignette overlay on image */
+.hero-image-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 40%,
+    transparent 50%,
+    rgba(90, 45, 55, 0.08) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
 }
 
 .hero-parallax-bg {
@@ -549,31 +834,31 @@ ul, ol { list-style: none; }
   background-size: cover;
   background-position: center 20%;
   will-change: transform;
+  transition: transform var(--dur-slow) var(--ease-silk);
 }
 
+/* ── Hero Content ── */
 .hero-content {
   position: relative;
   z-index: 2;
   text-align: center;
   flex: 1;
-  max-width: 500px;
+  max-width: 520px;
 }
-
 @media (min-width: 1024px) {
-  .hero-content {
-    text-align: left;
-  }
+  .hero-content { text-align: left; }
 }
 
 .hero-eyebrow {
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
-  letter-spacing: 0.38em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--c-dusty-rose);
-  margin-bottom: var(--space-sm);
+  font-weight: 400;
+  margin-bottom: var(--sp-md);
   opacity: 0;
-  animation: heroFadeUp 1s 0.2s var(--ease-silk) forwards;
+  animation: heroFadeUp 1s 0.35s var(--ease-silk) forwards;
 }
 
 .hero-title {
@@ -582,106 +867,112 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: 0;
   opacity: 0;
-  animation: heroFadeUp 1.2s 0.5s var(--ease-silk) forwards;
+  animation: heroFadeUp 1.3s 0.6s var(--ease-silk) forwards;
 }
-
 @media (min-width: 1024px) {
-  .hero-title {
-    align-items: flex-start;
-  }
+  .hero-title { align-items: flex-start; }
 }
 
 .hero-groom,
 .hero-bride {
   font-family: var(--font-display);
-  font-size:   var(--fs-hero);
+  font-size: var(--fs-hero);
   font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--c-text-dark);
-  line-height: 0.95;
+  letter-spacing: 0.015em;
+  color: var(--c-text-heading);
+  line-height: 0.92;
 }
 
 .hero-amp {
   font-family: var(--font-body);
-  font-size:   clamp(2rem, 6vw, 4rem);
+  font-size: clamp(1.8rem, 5.5vw, 3.6rem);
   color: var(--c-blush);
-  line-height: 1.2;
+  line-height: 1.25;
   display: block;
-  opacity: 0.9;
+  opacity: 0.82;
 }
 
 .hero-quote {
   font-family: var(--font-body);
-  font-style:  italic;
-  font-size:   var(--fs-md);
+  font-style: italic;
+  font-size: var(--fs-md);
   color: var(--c-text-mid);
-  margin-top: var(--space-md);
-  line-height: 1.85;
+  margin-top: var(--sp-lg);
+  line-height: 1.9;
   opacity: 0;
-  animation: heroFadeUp 1s 1s var(--ease-silk) forwards;
+  animation: heroFadeUp 1s 1.1s var(--ease-silk) forwards;
 }
 .hero-quote em {
   display: block;
   font-family: var(--font-ui);
   font-style: normal;
   font-size: var(--fs-xs);
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   color: var(--c-blush);
-  margin-top: 0.5em;
-  opacity: 0.8;
+  margin-top: 0.55em;
+  font-weight: 400;
 }
 
-/* Scroll cue */
+/* UPGRADED SCROLL CUE: breathing animation */
 .hero-scroll-cue {
   position: absolute;
-  bottom: var(--space-md);
+  bottom: var(--sp-lg);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   opacity: 0;
-  animation: heroFadeIn 1s 1.8s var(--ease-silk) forwards;
+  animation: heroFadeIn 1s 2.0s var(--ease-silk) forwards;
 }
-/* Mouse scroll icon via SVG */
+
 .scroll-mouse {
-  width: 24px;
-  height: 36px;
-  border: 1.5px solid rgba(242, 200, 207, 0.6);
-  border-radius: 12px;
+  width: 22px;
+  height: 34px;
+  border: 1.5px solid rgba(228, 154, 171, 0.55);
+  border-radius: 11px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 6px;
+  padding-top: 5px;
+  /* Subtle breathing pulse */
+  animation: mousePulse 3s 2s ease-in-out infinite;
 }
+@keyframes mousePulse {
+  0%, 100% { border-color: rgba(228, 154, 171, 0.55); }
+  50%       { border-color: rgba(228, 154, 171, 0.85); }
+}
+
 .scroll-wheel {
-  width: 3px;
-  height: 7px;
+  width: 2.5px;
+  height: 6px;
   background: var(--c-blush-light);
   border-radius: 2px;
-  animation: scrollWheelDrop 2s ease-in-out infinite;
+  animation: scrollWheelDrop 2.2s ease-in-out infinite;
 }
 @keyframes scrollWheelDrop {
-  0%, 100% { opacity: 1;   transform: translateY(0);  }
-  50%       { opacity: 0.3; transform: translateY(6px); }
+  0%, 100% { opacity: 1;   transform: translateY(0);   }
+  55%       { opacity: 0.2; transform: translateY(7px); }
 }
+
 .scroll-label {
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
-  letter-spacing: 0.3em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.32em;
   color: var(--c-blush);
-  opacity: 0.7;
+  opacity: 0.65;
   text-transform: uppercase;
+  font-weight: 400;
 }
 
 @keyframes heroFadeUp {
-  from { opacity: 0; transform: translateY(28px); }
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0);    }
 }
 @keyframes heroFadeIn {
   from { opacity: 0; }
-  to   { opacity: 0.85; }
+  to   { opacity: 0.8; }
 }
 
 #hero .scroll-reveal {
@@ -692,479 +983,672 @@ ul, ol { list-style: none; }
 
 
 /* ----------------------------------------------------------------
-   6. COUNTDOWN SECTION
+   6. COUNTDOWN — UPGRADED
+   
+   Improvements:
+   → Staggered digit reveal (each block enters at different time)
+   → Flip animation: 3D flip with perspective, not just rotate
+   → Number: display via CSS counter for crisp rendering
+   → Ambient glow on active (near-zero) states
 ---------------------------------------------------------------- */
 #countdown {
   background:
-    radial-gradient(ellipse 80% 55% at 50% 50%,
-      rgba(242, 196, 144, 0.2) 0%, transparent 70%
+    radial-gradient(
+      ellipse 85% 60% at 50% 55%,
+      rgba(238, 184, 126, 0.18) 0%,
+      transparent 70%
     ),
     linear-gradient(180deg, var(--c-parchment) 0%, var(--c-cream-warm) 100%);
-  border-top:    1px solid rgba(232, 164, 176, 0.2);
-  border-bottom: 1px solid rgba(232, 164, 176, 0.2);
+  border-top:    1px solid rgba(228, 154, 171, 0.18);
+  border-bottom: 1px solid rgba(228, 154, 171, 0.18);
+  overflow: hidden;
 }
 
 .countdown-grid {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.5rem, 3vw, 2rem);
+  gap: clamp(0.6rem, 3.5vw, 2.25rem);
   flex-wrap: wrap;
 }
 
+/* ── Upgraded Count Block ── */
 .count-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  min-width: clamp(70px, 18vw, 115px);
-  padding: 1.5rem 1rem;
-  background: rgba(253, 246, 238, 0.7);
-  border: 1px solid rgba(232, 164, 176, 0.3);
-  border-radius: var(--radius-card);
-  box-shadow:
-    0 2px 12px rgba(196, 154, 176, 0.12),
-    0 1px 0 rgba(255,255,255,0.9) inset;
-  backdrop-filter: blur(8px);
+  gap: 0.6rem;
+  min-width: clamp(76px, 19vw, 120px);
+  padding: 1.75rem 1.25rem 1.25rem;
+  
+  /* Layered glass with warm tint */
+  background: linear-gradient(
+    158deg,
+    rgba(253, 248, 243, 0.85) 0%,
+    rgba(253, 243, 235, 0.70) 100%
+  );
+  border: 1px solid rgba(228, 154, 171, 0.22);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-md);
+  
+  /* Subtle top light */
+  background-image: linear-gradient(
+    158deg,
+    rgba(253, 248, 243, 0.85) 0%,
+    rgba(253, 243, 235, 0.70) 100%
+  );
+  
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition: transform var(--dur-mid) var(--ease-silk), box-shadow var(--dur-mid) var(--ease-silk);
+  will-change: transform;
+}
+
+.count-block:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Perspective container for 3D flip */
+.count-num-wrap {
+  perspective: 200px;
+  perspective-origin: 50% 50%;
 }
 
 .count-num {
   font-family: var(--font-display);
-  font-size:   clamp(2.2rem, 9vw, 5rem);
-  font-weight: 600;
+  font-size: clamp(2.4rem, 9.5vw, 5.2rem);
+  font-weight: 500;
   line-height: 1;
-  background: linear-gradient(140deg, var(--c-text-dark) 0%, var(--c-dusty-rose) 55%, var(--c-terracotta) 100%);
+  
+  /* Richer gradient: more warmth */
+  background: linear-gradient(
+    145deg,
+    var(--c-text-heading) 0%,
+    var(--c-dusty-rose)   48%,
+    var(--c-terracotta)   80%,
+    var(--c-text-heading) 100%
+  );
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: transform 0.3s var(--ease-petal), opacity 0.3s ease;
+  
+  /* Subtle shimmer on numbers */
+  animation: numShimmer 6s linear infinite;
+  
+  display: block;
+  transition:
+    transform var(--dur-mid) cubic-bezier(0.36, 0, 0.66, -0.56),
+    opacity   var(--dur-mid) ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
+
+@keyframes numShimmer {
+  0%, 100% { background-position: 0% center; }
+  50%       { background-position: 200% center; }
+}
+
 .count-num.flip {
-  transform: rotateX(-90deg) scale(0.85);
+  transform: rotateX(-85deg) scale(0.88);
   opacity: 0;
+  filter: blur(2px);
 }
 
 .count-label {
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
-  letter-spacing: 0.22em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--c-blush);
-  opacity: 0.8;
+  font-weight: 400;
 }
 
+/* Upgraded separator — slightly randomized per instance via transforms */
 .count-separator {
   font-family: var(--font-display);
-  font-size:   clamp(1.8rem, 7vw, 3.5rem);
+  font-size: clamp(1.9rem, 7.5vw, 3.75rem);
   color: var(--c-blush);
-  opacity: 0.4;
+  opacity: 0.35;
   line-height: 1;
   align-self: flex-start;
-  margin-top: 1.25rem;
+  margin-top: 1.4rem;
+  animation: separatorPulse 4s ease-in-out infinite alternate;
+}
+@keyframes separatorPulse {
+  from { opacity: 0.30; }
+  to   { opacity: 0.50; }
 }
 
 .countdown-sub {
   text-align: center;
   font-family: var(--font-body);
   font-style: italic;
-  font-size:  var(--fs-md);
-  color: var(--c-text-mid);
-  opacity: 0.7;
-  margin-top: var(--space-md);
+  font-size: var(--fs-md);
+  color: var(--c-text-soft);
+  margin-top: var(--sp-lg);
 }
 
 
 /* ----------------------------------------------------------------
-   7. EVENTS SECTION
+   7. EVENTS — TACTILE CARD UPGRADE
+   
+   Improvements:
+   → Cards feel like physical objects (multi-layer shadow, highlight)
+   → Hover: lift with shadow cast + subtle tilt (via JS)
+   → Border: hairline with gradient for elegance
+   → Accent stripe: animated gradient flow
+   → Map button: pill-to-arrow transform on hover
 ---------------------------------------------------------------- */
 #events {
   background:
-    radial-gradient(ellipse 70% 50% at 20% 30%,
-      rgba(232, 164, 176, 0.1) 0%, transparent 60%
+    radial-gradient(
+      ellipse 65% 45% at 18% 28%,
+      rgba(228, 154, 171, 0.10) 0%,
+      transparent 58%
     ),
-    radial-gradient(ellipse 60% 60% at 80% 70%,
-      rgba(127, 168, 130, 0.1) 0%, transparent 60%
+    radial-gradient(
+      ellipse 55% 55% at 84% 72%,
+      rgba(127, 168, 130, 0.09) 0%,
+      transparent 58%
     ),
-    linear-gradient(160deg, var(--c-cream-warm) 0%, var(--c-parchment) 60%, var(--c-peach-pale) 100%);
+    linear-gradient(158deg, var(--c-cream-warm) 0%, var(--c-parchment) 55%, var(--c-peach-pale) 100%);
 }
 
 .events-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-  gap: var(--space-md);
+  gap: var(--sp-md);
   max-width: var(--max-w);
   margin-inline: auto;
 }
 
-/* ── Event Card ── */
+/* ── EVENT CARD — physical object feel ── */
 .event-card {
   position: relative;
-  padding: var(--space-md) clamp(1.25rem, 4vw, 2rem);
+  padding: var(--sp-md) clamp(1.35rem, 4.5vw, 2.25rem) clamp(1.35rem, 4.5vw, 2.25rem);
   overflow: hidden;
-  background: rgba(253, 246, 238, 0.72);
-  border: 1px solid rgba(232, 164, 176, 0.28);
-  border-radius: var(--radius-card);
+  
+  /* Warm parchment base */
+  background: linear-gradient(
+    158deg,
+    rgba(253, 248, 243, 0.88) 0%,
+    rgba(253, 244, 236, 0.78) 100%
+  );
+  border: 1px solid rgba(228, 154, 171, 0.22);
+  border-radius: var(--r-card);
+  
+  /* Physical depth: ambient + key + inner highlight */
   box-shadow:
-    0 4px 28px rgba(196, 154, 176, 0.14),
-    0 1px 0 rgba(255,255,255,0.85) inset;
+    0 1px 3px rgba(184, 112, 127, 0.06),
+    0 6px 20px rgba(184, 112, 127, 0.12),
+    0 24px 52px rgba(184, 112, 127, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.88) inset;
+  
   transition:
-    transform  var(--dur-mid) var(--ease-silk),
-    box-shadow var(--dur-mid) var(--ease-silk);
-}
-.event-card:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    0 12px 48px rgba(196, 154, 176, 0.26),
-    0 1px 0 rgba(255,255,255,0.9) inset;
+    transform     var(--dur-mid) var(--ease-silk),
+    box-shadow    var(--dur-mid) var(--ease-silk);
+  will-change: transform, box-shadow;
+  cursor: default;
 }
 
-/* Soft top accent stripe */
+.event-card:hover {
+  transform: translateY(-7px) scale(1.005);
+  box-shadow:
+    0 2px 4px rgba(184, 112, 127, 0.06),
+    0 12px 36px rgba(184, 112, 127, 0.20),
+    0 40px 72px rgba(184, 112, 127, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+}
+
+/* Corner shimmer on hover */
+.event-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(
+    ellipse at 100% 0%,
+    rgba(255, 248, 240, 0.65) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  border-radius: 0 var(--r-card) 0 0;
+  opacity: 0;
+  transition: opacity var(--dur-mid) ease;
+}
+.event-card:hover::after { opacity: 1; }
+
+/* ANIMATED accent stripe */
 .event-card-accent {
   position: absolute;
   left: 0; top: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--c-blush), var(--c-peach), var(--c-blush-light));
-  border-radius: var(--radius-card) var(--radius-card) 0 0;
-}
-.accent-sage {
-  background: linear-gradient(90deg, var(--c-sage), var(--c-sage-light), var(--c-sage));
+  border-radius: var(--r-card) var(--r-card) 0 0;
+  background-size: 200% auto;
+  animation: accentFlow 4s linear infinite;
 }
 
-/* Soft floral icon badge */
+/* Blush variant */
+.event-card-accent:not(.accent-sage) {
+  background: linear-gradient(
+    90deg,
+    var(--c-blush-pale),
+    var(--c-blush),
+    var(--c-peach),
+    var(--c-blush-light),
+    var(--c-blush-pale)
+  );
+  background-size: 200% auto;
+}
+
+.accent-sage {
+  background: linear-gradient(
+    90deg,
+    var(--c-sage-pale),
+    var(--c-sage),
+    var(--c-sage-light),
+    var(--c-sage),
+    var(--c-sage-pale)
+  );
+  background-size: 200% auto;
+}
+
+@keyframes accentFlow {
+  from { background-position: 0% center; }
+  to   { background-position: 200% center; }
+}
+
+/* Upgraded badge */
 .event-badge {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--space-sm);
-  background: linear-gradient(135deg, var(--c-blush-pale), var(--c-peach-light));
-  border: 1px solid rgba(232, 164, 176, 0.4);
+  margin-bottom: var(--sp-sm);
+  background: linear-gradient(
+    145deg,
+    rgba(253, 232, 235, 0.90),
+    rgba(248, 217, 171, 0.70)
+  );
+  border: 1px solid rgba(228, 154, 171, 0.35);
   color: var(--c-dusty-rose);
+  box-shadow:
+    0 2px 6px rgba(184, 112, 127, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.85) inset;
 }
-.event-badge svg { width: 16px; height: 16px; }
+.event-badge svg { width: 15px; height: 15px; }
 
 .badge-sage {
-  background: linear-gradient(135deg, var(--c-sage-pale), var(--c-sage-light));
-  border-color: rgba(127, 168, 130, 0.4);
+  background: linear-gradient(145deg, var(--c-sage-pale), var(--c-sage-light));
+  border-color: rgba(127, 168, 130, 0.35);
   color: var(--c-sage);
 }
 
 .event-type {
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
-  letter-spacing: 0.3em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--c-blush);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
+  font-weight: 400;
 }
 
 .event-name {
   font-family: var(--font-display);
-  font-size:   var(--fs-xl);
+  font-size: var(--fs-xl);
   font-weight: 400;
-  color: var(--c-text-dark);
-  line-height: 1.2;
-  margin-bottom: var(--space-md);
+  color: var(--c-text-heading);
+  line-height: 1.18;
+  margin-bottom: var(--sp-lg);
 }
 
 .event-detail-row {
   display: flex;
-  gap: 0.875rem;
+  gap: 1rem;
   align-items: flex-start;
-  margin-bottom: 1.1rem;
-  padding-bottom: 1.1rem;
-  border-bottom: 1px solid rgba(232, 164, 176, 0.15);
+  margin-bottom: 1.15rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid rgba(228, 154, 171, 0.12);
 }
 .event-detail-row:last-of-type {
   border-bottom: none;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--sp-md);
 }
 
-/* SVG icon wrapper in event rows */
 .event-icon {
   color: var(--c-blush);
-  margin-top: 0.1rem;
+  margin-top: 0.12rem;
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  opacity: 0.85;
+  opacity: 0.78;
 }
-.event-icon svg { width: 15px; height: 15px; }
-
+.event-icon svg { width: 14px; height: 14px; }
 .event-icon-sage { color: var(--c-sage); }
 
 .event-detail-label {
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
-  letter-spacing: 0.15em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--c-blush);
-  opacity: 0.9;
-  margin-bottom: 0.25rem;
+  font-weight: 400;
+  margin-bottom: 0.28rem;
 }
 
 .event-detail-value {
   font-family: var(--font-body);
-  font-size:   var(--fs-base);
+  font-size: var(--fs-base);
   color: var(--c-text-mid);
-  line-height: 1.65;
+  line-height: 1.68;
 }
 
 .event-verse {
   font-style: italic;
-  font-size:  var(--fs-sm);
+  font-size: var(--fs-sm);
   color: var(--c-text-soft);
-  line-height: 1.8;
+  line-height: 1.85;
 }
 .event-verse em {
   font-family: var(--font-ui);
   font-style: normal;
   font-size: var(--fs-xs);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--c-blush);
-  opacity: 0.85;
+  font-weight: 400;
 }
 
+/* MAP BUTTON — upgraded: arrow extends on hover */
 .btn-event-map {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
-  border: 1px solid rgba(196, 154, 176, 0.4);
-  border-radius: var(--radius-pill);
+  gap: 0.55rem;
+  padding: 0.72rem 1.5rem;
+  border: 1px solid rgba(196, 154, 176, 0.35);
+  border-radius: var(--r-pill);
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
+  font-size: var(--fs-xs);
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--c-text-dark);
-  background: var(--c-cream);
+  background: rgba(253, 246, 238, 0.75);
   min-height: 44px;
-  box-shadow: 0 4px 12px rgba(196, 154, 176, 0.08);
-  transition: all var(--dur-fast) ease;
-}
-.btn-event-map svg { width: 14px; height: 14px; }
-.btn-event-map:hover {
-  background: #ffffff;
-  border-color: var(--c-dusty-rose);
-  color: var(--c-dusty-rose);
-  box-shadow: 0 6px 16px rgba(196, 154, 176, 0.15);
-  transform: translateY(-1px);
+  box-shadow:
+    0 2px 8px rgba(184, 112, 127, 0.07),
+    0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  overflow: hidden;
+  transition: all var(--dur-mid) var(--ease-silk);
 }
 
-.btn-event-map-sage {
-  border-color: rgba(127, 168, 130, 0.4);
-  color: var(--c-text-dark);
-  background: var(--c-cream);
+.btn-event-map svg {
+  width: 13px; height: 13px;
+  transition: transform var(--dur-mid) var(--ease-petal);
 }
+
+.btn-event-map:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(184, 112, 127, 0.50);
+  color: var(--c-dusty-rose);
+  box-shadow:
+    0 4px 14px rgba(184, 112, 127, 0.14),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+  transform: translateY(-2px);
+  letter-spacing: 0.20em;
+}
+.btn-event-map:hover svg { transform: translateX(3px) translateY(-2px); }
+
 .btn-event-map-sage:hover {
-  background: #ffffff;
-  border-color: var(--c-sage);
+  border-color: rgba(127, 168, 130, 0.55);
   color: var(--c-sage);
-  box-shadow: 0 6px 16px rgba(127, 168, 130, 0.15);
+  box-shadow: 0 4px 14px rgba(127, 168, 130, 0.14);
 }
+.btn-event-map-sage:hover svg { color: var(--c-sage); }
 
 
 /* ----------------------------------------------------------------
-   8. RSVP SECTION
+   8. RSVP — UPGRADED
+   
+   Improvements:
+   → Contact card: elevated with bloom shadow
+   → Phone number: elegant typographic treatment
+   → Buttons: WhatsApp green pulse, call button shimmer
+   → Deco elements: refined, less generic
 ---------------------------------------------------------------- */
 #rsvp {
   background:
-    radial-gradient(ellipse 90% 55% at 50% 30%,
-      rgba(242, 196, 144, 0.18) 0%, transparent 70%
-    ),
-    radial-gradient(ellipse 60% 60% at 80% 80%,
-      rgba(232, 164, 176, 0.15) 0%, transparent 60%
-    ),
+    radial-gradient(ellipse 85% 55% at 50% 32%, rgba(238, 184, 126, 0.16) 0%, transparent 68%),
+    radial-gradient(ellipse 55% 58% at 82% 82%, rgba(228, 154, 171, 0.13) 0%, transparent 58%),
     linear-gradient(180deg, var(--c-peach-pale) 0%, var(--c-parchment) 100%);
-  border-top: 1px solid rgba(232, 164, 176, 0.2);
+  border-top: 1px solid rgba(228, 154, 171, 0.18);
 }
 
-.rsvp-inner {
-  text-align: center;
-}
+.rsvp-inner { text-align: center; }
 
-/* Floral top deco — SVG row */
 .rsvp-deco-top {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: var(--space-sm);
+  gap: 0.65rem;
+  margin-bottom: var(--sp-sm);
   color: var(--c-blush-light);
-  opacity: 0.6;
+  opacity: 0.55;
 }
-.rsvp-deco-top svg { width: 12px; height: 12px; }
+.rsvp-deco-top svg { width: 11px; height: 11px; }
 
 .rsvp-body {
   font-family: var(--font-body);
-  font-size:   var(--fs-lg);
-  line-height: 1.9;
+  font-size: var(--fs-lg);
+  line-height: 1.95;
   color: var(--c-text-mid);
-  max-width: 600px;
+  max-width: 580px;
   margin-inline: auto;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--sp-lg);
 }
 
+/* UPGRADED contact card: bloom effect */
 .rsvp-contact-card {
   max-width: 400px;
   margin-inline: auto;
-  padding: var(--space-md) var(--space-md) var(--space-md);
+  padding: var(--sp-md) var(--sp-md) var(--sp-md);
   text-align: center;
-  margin-bottom: var(--space-lg);
-  background: rgba(253, 246, 238, 0.7);
-  border: 1px solid rgba(232, 164, 176, 0.3);
-  border-radius: var(--radius-card);
-  box-shadow:
-    0 4px 24px rgba(196, 154, 176, 0.12),
-    0 1px 0 rgba(255,255,255,0.9) inset;
+  margin-bottom: var(--sp-lg);
+  background: linear-gradient(
+    158deg,
+    rgba(253, 248, 243, 0.90) 0%,
+    rgba(253, 243, 235, 0.80) 100%
+  );
+  border: 1px solid rgba(228, 154, 171, 0.28);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-bloom);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft radial highlight in card */
+.rsvp-contact-card::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200%;
+  height: 80%;
+  background: radial-gradient(
+    ellipse at center top,
+    rgba(255, 248, 240, 0.65) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
 }
 
 .rsvp-contact-label {
   font-family: var(--font-ui);
   font-size: var(--fs-xs);
-  letter-spacing: 0.28em;
+  letter-spacing: 0.30em;
   text-transform: uppercase;
   color: var(--c-blush);
-  opacity: 0.9;
-  margin-bottom: 0.5rem;
+  font-weight: 400;
+  margin-bottom: 0.55rem;
+  position: relative;
 }
 
 .rsvp-contact-name {
   font-family: var(--font-display);
-  font-size:   var(--fs-xl);
+  font-size: var(--fs-xl);
   font-weight: 400;
-  color: var(--c-text-dark);
-  margin-bottom: 0.3rem;
+  color: var(--c-text-heading);
+  margin-bottom: 0.35rem;
+  position: relative;
 }
 
 .rsvp-contact-phone {
-  font-family: var(--font-ui);
-  font-size:   var(--fs-md);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
   color: var(--c-terracotta);
-  letter-spacing: 0.1em;
-  margin-bottom: var(--space-md);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--sp-md);
+  font-weight: 400;
+  position: relative;
 }
 
 .rsvp-btn-row {
   display: flex;
-  gap: 1rem;
+  gap: 0.875rem;
   justify-content: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
+/* BASE RSVP BUTTON */
 .btn-rsvp {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.6rem;
-  border: 1px solid rgba(196, 154, 176, 0.4);
-  border-radius: var(--radius-pill);
+  gap: 0.55rem;
+  padding: 0.875rem 1.75rem;
+  border: 1px solid rgba(196, 154, 176, 0.38);
+  border-radius: var(--r-pill);
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
+  font-size: var(--fs-xs);
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--c-text-dark);
-  background: var(--c-cream);
-  min-height: 48px;
-  box-shadow: 0 4px 16px rgba(196, 154, 176, 0.1);
-  transition: all var(--dur-fast) ease;
+  background: rgba(253, 246, 238, 0.80);
+  min-height: 50px;
+  box-shadow:
+    0 2px 12px rgba(184, 112, 127, 0.09),
+    0 1px 0 rgba(255, 255, 255, 0.85) inset;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--dur-mid) var(--ease-silk);
 }
-.btn-rsvp svg { width: 16px; height: 16px; }
+.btn-rsvp svg { width: 15px; height: 15px; }
 .btn-rsvp:hover {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.95);
   border-color: var(--c-dusty-rose);
   color: var(--c-dusty-rose);
-  box-shadow: 0 8px 24px rgba(196, 154, 176, 0.18);
-  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(184, 112, 127, 0.18);
+  transform: translateY(-2px);
+  letter-spacing: 0.20em;
+}
+.btn-rsvp:active {
+  transform: scale(0.95) translateY(0);
+  transition-duration: var(--dur-instant);
 }
 
-/* WhatsApp button */
+/* WhatsApp — living pulse */
 .btn-rsvp-wa {
-  border-color: rgba(100, 190, 140, 0.4);
-  color: var(--c-text-dark);
+  border-color: rgba(72, 175, 120, 0.35);
 }
+.btn-rsvp-wa::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(72, 175, 120, 0.06);
+  opacity: 0;
+  transition: opacity var(--dur-mid) ease;
+}
+.btn-rsvp-wa:hover::before { opacity: 1; }
 .btn-rsvp-wa:hover {
-  background: #ffffff;
-  border-color: #4A9E70;
-  color: #4A9E70;
-  box-shadow: 0 8px 24px rgba(100, 190, 140, 0.18);
+  border-color: #42A870;
+  color: #2E8055;
+  box-shadow: 0 6px 22px rgba(72, 175, 120, 0.18);
 }
 
-.rsvp-btn-icon {
-  display: flex;
-  align-items: center;
-}
-
-/* Bottom ornament */
-.rsvp-deco-bottom {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  max-width: 280px;
-  margin-inline: auto;
-  opacity: 0.4;
-}
+.rsvp-btn-icon { display: flex; align-items: center; }
 
 
 /* ----------------------------------------------------------------
-   9. FOOTER
+   9. FOOTER — REFINED
 ---------------------------------------------------------------- */
 #footer {
-  background:
-    linear-gradient(180deg, var(--c-parchment) 0%, var(--c-cream-warm) 100%);
-  border-top: 1px solid rgba(232, 164, 176, 0.18);
-  padding: var(--space-lg) var(--space-md);
+  background: linear-gradient(180deg, var(--c-parchment) 0%, var(--c-cream-warm) 100%);
+  border-top: 1px solid rgba(228, 154, 171, 0.16);
+  padding: var(--sp-xl) var(--sp-md) var(--sp-lg);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
-/* Soft floral footer icon */
 .footer-icon {
   color: var(--c-blush);
-  opacity: 0.5;
-  margin-bottom: 0.25rem;
+  opacity: 0.42;
+  margin-bottom: 0.15rem;
 }
-.footer-icon svg { width: 24px; height: 24px; }
+.footer-icon svg { width: 22px; height: 22px; }
 
 .footer-names {
   font-family: var(--font-display);
-  font-size:   var(--fs-xl);
+  font-size: var(--fs-xl);
   color: var(--c-text-dark);
-  opacity: 0.9;
 }
+
 .footer-date {
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
-  letter-spacing: 0.28em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.30em;
   text-transform: uppercase;
   color: var(--c-blush);
-  opacity: 0.8;
+  font-weight: 400;
 }
+
 .footer-verse {
   font-family: var(--font-body);
   font-style: italic;
-  font-size:  var(--fs-sm);
+  font-size: var(--fs-sm);
   color: var(--c-text-soft);
-  max-width: 500px;
-  line-height: 1.8;
+  max-width: 480px;
+  line-height: 1.85;
 }
+
 .footer-credit {
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
+  font-size: var(--fs-xs);
   color: var(--c-blush);
-  opacity: 0.3;
-  letter-spacing: 0.1em;
+  opacity: 0.28;
+  letter-spacing: 0.12em;
 }
 
 
 /* ----------------------------------------------------------------
-   10. FLOATING ACTION BAR
+   10. FLOATING ACTION BAR — UPGRADED
+   
+   Improvements:
+   → Entry: spring-in from bottom with slight bounce
+   → Active state: animated underline, color shift
+   → Center RSVP: living pulse ring, larger hit target
+   → Glass: richer backdrop with warm tint
+   → Motion: staggered button reveals on first show
 ---------------------------------------------------------------- */
 .fab-bar {
   position: fixed;
@@ -1175,17 +1659,20 @@ ul, ol { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding-inline: var(--space-sm);
+  padding-inline: var(--sp-sm);
 
-  /* Soft frosted glass — light version */
-  background: rgba(253, 246, 238, 0.88);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border-top: 1px solid rgba(232, 164, 176, 0.25);
-  box-shadow: 0 -4px 20px rgba(196, 154, 176, 0.1);
+  /* Upgraded glass: warmer, more dimensional */
+  background: rgba(252, 246, 240, 0.92);
+  backdrop-filter: blur(28px) saturate(160%) brightness(1.02);
+  -webkit-backdrop-filter: blur(28px) saturate(160%) brightness(1.02);
+  border-top: 1px solid rgba(228, 154, 171, 0.20);
+  box-shadow:
+    0 -1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 -4px 24px rgba(184, 112, 127, 0.08);
 
-  transform: translateY(100%);
-  transition: transform var(--dur-slow) var(--ease-silk);
+  transform: translateY(110%);
+  /* Spring-in animation */
+  transition: transform var(--dur-slow) var(--ease-petal);
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 .fab-bar.visible {
@@ -1197,12 +1684,14 @@ ul, ol { list-style: none; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
-  padding: 0.5rem 1.25rem;
-  min-width: 68px;
-  min-height: 52px;
+  gap: 0.32rem;
+  padding: 0.5rem 1.35rem;
+  min-width: 64px;
+  min-height: 54px;
   border-radius: 12px;
-  color: var(--c-text-mid);
+  color: var(--c-text-soft);
+  position: relative;
+  
   transition:
     color      var(--dur-fast) ease,
     background var(--dur-fast) ease,
@@ -1210,9 +1699,33 @@ ul, ol { list-style: none; }
 }
 .fab-btn:hover, .fab-btn:focus-visible {
   color: var(--c-text-dark);
-  background: rgba(253, 246, 238, 0.9);
+  background: rgba(255, 248, 242, 0.80);
 }
-.fab-btn:active { transform: scale(0.91); }
+.fab-btn:active {
+  transform: scale(0.88);
+  transition-duration: var(--dur-instant);
+}
+
+/* Active indicator */
+.fab-btn.active {
+  color: var(--c-dusty-rose);
+}
+.fab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--c-blush);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+  50%       { transform: translateX(-50%) scale(1.4); opacity: 1; }
+}
 
 .fab-icon {
   width: 22px;
@@ -1225,31 +1738,61 @@ ul, ol { list-style: none; }
 
 .fab-label {
   font-family: var(--font-ui);
-  font-size:   0.58rem;
-  letter-spacing: 0.14em;
+  font-size: 0.57rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 500;
 }
 
-/* Center RSVP button */
+/* CENTER RSVP BUTTON — upgraded: living pulse */
 .fab-btn-center {
   background: var(--c-dusty-rose);
   border: 1px solid var(--c-dusty-rose);
   color: #ffffff;
   border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(196, 154, 176, 0.4);
+  box-shadow:
+    0 4px 16px rgba(184, 112, 127, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.25) inset;
+  position: relative;
+  overflow: visible;
 }
+
+/* Pulse ring effect */
+.fab-btn-center::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(184, 112, 127, 0.50);
+  animation: centerPulseRing 3s ease-in-out infinite;
+}
+
+@keyframes centerPulseRing {
+  0%, 100% { opacity: 0.5; transform: scale(1);    }
+  50%       { opacity: 0;   transform: scale(1.12); }
+}
+
 .fab-btn-center:hover {
-  background: #ba7587;
-  border-color: #ba7587;
+  background: #AA6272;
   color: #ffffff;
-  box-shadow: 0 6px 16px rgba(196, 154, 176, 0.6);
-  transform: translateY(-1px);
+  box-shadow:
+    0 6px 22px rgba(184, 112, 127, 0.60),
+    0 1px 0 rgba(255, 255, 255, 0.25) inset;
+  transform: translateY(-2px) scale(1.03);
 }
+.fab-btn-center:hover::after { display: none; } /* hide dot on center */
+.fab-btn-center.active { color: #ffffff; }
+.fab-btn-center.active::after { display: none; }
 
 
 /* ----------------------------------------------------------------
-   11. MUSIC TOGGLE
+   11. MUSIC TOGGLE — UPGRADED
+   
+   Improvements:
+   → Reveal: spring-in from right
+   → Playing state: equalizer bars have personality
+   → Blur backdrop more refined
+   → Hover: warm glow behind button
 ---------------------------------------------------------------- */
 .music-toggle {
   position: fixed;
@@ -1259,46 +1802,54 @@ ul, ol { list-style: none; }
 
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1rem;
+  gap: 0.55rem;
+  padding: 0.65rem 1.1rem;
   min-height: 44px;
   min-width: 44px;
 
-  background: var(--c-cream);
-  border: 1px solid rgba(196, 154, 176, 0.4);
-  border-radius: var(--radius-pill);
-  box-shadow: 0 4px 16px rgba(196, 154, 176, 0.15);
+  background: rgba(253, 246, 238, 0.92);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(196, 154, 176, 0.35);
+  border-radius: var(--r-pill);
+  box-shadow:
+    0 4px 18px rgba(184, 112, 127, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.85) inset;
 
   font-family: var(--font-ui);
-  font-size:   var(--fs-xs);
+  font-size: var(--fs-xs);
   letter-spacing: 0.14em;
   color: var(--c-text-dark);
   cursor: pointer;
 
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateX(28px) scale(0.95);
   transition:
-    all var(--dur-fast) ease,
+    all          var(--dur-fast) ease,
     opacity      var(--dur-slow) var(--ease-silk),
-    transform    var(--dur-slow) var(--ease-silk);
+    transform    var(--dur-slow) var(--ease-petal);
 }
 .music-toggle.visible {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(0) scale(1);
 }
 .music-toggle:hover {
-  background: #ffffff;
-  border-color: var(--c-dusty-rose);
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(184, 112, 127, 0.45);
   color: var(--c-dusty-rose);
-  box-shadow: 0 6px 20px rgba(196, 154, 176, 0.25);
+  box-shadow:
+    0 6px 22px rgba(184, 112, 127, 0.22),
+    0 0 0 4px rgba(228, 154, 171, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+  transform: scale(1.04);
 }
-.music-toggle:active { transform: scale(0.92); }
+.music-toggle:active { transform: scale(0.94); }
 
-/* Equalizer bars */
+/* EQUALIZER — upgraded: varied bar heights, personality */
 .eq-bars {
   display: flex;
   align-items: flex-end;
-  gap: 2px;
+  gap: 2.5px;
   height: 14px;
 }
 .eq-bar {
@@ -1306,52 +1857,86 @@ ul, ol { list-style: none; }
   background: var(--c-blush);
   border-radius: 2px;
   transform-origin: bottom;
-}
-.music-toggle.playing .eq-bar { animation: eqBounce 0.75s ease-in-out infinite alternate; }
-.music-toggle.playing .b1 { animation-delay: 0s;    height: 4px; }
-.music-toggle.playing .b2 { animation-delay: 0.15s; height: 10px; }
-.music-toggle.playing .b3 { animation-delay: 0.3s;  height: 6px; }
-.music-toggle.playing .b4 { animation-delay: 0.1s;  height: 12px; }
-
-@keyframes eqBounce {
-  from { transform: scaleY(0.25); }
-  to   { transform: scaleY(1);    }
+  transition: height var(--dur-mid) ease;
 }
 
-.music-toggle:not(.playing) .b1 { height: 4px;  opacity: 0.35; }
-.music-toggle:not(.playing) .b2 { height: 10px; opacity: 0.35; }
-.music-toggle:not(.playing) .b3 { height: 6px;  opacity: 0.35; }
-.music-toggle:not(.playing) .b4 { height: 12px; opacity: 0.35; }
+/* Playing: each bar has unique timing */
+.music-toggle.playing .b1 {
+  height: 4px;
+  animation: eq1 0.62s ease-in-out infinite alternate;
+}
+.music-toggle.playing .b2 {
+  height: 12px;
+  animation: eq2 0.48s ease-in-out infinite alternate;
+}
+.music-toggle.playing .b3 {
+  height: 7px;
+  animation: eq3 0.72s ease-in-out infinite alternate;
+}
+.music-toggle.playing .b4 {
+  height: 10px;
+  animation: eq4 0.55s ease-in-out infinite alternate;
+}
+
+@keyframes eq1 { from { height: 3px;  } to { height: 12px; } }
+@keyframes eq2 { from { height: 8px;  } to { height: 3px;  } }
+@keyframes eq3 { from { height: 14px; } to { height: 5px;  } }
+@keyframes eq4 { from { height: 6px;  } to { height: 13px; } }
+
+/* Paused: flat, greyed bars */
+.music-toggle:not(.playing) .b1 { height: 3px;  opacity: 0.30; }
+.music-toggle:not(.playing) .b2 { height: 8px;  opacity: 0.30; }
+.music-toggle:not(.playing) .b3 { height: 5px;  opacity: 0.30; }
+.music-toggle:not(.playing) .b4 { height: 10px; opacity: 0.30; }
 
 .music-toggle-label {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 500;
 }
 
 
 /* ----------------------------------------------------------------
-   12. ICON SPRITE HELPERS
-   Use inline SVG. These are convenience wrapper classes.
+   12. CURSOR FOLLOWER — New addition
+   Subtle warm circle that follows mouse on desktop.
+   Communicates luxury interactivity.
 ---------------------------------------------------------------- */
-.icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(228, 154, 171, 0.055) 0%,
+    rgba(238, 184, 126, 0.028) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.18s var(--ease-silk),
+    left      0.38s var(--ease-silk),
+    top       0.38s var(--ease-silk);
+  will-change: left, top;
+  mix-blend-mode: multiply;
 }
-.icon-sm svg  { width: 14px; height: 14px; }
-.icon-md svg  { width: 18px; height: 18px; }
-.icon-lg svg  { width: 24px; height: 24px; }
+
+@media (hover: none) {
+  .cursor-glow { display: none; }
+}
 
 
 /* ----------------------------------------------------------------
-   13. RESPONSIVE BREAKPOINTS
+   13. RESPONSIVE
 ---------------------------------------------------------------- */
 @media (max-width: 380px) {
   .loader-name-groom,
-  .loader-name-bride { letter-spacing: 0.02em; }
+  .loader-name-bride { letter-spacing: 0.015em; }
   .events-grid { grid-template-columns: 1fr; }
   .count-separator { display: none; }
+  .rsvp-btn-row { flex-direction: column; align-items: stretch; }
+  .btn-rsvp { justify-content: center; }
 }
 
 @media (min-width: 768px) {
@@ -1361,109 +1946,786 @@ ul, ol { list-style: none; }
 @media (min-width: 1024px) {
   .hero-title {
     flex-direction: row;
-    gap: 1rem;
+    gap: 0.85rem;
     align-items: center;
   }
   .hero-amp {
     display: inline;
-    font-size: 4rem;
+    font-size: 3.6rem;
   }
   .loader-names {
     flex-direction: row;
-    gap: 0.5rem;
+    gap: 0.45rem;
     align-items: center;
   }
-  .loader-ampersand { font-size: 3rem; }
+  .loader-ampersand { font-size: 2.75rem; }
 }
 
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration:        0.01ms !important;
-    animation-iteration-count: 1     !important;
+    animation-iteration-count: 1      !important;
     transition-duration:       0.01ms !important;
+    scroll-behavior:           auto   !important;
   }
-  .scroll-reveal { opacity: 1; transform: none; }
+  .scroll-reveal,
+  .reveal-left,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+  }
+  .cursor-glow { display: none; }
 }
 
 
-/* ----------------------------------------------------------------
-   14. SVG ICON REFERENCE
-   Copy these inline wherever icons are needed in HTML.
-   All icons use currentColor — color is inherited from parent.
----------------------------------------------------------------- */
+/* ================================================================
+   DEMO PREVIEW STYLES
+   (Remove in production — these wrap the demo layout)
+================================================================ */
+.demo-wrapper {
+  min-height: 100vh;
+  background: var(--c-parchment);
+  position: relative;
+}
 
-/*
-  ── CALENDAR (event date) ──
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="4" width="18" height="18" rx="3"/>
-    <path d="M16 2v4M8 2v4M3 10h18"/>
-  </svg>
+.demo-section-label {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(252, 244, 234, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 0.5rem 2rem;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--c-blush);
+  border-bottom: 1px solid rgba(228, 154, 171, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.demo-section-label span {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c-blush);
+  opacity: 0.6;
+}
 
-  ── CLOCK (event time) ──
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="9"/>
-    <path d="M12 7v5l3 3"/>
-  </svg>
+</style>
+</head>
+<body>
 
-  ── MAP PIN (venue) ──
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/>
-    <circle cx="12" cy="9" r="2.5"/>
-  </svg>
+<!-- Cursor glow (desktop only) -->
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-  ── FLOWER / LOTUS (ornament, badge) ──
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 3C10 7 7 8 3 8c0 4 3 7 6 8-1 2-1 4 3 5 4-1 4-3 3-5 3-1 6-4 6-8-4 0-7-1-9-5z"/>
-    <circle cx="12" cy="13" r="1.5" fill="currentColor"/>
-  </svg>
+<!-- ================================================
+     LOADER SECTION DEMO
+================================================ -->
+<div class="demo-section-label"><span></span> Section 01 — Loader (Entry Screen)</div>
 
-  ── RINGS (wedding, RSVP) ──
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="8.5" cy="13" r="5"/>
-    <circle cx="15.5" cy="13" r="5"/>
-  </svg>
+<div id="loader" style="position:relative; min-height: 600px; inset: unset; z-index: auto;">
+  
+  <!-- Floating petals -->
+  <div class="loader-petals" aria-hidden="true">
+    <div class="petal p1">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="8" rx="5" ry="9" transform="rotate(-20 12 12)"/></svg>
+    </div>
+    <div class="petal p2">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="8" rx="5" ry="9" transform="rotate(15 12 12)"/></svg>
+    </div>
+    <div class="petal p3">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="8" rx="5" ry="9" transform="rotate(-35 12 12)"/></svg>
+    </div>
+    <div class="petal p4">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="8" rx="4" ry="8" transform="rotate(10 12 12)"/></svg>
+    </div>
+    <div class="petal p5">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="8" rx="5" ry="9" transform="rotate(-8 12 12)"/></svg>
+    </div>
+    <div class="petal p6">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="8" rx="4" ry="7" transform="rotate(25 12 12)"/></svg>
+    </div>
+    <div class="petal p7">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="8" rx="4" ry="8" transform="rotate(-12 12 12)"/></svg>
+    </div>
+  </div>
 
-  ── MUSIC NOTE (music toggle) ──
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M9 18V5l12-2v13"/>
-    <circle cx="6" cy="18" r="3"/>
-    <circle cx="18" cy="16" r="3"/>
-  </svg>
+  <!-- Ornament top -->
+  <div class="loader-ornament-top" aria-hidden="true">
+    <div class="orn-line"></div>
+    <div class="orn-diamond"><svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg></div>
+    <div class="orn-line"></div>
+    <div class="orn-diamond"><svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg></div>
+    <div class="orn-line"></div>
+  </div>
 
-  ── ARROW RIGHT (enter button) ──
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M5 12h14M13 6l6 6-6 6"/>
-  </svg>
+  <!-- Main content -->
+  <div class="loader-content">
+    <div class="loader-eyebrow">A Wedding Invitation</div>
 
-  ── HOME (FAB nav) ──
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
-    <path d="M9 21V12h6v9"/>
-  </svg>
+    <div class="loader-names">
+      <span class="loader-name-groom">Suryanshu</span>
+      <span class="loader-ampersand">&amp;</span>
+      <span class="loader-name-bride">Aishwarya</span>
+    </div>
 
-  ── HEART (RSVP center FAB) ──
-  <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-  </svg>
+    <div class="loader-verse">
+      "And He united their hearts in love"
+      <em>— Quran 3:103 · February 14, 2026</em>
+    </div>
 
-  ── ENVELOPE (RSVP call) ──
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="2" y="4" width="20" height="16" rx="2"/>
-    <path d="m2 4 10 9 10-9"/>
-  </svg>
+    <div class="loader-date-hint">Varanasi · Uttar Pradesh</div>
 
-  ── WHATSAPP (WA button) ──
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-  </svg>
+    <button class="btn-enter haptic-btn" id="enterBtn">
+      <span class="btn-enter-text">Enter with Love</span>
+      <span class="btn-enter-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </span>
+    </button>
+  </div>
 
-  ── DIAMOND ornament ──
-  <svg viewBox="0 0 12 12" fill="currentColor">
-    <path d="M6 0L12 6L6 12L0 6Z"/>
-  </svg>
+  <!-- Ornament bottom -->
+  <div class="loader-ornament-bottom" aria-hidden="true">
+    <div class="orn-line"></div>
+    <div class="orn-diamond"><svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg></div>
+    <div class="orn-line"></div>
+  </div>
+</div>
 
-  ── PETAL (floating decoration) ──
-  <svg viewBox="0 0 24 24" fill="currentColor" opacity="0.7">
-    <ellipse cx="12" cy="8" rx="5" ry="9" transform="rotate(-20 12 12)"/>
-  </svg>
-*/
+
+<!-- ================================================
+     HERO SECTION DEMO
+================================================ -->
+<div class="demo-section-label"><span></span> Section 02 — Hero</div>
+
+<section id="hero">
+  <div class="hero-bg-color"></div>
+  
+  <div class="hero-layout">
+    <!-- Image -->
+    <div class="hero-image-area">
+      <div class="hero-image-wrapper" id="heroImageWrapper">
+        <div class="hero-parallax-bg" id="heroParallaxBg"
+             style="background: linear-gradient(135deg, var(--c-blush-pale) 0%, var(--c-peach-light) 50%, var(--c-mauve-light) 100%);">
+          <!-- Placeholder visual since no hero.jpeg -->
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
+            <svg viewBox="0 0 80 80" fill="none" width="80" opacity="0.35">
+              <circle cx="40" cy="28" r="14" stroke="var(--c-dusty-rose)" stroke-width="1.5"/>
+              <path d="M16 68c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="var(--c-dusty-rose)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div style="font-family:var(--font-body);font-style:italic;font-size:0.8rem;color:var(--c-text-soft);letter-spacing:0.15em;">Place hero.jpeg here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">We're getting married</div>
+      
+      <div class="hero-title">
+        <span class="hero-groom">Suryanshu</span>
+        <span class="hero-amp">&amp;</span>
+        <span class="hero-bride">Aishwarya</span>
+      </div>
+
+      <p class="hero-quote">
+        Two souls, one destiny — woven together in the sacred city of Varanasi.
+        <em>— 14 February 2026 · Varanasi</em>
+      </p>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="hero-scroll-cue" aria-hidden="true">
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
+    </div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</section>
+
+
+<!-- ================================================
+     COUNTDOWN SECTION DEMO
+================================================ -->
+<div class="demo-section-label"><span></span> Section 03 — Countdown</div>
+
+<section id="countdown">
+  <div class="section-container">
+    <div class="section-eyebrow scroll-reveal">Days Until Forever</div>
+    <h2 class="section-title scroll-reveal">The Ceremony Begins In</h2>
+    
+    <div class="countdown-grid">
+      <div class="count-block reveal-scale scroll-reveal">
+        <div class="count-num-wrap">
+          <span class="count-num" id="days">142</span>
+        </div>
+        <span class="count-label">Days</span>
+      </div>
+      
+      <div class="count-separator" aria-hidden="true">·</div>
+      
+      <div class="count-block reveal-scale scroll-reveal">
+        <div class="count-num-wrap">
+          <span class="count-num" id="hours">08</span>
+        </div>
+        <span class="count-label">Hours</span>
+      </div>
+      
+      <div class="count-separator" aria-hidden="true">·</div>
+      
+      <div class="count-block reveal-scale scroll-reveal">
+        <div class="count-num-wrap">
+          <span class="count-num" id="minutes">34</span>
+        </div>
+        <span class="count-label">Minutes</span>
+      </div>
+      
+      <div class="count-separator" aria-hidden="true">·</div>
+      
+      <div class="count-block reveal-scale scroll-reveal">
+        <div class="count-num-wrap">
+          <span class="count-num" id="seconds">22</span>
+        </div>
+        <span class="count-label">Seconds</span>
+      </div>
+    </div>
+    
+    <p class="countdown-sub scroll-reveal">Until two hearts become one</p>
+  </div>
+</section>
+
+
+<!-- ================================================
+     EVENTS SECTION DEMO
+================================================ -->
+<div class="demo-section-label"><span></span> Section 04 — Events</div>
+
+<section id="events">
+  <div class="section-container">
+    <div class="section-eyebrow scroll-reveal">Celebrate With Us</div>
+    <h2 class="section-title scroll-reveal">The Ceremonies</h2>
+
+    <div class="events-grid">
+      <!-- Mehendi Card -->
+      <div class="event-card scroll-reveal">
+        <div class="event-card-accent"></div>
+        <div class="event-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3C10 7 7 8 3 8c0 4 3 7 6 8-1 2-1 4 3 5 4-1 4-3 3-5 3-1 6-4 6-8-4 0-7-1-9-5z"/>
+            <circle cx="12" cy="13" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="event-type">Day One</div>
+        <h3 class="event-name">Mehendi & Sangeet</h3>
+        
+        <div class="event-detail-row">
+          <div class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <div>
+            <div class="event-detail-label">Date</div>
+            <div class="event-detail-value">Friday, 13 February 2026</div>
+          </div>
+        </div>
+
+        <div class="event-detail-row">
+          <div class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <div>
+            <div class="event-detail-label">Time</div>
+            <div class="event-detail-value">Evening, 5:30 PM onwards</div>
+          </div>
+        </div>
+
+        <div class="event-detail-row">
+          <div class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div>
+            <div class="event-detail-label">Venue</div>
+            <div class="event-detail-value">Clarks Hotel Varanasi<br>The Mall, Cantonment</div>
+          </div>
+        </div>
+
+        <p class="event-verse">
+          An evening of colour, song, and celebration.<br>Dress code: Vibrant & Festive
+          <em>— Festive Attire</em>
+        </p>
+
+        <div class="orn-divider" aria-hidden="true">
+          <div class="orn-divider-line"></div>
+          <div class="orn-divider-icon"><svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg></div>
+          <div class="orn-divider-line"></div>
+        </div>
+
+        <a href="#" class="btn-event-map haptic-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          View on Maps
+        </a>
+      </div>
+
+      <!-- Wedding Card -->
+      <div class="event-card scroll-reveal">
+        <div class="event-card-accent accent-sage"></div>
+        <div class="event-badge badge-sage">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8.5" cy="13" r="5"/>
+            <circle cx="15.5" cy="13" r="5"/>
+          </svg>
+        </div>
+        <div class="event-type">Day Two</div>
+        <h3 class="event-name">The Wedding Ceremony</h3>
+
+        <div class="event-detail-row">
+          <div class="event-icon event-icon-sage">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <div>
+            <div class="event-detail-label" style="color:var(--c-sage)">Date</div>
+            <div class="event-detail-value">Saturday, 14 February 2026</div>
+          </div>
+        </div>
+
+        <div class="event-detail-row">
+          <div class="event-icon event-icon-sage">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <div>
+            <div class="event-detail-label" style="color:var(--c-sage)">Time</div>
+            <div class="event-detail-value">Auspicious Muhurat, 10:30 AM</div>
+          </div>
+        </div>
+
+        <div class="event-detail-row">
+          <div class="event-icon event-icon-sage">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div>
+            <div class="event-detail-label" style="color:var(--c-sage)">Venue</div>
+            <div class="event-detail-value">Dashashwamedh Ghat<br>Varanasi, Uttar Pradesh</div>
+          </div>
+        </div>
+
+        <p class="event-verse">
+          Where the Ganges blesses two souls united forever.<br>Dress code: Traditional & Elegant
+          <em style="color:var(--c-sage)">— Traditional Attire</em>
+        </p>
+
+        <div class="orn-divider" aria-hidden="true">
+          <div class="orn-divider-line" style="background: linear-gradient(90deg, transparent, rgba(127,168,130,0.45), transparent)"></div>
+          <div class="orn-divider-icon" style="color:var(--c-sage)"><svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg></div>
+          <div class="orn-divider-line" style="background: linear-gradient(90deg, transparent, rgba(127,168,130,0.45), transparent)"></div>
+        </div>
+
+        <a href="#" class="btn-event-map btn-event-map-sage haptic-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          View on Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================
+     RSVP SECTION DEMO
+================================================ -->
+<div class="demo-section-label"><span></span> Section 05 — RSVP</div>
+
+<section id="rsvp">
+  <div class="section-container">
+    <div class="rsvp-inner">
+      <div class="rsvp-deco-top" aria-hidden="true">
+        <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
+        <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
+        <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
+      </div>
+
+      <div class="section-eyebrow scroll-reveal">You Are Invited</div>
+      <h2 class="section-title scroll-reveal">RSVP by 31 January 2026</h2>
+
+      <p class="rsvp-body scroll-reveal">
+        Your presence is the greatest gift.<br>
+        Please let us know you're joining us.
+      </p>
+
+      <div class="rsvp-contact-card scroll-reveal">
+        <div class="rsvp-contact-label">RSVP Contact</div>
+        <div class="rsvp-contact-name">Rajesh Sharma</div>
+        <div class="rsvp-contact-phone">+91 98765 43210</div>
+        <div class="rsvp-btn-row">
+          <a href="tel:+919876543210" class="btn-rsvp haptic-btn">
+            <span class="rsvp-btn-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 10a19.79 19.79 0 0 1-3-8.57 2 2 0 0 1 1.99-2.18H6a2 2 0 0 1 2 1.72 12.08 12.08 0 0 0 .65 2.62 2 2 0 0 1-.45 2.11L7.09 6.5A16 16 0 0 0 14.5 13.9l1.06-1.11a2 2 0 0 1 2.11-.45 12.08 12.08 0 0 0 2.62.65A2 2 0 0 1 22 14.92z"/></svg>
+            </span>
+            Call to RSVP
+          </a>
+          <a href="https://wa.me/919876543210" class="btn-rsvp btn-rsvp-wa haptic-btn">
+            <span class="rsvp-btn-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+              </svg>
+            </span>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="orn-divider rsvp-deco-bottom scroll-reveal" aria-hidden="true">
+        <div class="orn-divider-line"></div>
+        <div class="orn-divider-icon"><svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg></div>
+        <div class="orn-divider-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================
+     FOOTER
+================================================ -->
+<footer id="footer">
+  <div class="footer-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+  </div>
+  <div class="footer-names">Suryanshu &amp; Aishwarya</div>
+  <div class="footer-date">14 February 2026 · Varanasi</div>
+  <p class="footer-verse">Together is our favourite place to be.</p>
+  <div class="footer-credit">With love &amp; blessings</div>
+</footer>
+
+
+<!-- ================================================
+     FAB BAR + MUSIC TOGGLE
+================================================ -->
+<button class="music-toggle visible playing" id="musicToggle" aria-label="Toggle music">
+  <div class="eq-bars" aria-hidden="true">
+    <div class="eq-bar b1"></div>
+    <div class="eq-bar b2"></div>
+    <div class="eq-bar b3"></div>
+    <div class="eq-bar b4"></div>
+  </div>
+  <span class="music-toggle-label">Music</span>
+</button>
+
+<nav class="fab-bar visible" role="navigation" aria-label="Page navigation">
+  <button class="fab-btn active" aria-label="Home">
+    <span class="fab-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+    </span>
+    <span class="fab-label">Home</span>
+  </button>
+
+  <button class="fab-btn" aria-label="Events">
+    <span class="fab-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="3"/>
+        <path d="M16 2v4M8 2v4M3 10h18"/>
+      </svg>
+    </span>
+    <span class="fab-label">Events</span>
+  </button>
+
+  <button class="fab-btn fab-btn-center haptic-btn" aria-label="RSVP">
+    <span class="fab-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+    </span>
+    <span class="fab-label">RSVP</span>
+  </button>
+
+  <button class="fab-btn" aria-label="Gallery">
+    <span class="fab-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2.5"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <path d="m21 15-5-5L5 21"/>
+      </svg>
+    </span>
+    <span class="fab-label">Gallery</span>
+  </button>
+
+  <button class="fab-btn" aria-label="Map">
+    <span class="fab-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/>
+        <circle cx="12" cy="9" r="2.5"/>
+      </svg>
+    </span>
+    <span class="fab-label">Map</span>
+  </button>
+</nav>
+
+
+<!-- ================================================
+     JAVASCRIPT — UPGRADED INTERACTIONS
+================================================ -->
+<script>
+/* ================================================================
+   JS UPGRADES:
+   1. Cursor glow — warm follower (desktop only)
+   2. Hero image cursor-tilt — subtle 3D perspective tilt
+   3. Scroll-linked hero parallax — smooth, capped
+   4. Scroll reveal — IntersectionObserver with varied thresholds
+   5. Countdown — live, with 3D flip animation
+   6. FAB nav — active section tracking
+   7. Loader — iris-close exit
+   8. Music toggle — state management
+================================================================ */
+
+/* ── 1. CURSOR GLOW ── */
+const cursorGlow = document.getElementById('cursorGlow');
+if (window.matchMedia('(hover: hover)').matches && cursorGlow) {
+  let glowX = window.innerWidth / 2;
+  let glowY = window.innerHeight / 2;
+  let targetX = glowX;
+  let targetY = glowY;
+  
+  document.addEventListener('mousemove', (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+  });
+  
+  // Lazy follow — creates organic drag feel
+  function animateGlow() {
+    glowX += (targetX - glowX) * 0.08;
+    glowY += (targetY - glowY) * 0.08;
+    cursorGlow.style.left = glowX + 'px';
+    cursorGlow.style.top  = glowY + 'px';
+    requestAnimationFrame(animateGlow);
+  }
+  requestAnimationFrame(animateGlow);
+}
+
+
+/* ── 2. HERO IMAGE CURSOR TILT ── */
+const heroWrapper = document.getElementById('heroImageWrapper');
+if (heroWrapper && window.matchMedia('(hover: hover)').matches) {
+  let tiltRaf;
+  
+  document.addEventListener('mousemove', (e) => {
+    cancelAnimationFrame(tiltRaf);
+    tiltRaf = requestAnimationFrame(() => {
+      const rect = heroWrapper.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      
+      // Normalized -1..1 from viewport center
+      const nx = (e.clientX - cx) / (window.innerWidth * 0.6);
+      const ny = (e.clientY - cy) / (window.innerHeight * 0.6);
+      
+      // Max 4° tilt — subtle, elegant
+      const rotX = ny * -4;
+      const rotY = nx *  4;
+      
+      heroWrapper.style.transform =
+        `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.008)`;
+    });
+  });
+  
+  heroWrapper.addEventListener('mouseleave', () => {
+    heroWrapper.style.transform =
+      'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+  });
+}
+
+
+/* ── 3. SCROLL-LINKED HERO PARALLAX ── */
+const heroBg = document.getElementById('heroParallaxBg');
+if (heroBg) {
+  let scrollRaf;
+  window.addEventListener('scroll', () => {
+    cancelAnimationFrame(scrollRaf);
+    scrollRaf = requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      const heroEl = document.getElementById('hero');
+      if (!heroEl) return;
+      const heroH = heroEl.offsetHeight;
+      const progress = Math.min(scrollY / heroH, 1);
+      // Subtle upward drift: max 8% of height
+      heroBg.style.transform = `translateY(${progress * 8}%)`;
+    });
+  }, { passive: true });
+}
+
+
+/* ── 4. SCROLL REVEAL — IntersectionObserver ── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      // Slight natural delay jitter per element
+      const el = entry.target;
+      const baseDelay = parseInt(el.dataset.delay || 0);
+      setTimeout(() => {
+        el.classList.add('revealed');
+      }, baseDelay);
+      revealObserver.unobserve(el);
+    }
+  });
+}, {
+  threshold: 0.12,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+document.querySelectorAll('.scroll-reveal, .reveal-left, .reveal-scale').forEach((el, i) => {
+  // Assign natural stagger via data attribute
+  if (!el.dataset.delay) {
+    // Cards in a grid get offset stagger
+    const parent = el.parentElement;
+    const siblings = parent ? [...parent.children].filter(c =>
+      c.classList.contains('scroll-reveal') ||
+      c.classList.contains('reveal-scale')
+    ) : [];
+    const idx = siblings.indexOf(el);
+    el.dataset.delay = idx * 85;
+  }
+  revealObserver.observe(el);
+});
+
+
+/* ── 5. COUNTDOWN ── */
+const WEDDING = new Date('2026-02-14T10:30:00+05:30');
+
+function pad(n) {
+  return String(Math.max(0, n)).padStart(2, '0');
+}
+
+function flipNumber(el, newVal) {
+  const current = el.textContent;
+  if (current === newVal) return;
+  
+  el.classList.add('flip');
+  setTimeout(() => {
+    el.textContent = newVal;
+    el.classList.remove('flip');
+  }, 200);
+}
+
+function updateCountdown() {
+  const now  = new Date();
+  const diff = WEDDING - now;
+  
+  if (diff <= 0) {
+    ['days','hours','minutes','seconds'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = '00';
+    });
+    return;
+  }
+  
+  const d  = Math.floor(diff / 86400000);
+  const h  = Math.floor((diff % 86400000) / 3600000);
+  const m  = Math.floor((diff % 3600000)  / 60000);
+  const s  = Math.floor((diff % 60000)    / 1000);
+  
+  const dEl = document.getElementById('days');
+  const hEl = document.getElementById('hours');
+  const mEl = document.getElementById('minutes');
+  const sEl = document.getElementById('seconds');
+  
+  if (dEl) flipNumber(dEl, pad(d));
+  if (hEl) flipNumber(hEl, pad(h));
+  if (mEl) flipNumber(mEl, pad(m));
+  if (sEl) flipNumber(sEl, pad(s));
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+
+/* ── 6. FAB ACTIVE SECTION TRACKING ── */
+const sections = document.querySelectorAll('section[id]');
+const fabBtns = document.querySelectorAll('.fab-btn:not(.fab-btn-center)');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      fabBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('aria-label').toLowerCase() === id.toLowerCase());
+      });
+    }
+  });
+}, {
+  threshold: 0.5
+});
+
+sections.forEach(s => sectionObserver.observe(s));
+
+// FAB scroll-to
+fabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const label = btn.getAttribute('aria-label').toLowerCase();
+    const target = document.getElementById(label);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+document.querySelector('.fab-btn-center')?.addEventListener('click', () => {
+  const rsvp = document.getElementById('rsvp');
+  if (rsvp) rsvp.scrollIntoView({ behavior: 'smooth' });
+});
+
+
+/* ── 7. LOADER ENTER BUTTON ── */
+const enterBtn = document.getElementById('enterBtn');
+if (enterBtn) {
+  enterBtn.addEventListener('click', () => {
+    const loader = document.getElementById('loader');
+    if (!loader) return;
+    loader.classList.add('loader-exit');
+    // After animation, show site
+    setTimeout(() => {
+      loader.style.display = 'none';
+      document.body.classList.add('site-active');
+    }, 1200);
+  });
+}
+
+
+/* ── 8. MUSIC TOGGLE ── */
+const musicToggle = document.getElementById('musicToggle');
+if (musicToggle) {
+  let isPlaying = true;
+  musicToggle.addEventListener('click', () => {
+    isPlaying = !isPlaying;
+    musicToggle.classList.toggle('playing', isPlaying);
+    const label = musicToggle.querySelector('.music-toggle-label');
+    if (label) label.textContent = isPlaying ? 'Music' : 'Muted';
+  });
+}
+
+
+/* ── Staggered FAB reveal on load ── */
+const fabBar = document.querySelector('.fab-bar');
+if (fabBar) {
+  const btns = fabBar.querySelectorAll('.fab-btn');
+  btns.forEach((btn, i) => {
+    btn.style.opacity = '0';
+    btn.style.transform = 'translateY(12px)';
+    setTimeout(() => {
+      btn.style.transition = `opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)`;
+      btn.style.opacity = '1';
+      btn.style.transform = 'translateY(0)';
+    }, 800 + i * 60);
+  });
+}
+
+</script>
+
+</body>
+</html>
