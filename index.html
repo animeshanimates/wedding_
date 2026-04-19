@@ -1,658 +1,599 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Suryanshu & Aishwarya — Varanasi 2026</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="icon" href="data:," />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suryanshu & Aishwarya — Varanasi 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- ============================================================
-     LOADER / ENTRY SCREEN
-============================================================ -->
 <div id="loader" role="dialog" aria-label="Wedding invitation entry">
 
-  <!-- Floating petals -->
-  <div class="loader-petals" aria-hidden="true">
-    <span class="petal p1">
-      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4.5" ry="8" transform="rotate(-15 12 12)"/></svg>
-    </span>
-    <span class="petal p2">
-      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4.5" ry="8" transform="rotate(10 12 12)"/></svg>
-    </span>
-    <span class="petal p3">
-      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4" ry="7" transform="rotate(-30 12 12)"/></svg>
-    </span>
-    <span class="petal p4">
-      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4.5" ry="8" transform="rotate(20 12 12)"/></svg>
-    </span>
-    <span class="petal p5">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C9 7 6 8 2 8c0 4 3 7.5 6.5 8.5C7.5 19 8 21 12 22c4-1 4.5-3 3.5-5.5C19 15.5 22 12 22 8c-4 0-7-1-10-6z"/><circle cx="12" cy="13" r="2" fill="currentColor" stroke="none"/></svg>
-    </span>
-    <span class="petal p6">
-      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4" ry="7" transform="rotate(-5 12 12)"/></svg>
-    </span>
-    <span class="petal p7">
-      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="3.5" ry="6.5" transform="rotate(25 12 12)"/></svg>
-    </span>
-  </div>
+  <div class="loader-petals" aria-hidden="true">
+    <span class="petal p1">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4.5" ry="8" transform="rotate(-15 12 12)"/></svg>
+    </span>
+    <span class="petal p2">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4.5" ry="8" transform="rotate(10 12 12)"/></svg>
+    </span>
+    <span class="petal p3">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4" ry="7" transform="rotate(-30 12 12)"/></svg>
+    </span>
+    <span class="petal p4">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4.5" ry="8" transform="rotate(20 12 12)"/></svg>
+    </span>
+    <span class="petal p5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C9 7 6 8 2 8c0 4 3 7.5 6.5 8.5C7.5 19 8 21 12 22c4-1 4.5-3 3.5-5.5C19 15.5 22 12 22 8c-4 0-7-1-10-6z"/><circle cx="12" cy="13" r="2" fill="currentColor" stroke="none"/></svg>
+    </span>
+    <span class="petal p6">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4" ry="7" transform="rotate(-5 12 12)"/></svg>
+    </span>
+    <span class="petal p7">
+      <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="3.5" ry="6.5" transform="rotate(25 12 12)"/></svg>
+    </span>
+  </div>
 
-  <!-- Top ornament -->
-  <div class="loader-ornament-top" aria-hidden="true">
-    <span class="orn-line"></span>
-    <span class="orn-diamond">
-      <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
-    </span>
-    <span class="orn-line"></span>
-    <span class="orn-diamond">
-      <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
-    </span>
-    <span class="orn-line"></span>
-  </div>
+  <div class="loader-ornament-top" aria-hidden="true">
+    <span class="orn-line"></span>
+    <span class="orn-diamond">
+      <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
+    </span>
+    <span class="orn-line"></span>
+    <span class="orn-diamond">
+      <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
+    </span>
+    <span class="orn-line"></span>
+  </div>
 
-  <!-- Main content -->
-  <div class="loader-content">
-    <p class="loader-eyebrow">You are warmly invited to the wedding of</p>
+  <div class="loader-content">
+    <p class="loader-eyebrow">You are warmly invited to the wedding of</p>
 
-    <div class="loader-names">
-      <span class="loader-name-groom">Suryanshu</span>
-      <span class="loader-ampersand">&amp;</span>
-      <span class="loader-name-bride">Aishwarya</span>
-    </div>
+    <div class="loader-names">
+      <span class="loader-name-groom">Suryanshu</span>
+      <span class="loader-ampersand">&</span>
+      <span class="loader-name-bride">Aishwarya</span>
+    </div>
 
-    <p class="loader-verse">
-      "Two souls, one heart — bound by love, blessed by grace."
-      <em>— Varanasi, November 2026</em>
-    </p>
+    <p class="loader-verse">
+      "Two souls, one heart — bound by love, blessed by grace."
+      <em>— Varanasi, November 2026</em>
+    </p>
 
-    <p class="loader-date-hint">14 · 11 · 2026</p>
+    <p class="loader-date-hint">14 · 11 · 2026</p>
 
-    <button class="btn-enter haptic-btn" id="btn-enter" aria-label="Enter the wedding website">
+    <button class="btn-enter haptic-btn" id="btn-enter" aria-label="Enter the wedding website">
 
-      <span class="btn-enter-text">Enter Our World</span>
-      <span class="btn-enter-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M13 6l6 6-6 6"/>
-        </svg>
-      </span>
-    </button>
-  </div>
+      <span class="btn-enter-text">Enter Our World</span>
+      <span class="btn-enter-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </span>
+    </button>
+  </div>
 
-  <!-- Bottom ornament -->
-  <div class="loader-ornament-bottom" aria-hidden="true">
-    <span class="orn-line"></span>
-    <span class="orn-diamond">
-      <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
-    </span>
-    <span class="orn-line"></span>
-    <span class="orn-diamond">
-      <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
-    </span>
-    <span class="orn-line"></span>
-  </div>
+  <div class="loader-ornament-bottom" aria-hidden="true">
+    <span class="orn-line"></span>
+    <span class="orn-diamond">
+      <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
+    </span>
+    <span class="orn-line"></span>
+    <span class="orn-diamond">
+      <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
+    </span>
+    <span class="orn-line"></span>
+  </div>
 
-</div><!-- /#loader -->
-
-
-<!-- ============================================================
-     MUSIC TOGGLE
-============================================================ -->
-<button class="music-toggle haptic-btn" id="music-toggle" aria-label="Toggle background music" aria-pressed="false">
-  <div class="eq-bars" aria-hidden="true">
-    <div class="eq-bar b1"></div>
-    <div class="eq-bar b2"></div>
-    <div class="eq-bar b3"></div>
-    <div class="eq-bar b4"></div>
-  </div>
-  <span class="music-toggle-label">Music</span>
+</div><button class="music-toggle haptic-btn" id="music-toggle" aria-label="Toggle background music" aria-pressed="false">
+  <div class="eq-bars" aria-hidden="true">
+    <div class="eq-bar b1"></div>
+    <div class="eq-bar b2"></div>
+    <div class="eq-bar b3"></div>
+    <div class="eq-bar b4"></div>
+  </div>
+  <span class="music-toggle-label">Music</span>
 </button>
 <audio id="wedding-audio" loop preload="none">
-  <source src="wedding_music.mp3" type="audio/mpeg" />
+  <source src="wedding_music.mp3" type="audio/mpeg" />
 </audio>
 
 
-<!-- ============================================================
-     MAIN SITE CONTENTS
-============================================================ -->
 <main id="main-site" aria-hidden="true">
 
-<!-- ============================================================
-     HERO SECTION
-============================================================ -->
-<section id="hero" aria-label="Hero — Suryanshu &amp; Aishwarya">
+<section id="hero" aria-label="Hero — Suryanshu & Aishwarya">
 
-  <div class="hero-bg-color" aria-hidden="true"></div>
+  <div class="hero-bg-color" aria-hidden="true"></div>
 
-  <div class="hero-layout">
-    
-    <div class="hero-image-area">
-      <div class="hero-image-wrapper">
-        <div class="hero-parallax-bg" id="hero-bg" aria-hidden="true"></div>
-      </div>
-    </div>
+  <div class="hero-layout">
+    
+    <div class="hero-image-area">
+      <div class="hero-image-wrapper">
+        <div class="hero-parallax-bg" id="hero-bg" aria-hidden="true"></div>
+      </div>
+    </div>
 
-    <div class="hero-content">
-      <p class="hero-eyebrow">14 November 2026 · Varanasi</p>
+    <div class="hero-content">
+      <p class="hero-eyebrow">14 November 2026 · Varanasi</p>
 
-      <h1 class="hero-title">
-        <span class="hero-groom">Suryanshu</span>
-        <span class="hero-amp">&amp;</span>
-        <span class="hero-bride">Aishwarya</span>
-      </h1>
+      <h1 class="hero-title">
+        <span class="hero-groom">Suryanshu</span>
+        <span class="hero-amp">&</span>
+        <span class="hero-bride">Aishwarya</span>
+      </h1>
 
-      <p class="hero-quote">
-        Where two rivers meet, two hearts become one.
-        <em>— Begin your journey with us</em>
-      </p>
-    </div>
+      <p class="hero-quote">
+        Where two rivers meet, two hearts become one.
+        <em>— Begin your journey with us</em>
+      </p>
+    </div>
 
-  </div>
+  </div>
 
 
 </section>
 
 
-<!-- ============================================================
-     COUNTDOWN SECTION
-============================================================ -->
 <section id="countdown" aria-label="Countdown to the wedding">
-  <div class="section-container">
+  <div class="section-container">
 
-    <p class="section-eyebrow scroll-reveal">Days Until Forever</p>
-    <h2 class="section-title scroll-reveal">The Big Day Approaches</h2>
+    <p class="section-eyebrow scroll-reveal">Days Until Forever</p>
+    <h2 class="section-title scroll-reveal">The Big Day Approaches</h2>
 
-    <div class="countdown-grid" aria-live="polite">
-      <div class="count-block scroll-reveal">
-        <span class="count-num" id="count-days">—</span>
-        <span class="count-label">Days</span>
-      </div>
-      <span class="count-separator" aria-hidden="true">·</span>
-      <div class="count-block scroll-reveal">
-        <span class="count-num" id="count-hours">—</span>
-        <span class="count-label">Hours</span>
-      </div>
-      <span class="count-separator" aria-hidden="true">·</span>
-      <div class="count-block scroll-reveal">
-        <span class="count-num" id="count-mins">—</span>
-        <span class="count-label">Minutes</span>
-      </div>
-      <span class="count-separator" aria-hidden="true">·</span>
-      <div class="count-block scroll-reveal">
-        <span class="count-num" id="count-secs">—</span>
-        <span class="count-label">Seconds</span>
-      </div>
-    </div>
+    <div class="countdown-grid" aria-live="polite">
+      <div class="count-block scroll-reveal">
+        <span class="count-num" id="count-days">—</span>
+        <span class="count-label">Days</span>
+      </div>
+      <span class="count-separator" aria-hidden="true">·</span>
+      <div class="count-block scroll-reveal">
+        <span class="count-num" id="count-hours">—</span>
+        <span class="count-label">Hours</span>
+      </div>
+      <span class="count-separator" aria-hidden="true">·</span>
+      <div class="count-block scroll-reveal">
+        <span class="count-num" id="count-mins">—</span>
+        <span class="count-label">Minutes</span>
+      </div>
+      <span class="count-separator" aria-hidden="true">·</span>
+      <div class="count-block scroll-reveal">
+        <span class="count-num" id="count-secs">—</span>
+        <span class="count-label">Seconds</span>
+      </div>
+    </div>
 
-    <p class="countdown-sub scroll-reveal">
-      Join us as we begin our journey together on the sacred banks of the Ganga
-    </p>
+    <p class="countdown-sub scroll-reveal">
+      Join us as we begin our journey together on the sacred banks of the Ganga
+    </p>
 
-  </div>
+  </div>
 </section>
 
 
-<!-- ============================================================
-     EVENTS SECTION
-============================================================ -->
 <section id="events" aria-label="Wedding events">
-  <div class="section-container">
+  <div class="section-container">
 
-    <p class="section-eyebrow scroll-reveal">Celebrations</p>
-    <h2 class="section-title scroll-reveal">Our Wedding Festivities</h2>
+    <p class="section-eyebrow scroll-reveal">Celebrations</p>
+    <h2 class="section-title scroll-reveal">Our Wedding Festivities</h2>
 
-    <!-- Ornamental divider -->
-    <div class="orn-divider scroll-reveal" aria-hidden="true">
-      <span class="orn-divider-line"></span>
-      <span class="orn-divider-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2C9 7 6 8 2 8c0 4 3 7.5 6.5 8.5C7.5 19 8 21 12 22c4-1 4.5-3 3.5-5.5C19 15.5 22 12 22 8c-4 0-7-1-10-6z"/>
-        </svg>
-      </span>
-      <span class="orn-divider-line"></span>
-    </div>
+    <div class="orn-divider scroll-reveal" aria-hidden="true">
+      <span class="orn-divider-line"></span>
+      <span class="orn-divider-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C9 7 6 8 2 8c0 4 3 7.5 6.5 8.5C7.5 19 8 21 12 22c4-1 4.5-3 3.5-5.5C19 15.5 22 12 22 8c-4 0-7-1-10-6z"/>
+        </svg>
+      </span>
+      <span class="orn-divider-line"></span>
+    </div>
 
-    <div class="events-grid">
+    <div class="events-grid">
 
-      <!-- ── Card I: Haldi & Mehndi ── -->
-      <article class="event-card scroll-reveal" aria-label="Haldi and Mehndi ceremony">
-        <div class="event-card-accent accent-sage" aria-hidden="true"></div>
+      <article class="event-card scroll-reveal" aria-label="Haldi and Mehndi ceremony">
+        <div class="event-card-accent accent-sage" aria-hidden="true"></div>
 
-        <div class="event-badge badge-sage" aria-hidden="true">
-          <!-- Leaf / nature icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 8C8 10 5.9 16.17 3.82 19.27C3.01 20.46 3.97 22 5.4 22h.11c1.35 0 2.5-.93 2.77-2.26.27-1.31 1.38-2.74 8.72-2.74h.22c1.07 0 1.97-.83 2-1.9A11.6 11.6 0 0 0 17 8z"/>
-            <path d="M17 8c.44-2.35.35-4.96-.97-7"/>
-          </svg>
-        </div>
+        <div class="event-badge badge-sage" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 8C8 10 5.9 16.17 3.82 19.27C3.01 20.46 3.97 22 5.4 22h.11c1.35 0 2.5-.93 2.77-2.26.27-1.31 1.38-2.74 8.72-2.74h.22c1.07 0 1.97-.83 2-1.9A11.6 11.6 0 0 0 17 8z"/>
+            <path d="M17 8c.44-2.35.35-4.96-.97-7"/>
+          </svg>
+        </div>
 
-        <p class="event-type">Day 1 · 13 November</p>
-        <h3 class="event-name">Haldi & Mehndi</h3>
+        <p class="event-type">Day 1 · 13 November</p>
+        <h3 class="event-name">Haldi & Mehndi</h3>
 
-        <div class="event-detail-row">
-          <span class="event-icon event-icon-sage">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Time</p>
-            <p class="event-detail-value">10:00 AM — 4:00 PM</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon event-icon-sage">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Time</p>
+            <p class="event-detail-value">10:00 AM — 4:00 PM</p>
+          </div>
+        </div>
 
-        <div class="event-detail-row">
-          <span class="event-icon event-icon-sage">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Venue</p>
-            <p class="event-detail-value">Sharma Family Residence<br/>Civil Lines, Varanasi</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon event-icon-sage">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Venue</p>
+            <p class="event-detail-value">Sharma Family Residence<br/>Civil Lines, Varanasi</p>
+          </div>
+        </div>
 
-        <div class="event-detail-row">
-          <span class="event-icon event-icon-sage">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Attire</p>
-            <p class="event-detail-value">Yellow & Green traditional dress. Ladies welcome to wear mehndi!</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon event-icon-sage">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Attire</p>
+            <p class="event-detail-value">Yellow & Green traditional dress. Ladies welcome to wear mehndi!</p>
+          </div>
+        </div>
 
-        <p class="event-verse">
-          "The colour of turmeric, the art of henna — blessings painted with love."
-          <em>— Wear comfort &amp; colour</em>
-        </p>
+        <p class="event-verse">
+          "The colour of turmeric, the art of henna — blessings painted with love."
+          <em>— Wear comfort & colour</em>
+        </p>
 
-        <div style="margin-top:1.5rem;">
-          <a class="btn-event-map btn-event-map-sage haptic-btn" href="https://maps.google.com/?q=Civil+Lines+Varanasi" target="_blank" rel="noopener" aria-label="Get directions to Haldi venue">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
-              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
-            Directions
-          </a>
-        </div>
+        <div style="margin-top:1.5rem;">
+          <a class="btn-event-map btn-event-map-sage haptic-btn" href="https://maps.google.com/?q=Civil+Lines+Varanasi" target="_blank" rel="noopener" aria-label="Get directions to Haldi venue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
+              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            Directions
+          </a>
+        </div>
 
-      </article>
+      </article>
 
 
-      <!-- ── Card II: Sangeet ── -->
-      <article class="event-card scroll-reveal" aria-label="Sangeet ceremony">
-        <div class="event-card-accent" aria-hidden="true"></div>
+      <article class="event-card scroll-reveal" aria-label="Sangeet ceremony">
+        <div class="event-card-accent" aria-hidden="true"></div>
 
-        <div class="event-badge" aria-hidden="true">
-          <!-- Music note icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
-          </svg>
-        </div>
+        <div class="event-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+        </div>
 
-        <p class="event-type">Day 1 · 13 November</p>
-        <h3 class="event-name">Sangeet Night</h3>
+        <p class="event-type">Day 1 · 13 November</p>
+        <h3 class="event-name">Sangeet Night</h3>
 
-        <div class="event-detail-row">
-          <span class="event-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Time</p>
-            <p class="event-detail-value">7:00 PM — 11:00 PM</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Time</p>
+            <p class="event-detail-value">7:00 PM — 11:00 PM</p>
+          </div>
+        </div>
 
-        <div class="event-detail-row">
-          <span class="event-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Venue</p>
-            <p class="event-detail-value">Radisson Hotel Varanasi<br/>The Grand Ballroom</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Venue</p>
+            <p class="event-detail-value">Radisson Hotel Varanasi<br/>The Grand Ballroom</p>
+          </div>
+        </div>
 
-        <div class="event-detail-row">
-          <span class="event-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Attire</p>
-            <p class="event-detail-value">Cocktail · Lehenga & Sherwani · Semi-formal western welcome</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Attire</p>
+            <p class="event-detail-value">Cocktail · Lehenga & Sherwani · Semi-formal western welcome</p>
+          </div>
+        </div>
 
-        <p class="event-verse">
-          "Where music meets love — a night of dance, laughter, and memories."
-          <em>— Dinner &amp; performances included</em>
-        </p>
+        <p class="event-verse">
+          "Where music meets love — a night of dance, laughter, and memories."
+          <em>— Dinner & performances included</em>
+        </p>
 
-        <div style="margin-top:1.5rem;">
-          <a class="btn-event-map haptic-btn" href="https://maps.google.com/?q=Radisson+Hotel+Varanasi" target="_blank" rel="noopener" aria-label="Get directions to Sangeet venue">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
-              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
-            Directions
-          </a>
-        </div>
+        <div style="margin-top:1.5rem;">
+          <a class="btn-event-map haptic-btn" href="https://maps.google.com/?q=Radisson+Hotel+Varanasi" target="_blank" rel="noopener" aria-label="Get directions to Sangeet venue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
+              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            Directions
+          </a>
+        </div>
 
-      </article>
+      </article>
 
 
-      <!-- ── Card III: Baraat & Jai Mala ── -->
-      <article class="event-card scroll-reveal" aria-label="Baraat and Jai Mala ceremony">
-        <div class="event-card-accent" aria-hidden="true"></div>
+      <article class="event-card scroll-reveal" aria-label="Baraat and Jai Mala ceremony">
+        <div class="event-card-accent" aria-hidden="true"></div>
 
-        <div class="event-badge" aria-hidden="true">
-          <!-- Star / celebration icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-        </div>
+        <div class="event-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
 
-        <p class="event-type">Day 2 · 14 November — Morning</p>
-        <h3 class="event-name">Baraat & Jai Mala</h3>
+        <p class="event-type">Day 2 · 14 November — Morning</p>
+        <h3 class="event-name">Baraat & Jai Mala</h3>
 
-        <div class="event-detail-row">
-          <span class="event-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Time</p>
-            <p class="event-detail-value">Baraat — 9:00 AM<br/>Jai Mala — 11:00 AM</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Time</p>
+            <p class="event-detail-value">Baraat — 9:00 AM<br/>Jai Mala — 11:00 AM</p>
+          </div>
+        </div>
 
-        <div class="event-detail-row">
-          <span class="event-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Venue</p>
-            <p class="event-detail-value">Banaras Lawn & Garden<br/>Near Assi Ghat, Varanasi</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Venue</p>
+            <p class="event-detail-value">Banaras Lawn & Garden<br/>Near Assi Ghat, Varanasi</p>
+          </div>
+        </div>
 
-        <div class="event-detail-row">
-          <span class="event-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Dress Code</p>
-            <p class="event-detail-value">Traditional Indian · Sherwanis, Lehengas, Sarees</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Dress Code</p>
+            <p class="event-detail-value">Traditional Indian · Sherwanis, Lehengas, Sarees</p>
+          </div>
+        </div>
 
-        <p class="event-verse">
-          "The groom arrives — may the whole world celebrate with him."
-          <em>— Breakfast &amp; welcome drinks served</em>
-        </p>
+        <p class="event-verse">
+          "The groom arrives — may the whole world celebrate with him."
+          <em>— Breakfast & welcome drinks served</em>
+        </p>
 
-        <div style="margin-top:1.5rem;">
-          <a class="btn-event-map haptic-btn" href="https://maps.google.com/?q=Assi+Ghat+Varanasi" target="_blank" rel="noopener" aria-label="Get directions to Baraat venue">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
-              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
-            Directions
-          </a>
-        </div>
+        <div style="margin-top:1.5rem;">
+          <a class="btn-event-map haptic-btn" href="https://maps.google.com/?q=Assi+Ghat+Varanasi" target="_blank" rel="noopener" aria-label="Get directions to Baraat venue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
+              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            Directions
+          </a>
+        </div>
 
-      </article>
+      </article>
 
 
-      <!-- ── Card IV: Vivah (Wedding Ceremony) ── -->
-      <article class="event-card scroll-reveal" aria-label="Vivah wedding ceremony">
-        <div class="event-card-accent" aria-hidden="true"></div>
+      <article class="event-card scroll-reveal" aria-label="Vivah wedding ceremony">
+        <div class="event-card-accent" aria-hidden="true"></div>
 
-        <div class="event-badge" aria-hidden="true">
-          <!-- Rings icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="8.5" cy="13" r="4.5"/><circle cx="15.5" cy="13" r="4.5"/>
-          </svg>
-        </div>
+        <div class="event-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8.5" cy="13" r="4.5"/><circle cx="15.5" cy="13" r="4.5"/>
+          </svg>
+        </div>
 
-        <p class="event-type">Day 2 · 14 November — Afternoon</p>
-        <h3 class="event-name">Vivah Ceremony</h3>
+        <p class="event-type">Day 2 · 14 November — Afternoon</p>
+        <h3 class="event-name">Vivah Ceremony</h3>
 
-        <div class="event-detail-row">
-          <span class="event-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Muhurat</p>
-            <p class="event-detail-value">12:30 PM — 3:00 PM<br/><span style="opacity:0.7;font-style:italic">Auspicious time blessed by pandit</span></p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Muhurat</p>
+            <p class="event-detail-value">12:30 PM — 3:00 PM<br/><span style="opacity:0.7;font-style:italic">Auspicious time blessed by pandit</span></p>
+          </div>
+        </div>
 
-        <div class="event-detail-row">
-          <span class="event-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Venue</p>
-            <p class="event-detail-value">Banaras Lawn & Garden<br/>Sacred Mandap on the Grounds</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Venue</p>
+            <p class="event-detail-value">Banaras Lawn & Garden<br/>Sacred Mandap on the Grounds</p>
+          </div>
+        </div>
 
-        <div class="event-detail-row">
-          <span class="event-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </span>
-          <div>
-            <p class="event-detail-label">Attire</p>
-            <p class="event-detail-value">Traditional wedding finery. Bride's colours — Crimson & Gold</p>
-          </div>
-        </div>
+        <div class="event-detail-row">
+          <span class="event-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </span>
+          <div>
+            <p class="event-detail-label">Attire</p>
+            <p class="event-detail-value">Traditional wedding finery. Bride's colours — Crimson & Gold</p>
+          </div>
+        </div>
 
-        <p class="event-verse">
-          "Seven vows, seven steps — a lifetime of love begins today."
-          <em>— Lunch reception follows</em>
-        </p>
+        <p class="event-verse">
+          "Seven vows, seven steps — a lifetime of love begins today."
+          <em>— Lunch reception follows</em>
+        </p>
 
-        <div style="margin-top:1.5rem;">
-          <a class="btn-event-map haptic-btn" href="https://maps.google.com/?q=Assi+Ghat+Varanasi" target="_blank" rel="noopener" aria-label="Get directions to wedding ceremony">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
-              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
-            Directions
-          </a>
-        </div>
+        <div style="margin-top:1.5rem;">
+          <a class="btn-event-map haptic-btn" href="https://maps.google.com/?q=Assi+Ghat+Varanasi" target="_blank" rel="noopener" aria-label="Get directions to wedding ceremony">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
+              <path d="M12 21C12 21 5 13.5 5 9a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            Directions
+          </a>
+        </div>
 
-      </article>
+      </article>
 
-    </div><!-- /.events-grid -->
-  </div>
+    </div></div>
 </section>
 
 
-<!-- ============================================================
-     RSVP SECTION
-============================================================ -->
 <section id="rsvp" aria-label="RSVP and contact information">
-  <div class="section-container">
-    <div class="rsvp-inner">
+  <div class="section-container">
+    <div class="rsvp-inner">
 
-      <!-- Top deco flowers -->
-      <div class="rsvp-deco-top" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4" ry="7" transform="rotate(-20 12 12)"/></svg>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C9 7 6 8 2 8c0 4 3 7.5 6.5 8.5C7.5 19 8 21 12 22c4-1 4.5-3 3.5-5.5C19 15.5 22 12 22 8c-4 0-7-1-10-6z"/></svg>
-        <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4" ry="7" transform="rotate(20 12 12)"/></svg>
-      </div>
+      <div class="rsvp-deco-top" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4" ry="7" transform="rotate(-20 12 12)"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C9 7 6 8 2 8c0 4 3 7.5 6.5 8.5C7.5 19 8 21 12 22c4-1 4.5-3 3.5-5.5C19 15.5 22 12 22 8c-4 0-7-1-10-6z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="9" rx="4" ry="7" transform="rotate(20 12 12)"/></svg>
+      </div>
 
-      <p class="section-eyebrow scroll-reveal">You are cherished</p>
-      <h2 class="section-title scroll-reveal">Kindly Respond</h2>
+      <p class="section-eyebrow scroll-reveal">You are cherished</p>
+      <h2 class="section-title scroll-reveal">Kindly Respond</h2>
 
-      <p class="rsvp-body scroll-reveal">
-        Your presence would fill our hearts with joy. Please let us know you're coming so we can make every arrangement perfect for you.
-      </p>
+      <p class="rsvp-body scroll-reveal">
+        Your presence would fill our hearts with joy. Please let us know you're coming so we can make every arrangement perfect for you.
+      </p>
 
-      <!-- Contact card -->
-      <div class="rsvp-contact-card glass-card scroll-reveal">
-        <p class="rsvp-contact-label">Reach out to</p>
-        <p class="rsvp-contact-name">Rahul Sharma</p>
-        <p class="rsvp-contact-phone">+91 00000 00000 </p>
+      <div class="rsvp-contact-card glass-card scroll-reveal">
+        <p class="rsvp-contact-label">Reach out to</p>
+        <p class="rsvp-contact-name">Rahul Sharma</p>
+        <p class="rsvp-contact-phone">+91 00000 00000 </p>
 
-        <div class="rsvp-btn-row">
-          <!-- Call button -->
-          <a class="btn-rsvp haptic-btn" href="tel:+910000000000" aria-label="Call Rahul Sharma">
-            <span class="rsvp-btn-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.83 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8 8.91a16 16 0 0 0 6 6l1.07-1.07a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-              </svg>
-            </span>
-            Call
-          </a>
+        <div class="rsvp-btn-row">
+          <a class="btn-rsvp haptic-btn" href="tel:+910000000000" aria-label="Call Rahul Sharma">
+            <span class="rsvp-btn-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.83 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8 8.91a16 16 0 0 0 6 6l1.07-1.07a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </span>
+            Call
+          </a>
 
-          <!-- WhatsApp button -->
-          <a class="btn-rsvp btn-rsvp-wa haptic-btn" href="https://wa.me/917905659997?text=Hi!%20I%20would%20love%20to%20attend%20Suryanshu%20%26%20Aishwarya's%20wedding." target="_blank" rel="noopener" aria-label="Message on WhatsApp">
-            <span class="rsvp-btn-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-              </svg>
-            </span>
-            WhatsApp
-          </a>
-        </div>
-      </div><!-- /.rsvp-contact-card -->
+          <a class="btn-rsvp btn-rsvp-wa haptic-btn" href="https://wa.me/917905659997?text=Hi!%20I%20would%20love%20to%20attend%20Suryanshu%20%26%20Aishwarya's%20wedding." target="_blank" rel="noopener" aria-label="Message on WhatsApp">
+            <span class="rsvp-btn-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+              </svg>
+            </span>
+            WhatsApp
+          </a>
+        </div>
+      </div><div class="rsvp-deco-bottom orn-divider scroll-reveal" aria-hidden="true">
+        <span class="orn-divider-line"></span>
+        <span class="orn-divider-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </span>
+        <span class="orn-divider-line"></span>
+      </div>
 
-      <!-- Bottom ornament -->
-      <div class="rsvp-deco-bottom orn-divider scroll-reveal" aria-hidden="true">
-        <span class="orn-divider-line"></span>
-        <span class="orn-divider-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </span>
-        <span class="orn-divider-line"></span>
-      </div>
-
-    </div>
-  </div>
+    </div>
+  </div>
 </section>
 
 
-<!-- ============================================================
-     FOOTER
-============================================================ -->
 <footer id="footer" aria-label="Footer">
 
-  <div class="footer-icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 2C9 7 6 8 2 8c0 4 3 7.5 6.5 8.5C7.5 19 8 21 12 22c4-1 4.5-3 3.5-5.5C19 15.5 22 12 22 8c-4 0-7-1-10-6z"/>
-      <circle cx="12" cy="13" r="2" fill="currentColor" stroke="none"/>
-    </svg>
-  </div>
+  <div class="footer-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2C9 7 6 8 2 8c0 4 3 7.5 6.5 8.5C7.5 19 8 21 12 22c4-1 4.5-3 3.5-5.5C19 15.5 22 12 22 8c-4 0-7-1-10-6z"/>
+      <circle cx="12" cy="13" r="2" fill="currentColor" stroke="none"/>
+    </svg>
+  </div>
 
-  <p class="footer-names">Suryanshu &amp; Aishwarya</p>
-  <p class="footer-date">14 · 11 · 2026 · Varanasi</p>
+  <p class="footer-names">Suryanshu & Aishwarya</p>
+  <p class="footer-date">14 · 11 · 2026 · Varanasi</p>
 
-  <div class="orn-divider" style="max-width:200px;opacity:0.3;" aria-hidden="true">
-    <span class="orn-divider-line"></span>
-    <span class="orn-divider-icon">
-      <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
-    </span>
-    <span class="orn-divider-line"></span>
-  </div>
+  <div class="orn-divider" style="max-width:200px;opacity:0.3;" aria-hidden="true">
+    <span class="orn-divider-line"></span>
+    <span class="orn-divider-icon">
+      <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 0L12 6L6 12L0 6Z"/></svg>
+    </span>
+    <span class="orn-divider-line"></span>
+  </div>
 
-  <p class="footer-verse">
-    "May this love story echo through the ghats of the Ganga, across lifetimes."
-  </p>
+  <p class="footer-verse">
+    "May this love story echo through the ghats of the Ganga, across lifetimes."
+  </p>
 
-  <p class="footer-credit">Made with love · 2026</p>
+  <p class="footer-credit">Made with love · 2026</p>
 
 </footer>
 
 
-<!-- ============================================================
-     FLOATING ACTION BAR
-============================================================ -->
 <nav class="fab-bar" id="fab-bar" aria-label="Quick navigation">
 
-  <!-- Home -->
-  <a class="fab-btn haptic-btn" href="#hero" aria-label="Back to top">
-    <span class="fab-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/>
-      </svg>
-    </span>
-    <span class="fab-label">Home</span>
-  </a>
+  <a class="fab-btn haptic-btn" href="#hero" aria-label="Back to top">
+    <span class="fab-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/>
+      </svg>
+    </span>
+    <span class="fab-label">Home</span>
+  </a>
 
-  <!-- Events -->
-  <a class="fab-btn haptic-btn" href="#events" aria-label="View events">
-    <span class="fab-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/>
-      </svg>
-    </span>
-    <span class="fab-label">Events</span>
-  </a>
+  <a class="fab-btn haptic-btn" href="#events" aria-label="View events">
+    <span class="fab-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/>
+      </svg>
+    </span>
+    <span class="fab-label">Events</span>
+  </a>
 
-  <!-- RSVP — center highlighted -->
-  <a class="fab-btn fab-btn-center haptic-btn" href="#rsvp" aria-label="RSVP">
-    <span class="fab-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-      </svg>
-    </span>
-    <span class="fab-label">RSVP</span>
-  </a>
+  <a class="fab-btn fab-btn-center haptic-btn" href="#rsvp" aria-label="RSVP">
+    <span class="fab-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+    </span>
+    <span class="fab-label">RSVP</span>
+  </a>
 
-  <!-- Countdown -->
-  <a class="fab-btn haptic-btn" href="#countdown" aria-label="View countdown">
-    <span class="fab-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
-      </svg>
-    </span>
-    <span class="fab-label">Timer</span>
-  </a>
+  <a class="fab-btn haptic-btn" href="#countdown" aria-label="View countdown">
+    <span class="fab-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+      </svg>
+    </span>
+    <span class="fab-label">Timer</span>
+  </a>
 
-  <!-- Map / location -->
-  <a class="fab-btn haptic-btn" href="https://maps.google.com/?q=Varanasi" target="_blank" rel="noopener" aria-label="Open venue map">
-    <span class="fab-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>
-      </svg>
-    </span>
-    <span class="fab-label">Map</span>
-  </a>
+  <a class="fab-btn haptic-btn" href="https://maps.google.com/?q=Varanasi" target="_blank" rel="noopener" aria-label="Open venue map">
+    <span class="fab-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>
+      </svg>
+    </span>
+    <span class="fab-label">Map</span>
+  </a>
 
 </nav>
 
 
 </main>
 
-<!-- ============================================================
-     JAVASCRIPT
-============================================================ -->
 <script src="script.js"></script>
 
 </body>
-</html> 
+</html>
