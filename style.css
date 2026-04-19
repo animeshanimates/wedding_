@@ -46,7 +46,6 @@
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body:    'Lora', Georgia, serif;
   --font-ui:      'DM Sans', system-ui, sans-serif;
-}
 
   /* ── Fluid Type Scale ── */
   --fs-xs:    clamp(0.65rem, 1.5vw, 0.75rem);
