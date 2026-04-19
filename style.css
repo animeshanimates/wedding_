@@ -1,51 +1,52 @@
 /* ----------------------------------------------------------------
-   1. DESIGN TOKENS
+   1. DESIGN TOKENS (Premium Traditional Theme)
 ---------------------------------------------------------------- */
 :root {
   /* ── Brand Palette ── */
-  --c-blush:        #E49AAB;
-  --c-blush-light:  #EFC5CD;
-  --c-blush-pale:   #FAE8EB;
-  --c-peach:        #EEB87E;
-  --c-peach-light:  #F8D9AB;
-  --c-peach-pale:   #FDF0E2;
-  --c-sage:         #7FA882;
-  --c-sage-light:   #B2CABB;
-  --c-sage-pale:    #E4EEE6;
-  --c-mauve:        #C49AB0;
-  --c-mauve-light:  #DDBFCE;
-  --c-cream:        #FDF6EE;
-  --c-cream-warm:   #F7E8D4;
-  --c-dusty-rose:   #B8707F;
-  --c-terracotta:   #A87560;
-  --c-sky-blush:    #F4C4A8;
+  --c-blush:        #8B1C31; /* Deep Sindoor / Crimson */
+  --c-blush-light:  #A7263E; /* Rich Ruby */
+  --c-blush-pale:   #F4E8EA; /* Subtle Rose Water tint */
+  --c-peach:        #D4AF37; /* Antique Gold / Zari */
+  --c-peach-light:  #E8D08D; /* Light Gold */
+  --c-peach-pale:   #FBF6E9; /* Champagne */
+  --c-sage:         #1E3B2D; /* Deep Mehendi / Emerald */
+  --c-sage-light:   #345C47; /* Rich Jade */
+  --c-sage-pale:    #E9EFEA; /* Soft Mint backdrop */
+  --c-mauve:        #5A2A44; /* Royal Aubergine */
+  --c-mauve-light:  #824164; /* Plum */
+  --c-cream:        #F9F4EC; /* Warm Ivory Base */
+  --c-cream-warm:   #F0E5D3; /* Sandalwood */
+  --c-dusty-rose:   #A33B3B; /* Brick Red / Terracotta */
+  --c-terracotta:   #C0583E; /* Deep Marigold */
+  --c-sky-blush:    #D59B78; /* Polished Copper */
 
   /* ── Surface System ── */
-  --c-parchment:    #FCF4EA;
-  --c-surface:      rgba(253, 246, 238, 0.88);
-  --c-surface-soft: rgba(238, 184, 126, 0.10);
-  --c-glass-card:   rgba(253, 246, 238, 0.62);
-  --c-glass-border: rgba(228, 154, 171, 0.28);
-  --c-glass-shadow-sm: rgba(184, 112, 127, 0.10);
-  --c-glass-shadow-md: rgba(184, 112, 127, 0.18);
-  --c-glass-shadow-lg: rgba(184, 112, 127, 0.28);
+  --c-parchment:    #FAF3E8; /* Silk Ivory */
+  --c-surface:      rgba(250, 243, 232, 0.92);
+  --c-surface-soft: rgba(212, 175, 55, 0.06); /* Faint gold tint */
+  --c-glass-card:   rgba(250, 243, 232, 0.80);
+  --c-glass-border: rgba(212, 175, 55, 0.35); /* Gold glass border */
+  --c-glass-shadow-sm: rgba(49, 12, 20, 0.12); /* Deep crimson shadow */
+  --c-glass-shadow-md: rgba(49, 12, 20, 0.20);
+  --c-glass-shadow-lg: rgba(49, 12, 20, 0.35);
 
   /* ── Text Hierarchy ── */
-  --c-text-heading: #4A2E38;
-  --c-text-dark:    #5C3D4A;
-  --c-text-mid:     #7D5A68;
-  --c-text-soft:    #AC8898;
-  --c-text-ghost:   #CCADB8;
-  --c-text-on-dark: #FDF6EE;
+  --c-text-heading: #260A10; /* Near-black Crimson */
+  --c-text-dark:    #4A1A24; /* Deep Maroon */
+  --c-text-mid:     #733C47; /* Muted Ruby */
+  --c-text-soft:    #A8887B; /* Warm Metallic Grey */
+  --c-text-ghost:   #C7B5AD;
+  --c-text-on-dark: #F9F4EC; /* Ivory */
 
   /* ── Loader Dusk ── */
-  --c-dusk:     #2A1520;
-  --c-dusk-mid: #3D2030;
+  --c-dusk:         #1E0A10; /* Midnight Crimson */
+  --c-dusk-mid:     #310C14;
 
   /* ── Typography ── */
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body:    'Lora', Georgia, serif;
   --font-ui:      'DM Sans', system-ui, sans-serif;
+}
 
   /* ── Fluid Type Scale ── */
   --fs-xs:    clamp(0.65rem, 1.5vw, 0.75rem);
